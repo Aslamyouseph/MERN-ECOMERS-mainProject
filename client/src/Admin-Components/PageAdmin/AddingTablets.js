@@ -6,7 +6,7 @@ function AddingTablet() {
     <div>
       {/*This is used to import the admin Navigation bar  form Admin folder */}
       <AdminNavBar />
-      <AddingTablets /> {/*This is used to import the adding tablets page*/}
+      <AddingTablets /> {/*This is used to import the adding Tablets page*/}
     </div>
   );
 }
