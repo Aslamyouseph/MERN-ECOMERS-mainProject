@@ -7,7 +7,7 @@ function AddingGamingLaptop() {
       {/*This is used to import the admin Navigation bar  form Admin folder */}
       <AdminNavBar />
       <AddingGamingLaptops />{" "}
-      {/*This is used to import the adding gaming laptops page*/}
+      {/*This is used to import the adding Gaming laptops page*/}
     </div>
   );
 }
