@@ -1,3 +1,4 @@
+//User Model (Used for storing the login signup information)
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
