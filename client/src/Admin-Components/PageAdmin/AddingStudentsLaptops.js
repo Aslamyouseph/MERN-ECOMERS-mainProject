@@ -6,7 +6,7 @@ function AddingStudentsLaptops() {
     <div>
       {/*This is used to import the admin Navigation bar  form Admin folder */}
       <AdminNavBar />
-      {/*This is used to import the adding student laptops page*/}
+      {/*This is used to import the adding Student laptops page*/}
       <AddStudentsLaptops />
     </div>
   );
