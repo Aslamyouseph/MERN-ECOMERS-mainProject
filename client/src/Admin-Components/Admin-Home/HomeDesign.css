@@ -1,7 +1,8 @@
 /* Home Page Design*/
 .AdminImage {
-  width: 100%;
+  width: 70%;
   height: 100%;
+  margin-left: 15%;
   object-fit: cover;
   object-position: center;
 }
