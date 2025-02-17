@@ -6,7 +6,7 @@ function AddingTwoInOnes() {
     <div>
       {/*This is used to import the admin Navigation bar  form Admin folder */}
       <AdminNavBar />
-      <AddingTwoInOne /> {/*This is used to import the adding two in one page*/}
+      <AddingTwoInOne /> {/*This is used to import the adding 2 in 1 page*/}
     </div>
   );
 }
