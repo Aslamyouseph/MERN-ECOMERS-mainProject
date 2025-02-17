@@ -6,7 +6,7 @@ function AdminAddNew() {
     <div>
       {/*This is used to import the admin Navigation bar  form Admin folder */}
       <AdminNavBar />
-      <AdminAddNews /> {/*This is used to import the add news page*/}
+      <AdminAddNews /> {/*This is used to import the add News page*/}
     </div>
   );
 }
