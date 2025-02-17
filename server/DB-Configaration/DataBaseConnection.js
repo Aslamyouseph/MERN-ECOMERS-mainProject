@@ -1,4 +1,4 @@
-/*This is the connection code , to connect to the mongoDB  */
+/*This is the connection code - to connect to the mongoDB  */
 
 const mongoose = require("mongoose");
 
