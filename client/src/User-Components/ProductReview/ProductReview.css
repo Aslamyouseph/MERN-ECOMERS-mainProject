@@ -1,0 +1,69 @@
+/* Product Review Component Styles */
+.product-review-container {
+  max-width: 80%;
+  margin: 20px auto;
+  padding: 25px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.product-review-title {
+  font-size: 2rem;
+  font-family: "Poppins", sans-serif;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.product-review-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.product-review-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.productReviewer-name {
+  font-size: 1.9rem;
+  font-weight: bold;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  margin-bottom: 10px;
+  display: flex;
+  color: rgb(169, 85, 0);
+}
+
+.product-review-textarea {
+  width: 100%;
+  max-width: 500px;
+  height: 120px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  resize: none;
+  margin-bottom: 15px;
+}
+
+.product-review-button {
+  background: linear-gradient(to right, #007bff, #0056b3);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  width: 100%;
+  max-width: 500px;
+  margin-top: 8px;
+}
+
+.product-review-button:hover {
+  background: linear-gradient(to right, #0056b3, #003d80);
+}

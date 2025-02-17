@@ -1,0 +1,30 @@
+/* TODO: On this way we can able to put all the cards in the single row */
+.main-card-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 0 5%;
+}
+
+.sub-card {
+  margin-bottom: 20px;
+}
+
+.card-img-top {
+  max-width: 100%;
+  height: auto;
+}
+.section {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.paragraph {
+  text-align: justify;
+  font-size: large;
+}
+.sub-card:hover {
+  transform: scale(1.1);
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+  height: auto;
+}

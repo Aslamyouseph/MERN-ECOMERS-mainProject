@@ -1,0 +1,178 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Cinzel:wght@600&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
+
+footer {
+  background: linear-gradient(135deg, #1c1d22, #3a3b42);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 10px;
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.6);
+}
+
+footer .f-logo {
+  color: #ffffff;
+  font-family: "Cinzel", serif;
+  letter-spacing: 2px;
+  padding: 10px 15px;
+  font-size: 35px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  margin-bottom: 30px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-decoration: none;
+}
+
+footer .up-section,
+footer .down-section {
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+footer .up-section {
+  border-bottom: 2px dashed #545562;
+  padding-bottom: 25px;
+}
+
+footer ul {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0 20px;
+  list-style: none;
+}
+
+footer ul h1 {
+  background: linear-gradient(90deg, #ff9a9e, #fad0c4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 22px;
+  font-family: "Cinzel", serif;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+footer h1 {
+  background: linear-gradient(90deg, #ff9a9e, #fad0c4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 22px;
+  font-family: "Cinzel", serif;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+footer ul li {
+  margin: 10px 0;
+}
+
+footer ul li a {
+  font-size: 16px;
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s, transform 0.3s, text-shadow 0.3s;
+}
+footer p {
+  font-size: 16px;
+  color: #ffffff;
+}
+
+footer ul li a:hover {
+  color: #ff9a9e;
+  transform: translateY(-3px);
+  text-shadow: 0 0 8px rgba(255, 154, 158, 0.7);
+}
+
+footer .social-icons {
+  display: flex;
+  gap: 20px;
+}
+
+footer .social-icons a {
+  width: 45px;
+  height: 45px;
+  background-color: #3a3b42;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  text-decoration: none;
+}
+
+footer .social-icons a:hover {
+  background-color: #ff9a9e;
+  transform: scale(1.2);
+  box-shadow: 0 6px 15px rgba(255, 154, 158, 0.7);
+}
+
+footer .social-icons i {
+  color: #ffffff;
+  font-size: 22px;
+  transition: color 0.3s, transform 0.3s;
+}
+
+footer .social-icons a:hover i {
+  color: #1c1d22;
+  transform: rotate(20deg);
+}
+
+footer .copyright {
+  margin-top: 20px;
+  color: #b3b3b3;
+  font-size: 14px;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+@media (max-width: 1170px) {
+  footer {
+    padding: 5px;
+    max-width: 100%;
+  }
+}
+
+/* Ultra-Small Screens (320px and below) */
+@media (max-width: 320px) {
+  /* Reduce footer padding */
+  footer {
+    padding: 5px;
+    max-width: 100%;
+  }
+
+  /* Ensure lists span full width and are center-aligned */
+  ul {
+    margin: 10px 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Further reduce heading font size */
+  ul h1 {
+    font-size: 14px;
+  }
+
+  /* Reduce spacing and font size for list items */
+  ul li {
+    margin: 5px 0;
+    font-size: 12px;
+  }
+
+  /* Adjust social icon sizes for ultra-small screens */
+  .social-icons a {
+    width: 30px;
+    height: 30px;
+  }
+
+  /* Minimize font size for copyright text */
+  .copyright {
+    font-size: 10px;
+    padding: 5px;
+  }
+}

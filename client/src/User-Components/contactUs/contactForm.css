@@ -1,0 +1,107 @@
+/* General form container */
+.form-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: 0.3s ease-in-out;
+}
+
+.form-container:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Heading */
+.contact-form-heading {
+  text-align: center;
+  font-size: 30px;
+  color: #fa0000;
+  font-family: "Times New Roman", Times, serif;
+  margin-bottom: 20px;
+}
+
+/* Form fields */
+label {
+  font-size: 16px;
+  font-weight: 600;
+  display: block;
+  text-align: left;
+  margin: 10px 0 5px;
+  color: #444;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: 0.3s;
+  outline: none;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+
+textarea {
+  resize: none;
+}
+
+/* Submit button */
+input[type="submit"] {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 15px;
+  transition: 0.3s;
+}
+
+input[type="submit"]:hover {
+  background: #0056b3;
+}
+
+/* Success & Error Messages */
+.success-message {
+  color: #09b02d;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+.error-message {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .form-container {
+    padding: 20px;
+  }
+
+  .contact-form-heading {
+    font-size: 18px;
+  }
+
+  input,
+  textarea {
+    font-size: 14px;
+  }
+}

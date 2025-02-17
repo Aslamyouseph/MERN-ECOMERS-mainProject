@@ -1,0 +1,114 @@
+/* Form container */
+.login-container {
+  background: rgb(250, 248, 248);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 30%;
+  text-align: center;
+  margin-left: 35%;
+}
+
+/* Form heading */
+.login-container h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Input fields */
+.login-container input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* Focus effect on input */
+.login-container input:focus {
+  outline: none;
+  border-color: #8e44ad;
+  box-shadow: 0 0 5px rgba(142, 68, 173, 0.5);
+}
+
+/* Radio buttons */
+.login-container .radio-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.login-container .radio-group label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.login-container .radio-group input {
+  margin-right: 5px;
+}
+
+/* Submit button */
+.login-container button {
+  width: 100%;
+  background: linear-gradient(to right, #4a90e2, #8e44ad);
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.login-container button:hover {
+  opacity: 0.9;
+}
+/* Login link */
+.login-container .signUp-link {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 18px;
+  color: #4a90e2;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.login-container .signUp-link:hover {
+  color: #8e44ad;
+}
+
+/* Success & Error Messages */
+.success-message {
+  color: #09b02d;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+.error-message {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+@media (max-width: 1000px) {
+  .login-container {
+    max-width: 100%;
+    margin-left: auto;
+    text-align: center;
+  }
+}

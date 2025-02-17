@@ -1,0 +1,77 @@
+/* Container Styles */
+.return-refund-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: rgb(250, 247, 247);
+}
+
+/* Card Styles */
+.return-refund-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 500px;
+  text-align: center;
+}
+
+/* Title Styles */
+.return-refund-title {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 22px;
+  font-weight: bold;
+  color: #0c042c;
+  margin-bottom: 15px;
+}
+
+/* Input Fields */
+.return-refund-field {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.return-refund-field label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.return-refund-field input,
+.return-refund-field textarea,
+.return-refund-field select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Button Styles */
+.return-refund-btn {
+  width: 100%;
+  background-color: #03547d;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.return-refund-btn:hover {
+  background-color: #004d40;
+}
+
+/* Error & Success Messages */
+.return-refund-error {
+  color: red;
+  font-size: 20px;
+}
+
+.return-refund-success {
+  color: rgb(0, 204, 20);
+  font-size: 20px;
+}

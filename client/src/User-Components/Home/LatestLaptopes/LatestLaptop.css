@@ -1,0 +1,63 @@
+/* Wrapper for the images */
+.cover {
+  position: relative;
+  max-width: 90%;
+  max-height: 100%;
+  margin: auto;
+  overflow: hidden;
+  display: flex;
+}
+
+/* Scroll container */
+.scroll-images {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  gap: 30px; /* Adjust spacing between images */
+}
+
+/* Scrollable images */
+.child {
+  flex-shrink: 0; /* Prevent images from shrinking */
+  width: 300px; /* Set width for images */
+  height: 300px; /* Adjust height as needed */
+  scroll-snap-align: start;
+}
+.scroll-images::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+.child-img {
+  max-width: 90%;
+  max-height: 100%;
+  object-fit: cover; /* Ensure images fill the container without distortion */
+}
+
+/* Arrow buttons */
+.left,
+.right {
+  position: absolute;
+  top: 35%;
+  z-index: 1;
+  font-size: 2rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+}
+
+.left {
+  left: 10px;
+}
+
+.right {
+  right: 10px;
+}
+
+.left:hover,
+.right:hover {
+  background-color: rgba(255, 0, 0, 0.8);
+}

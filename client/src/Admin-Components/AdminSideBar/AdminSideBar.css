@@ -1,0 +1,150 @@
+/* General Styles */
+.admin-sidebar-container {
+  position: relative;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  color: #333;
+
+  overflow: hidden;
+}
+
+/* Sidebar Title */
+.admin-slideHead {
+  text-align: center; /* Centered text */
+  font-family: "Times New Roman", serif; /* Font family */
+  font-size: 40px; /* Font size */
+  margin-top: 25px; /* Top margin */
+  color: #333; /* Dark color */
+  font-weight: bold; /* Bold text */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+  text-transform: uppercase; /* Uppercase text */
+  letter-spacing: 1px; /* Letter spacing */
+  padding: 10px 0; /* Padding */
+  background: #f8f9fa; /* Match sidebar background */
+}
+
+.admin-divider {
+  /* margin: 0 20px; */
+  border: 1px solid #000000;
+}
+
+/* Overlay */
+.admin-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+/* Hamburger Icon */
+.admin-hamburger {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* Sidebar Styles */
+.admin-sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px; /* Hidden by default */
+  width: 250px;
+  height: 100%;
+  background-color: #455260;
+  color: white;
+  transition: left 0.3s ease;
+  z-index: 2;
+  padding: 20px;
+}
+
+.admin-open {
+  left: 0; /* Show sidebar */
+}
+
+.admin-close-btn {
+  font-size: 1.5rem;
+  cursor: pointer;
+  text-align: right;
+}
+
+.admin-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.admin-dropdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  transition: background 0.3s;
+}
+
+.admin-dropdown-header:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.admin-icon {
+  margin-right: 10px;
+}
+
+.admin-dropdown-menu {
+  list-style: none;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.admin-dropdown-item {
+  display: block;
+  padding: 8px 0;
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.admin-dropdown-item:hover {
+  color: #ffcc00;
+}
+
+.admin-dropdown-icon {
+  transition: transform 0.3s;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+/* Support Items */
+.admin-support-item {
+  display: block;
+  padding: 10px 0;
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.admin-support-item:hover {
+  color: #ffcc00;
+}
+
+/* Logout Link */
+.admin-logout-link {
+  display: block;
+  padding: 10px 0;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.admin-logout-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+}

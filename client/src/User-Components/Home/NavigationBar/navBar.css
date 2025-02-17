@@ -1,0 +1,30 @@
+.custom-dropdown .dropdown-menu {
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  min-width: 200px;
+  z-index: 1;
+}
+
+.custom-dropdown .dropdown-menu a {
+  color: black;
+  padding: 10px 15px;
+  text-decoration: none;
+}
+
+.custom-dropdown .dropdown-menu a:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.navbar {
+  height: 80px;
+}
+/* Make navbar text bold */
+.navbar .nav-link {
+  font-weight: bold;
+  color: rgb(87, 77, 77);
+}
+.Account-dropdown {
+  left: 5%;
+}

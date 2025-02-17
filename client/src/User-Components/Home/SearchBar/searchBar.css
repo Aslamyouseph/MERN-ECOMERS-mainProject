@@ -1,0 +1,13 @@
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  background-color: #ffffff;
+}
+
+.search-bar-container .form-control {
+  width: auto;
+}
+.feed-search-bar:hover {
+  background-color: #cdc2c2;
+}

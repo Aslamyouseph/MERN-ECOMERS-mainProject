@@ -1,0 +1,109 @@
+.laptop-listing-heading1 {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 50px;
+  font-weight: bold;
+  margin: auto;
+  text-align: center;
+  justify-content: center;
+  max-width: auto;
+}
+.laptop-listing-heading2 {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 25px;
+  margin: auto;
+  text-align: center;
+  justify-content: center;
+}
+/*Here onwards the card is starting*/
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.card {
+  max-width: 30%;
+  max-height: 20%;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  left: 5%;
+  right: 5%;
+}
+
+.card-content {
+  padding: 50px;
+  text-align: center;
+}
+.card:hover {
+  background-color: red;
+}
+.card:hover .card-content h2,
+.card:hover .card-content p {
+  color: white;
+}
+
+.card-content h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.card-content p {
+  margin: 10px 0 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+@media (max-width: 730px) {
+  .card-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  h2,
+  p {
+    text-align: center;
+    justify-content: center;
+  }
+}
+@media (max-width: 650px) {
+  .card-content {
+    display: flex;
+    flex-wrap: wrap;
+    width: 9rem;
+    height: 16rem;
+    align-items: center;
+    justify-content: center;
+  }
+  h2,
+  p {
+    text-align: center;
+    justify-content: center;
+  }
+}
+@media (max-width: 550px) {
+  .card-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  .card {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+  .card-content {
+    padding: 50px;
+    text-align: center;
+  }
+  .card:hover {
+    background-color: red;
+  }
+  .card:hover .card-content h2,
+  .card:hover .card-content p {
+    color: white;
+  }
+}

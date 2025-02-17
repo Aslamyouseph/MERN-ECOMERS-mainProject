@@ -1,0 +1,33 @@
+.product-reviewDisplay-container {
+  width: 80%;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: #f9f8f8;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.product-reviewDisplay-container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.reviewDisplay-header {
+  display: flex;
+  gap: 10px;
+}
+
+.reviewDisplay-header h3 {
+  margin: 0;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 20px;
+  color: #333;
+  font-weight: bold;
+}
+
+.reviewDisplay-text {
+  margin-top: 5px;
+  font-size: 16px;
+  color: #555;
+}

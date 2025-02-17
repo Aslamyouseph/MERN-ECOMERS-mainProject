@@ -1,0 +1,197 @@
+/* Main container */
+.order-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Header */
+.order-header {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+/* Form layout */
+.order-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Row for columns */
+.order-row {
+  display: flex;
+  gap: 20px;
+}
+
+/* Column */
+.order-column {
+  flex: 1;
+  padding: 15px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Card style */
+.shipping-card,
+.billing-card {
+  padding: 20px;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.shipping-card:hover,
+.billing-card:hover {
+  transform: scale(1.02);
+}
+
+/* Card title */
+.card-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ff0000;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Form group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* Labels */
+.form-group label {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+/* Input fields */
+.form-input {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.form-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Textarea */
+textarea.form-input {
+  resize: none;
+  height: 80px;
+}
+
+/* Radio group */
+.radio-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+/* Radio button */
+.radio-input {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* Submit button */
+.order-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease-in-out, transform 0.2s;
+}
+
+.order-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.order-button:active {
+  background-color: #003c82;
+  transform: translateY(0);
+}
+
+/* Success & Error messages */
+.return-refund-success {
+  color: green;
+  text-align: center;
+  font-weight: bold;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.return-refund-error {
+  color: red;
+  text-align: center;
+  font-weight: bold;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Error & Success Messages */
+.order-error {
+  color: red;
+  font-size: 25px;
+  text-align: center;
+}
+
+.order-success {
+  color: rgb(0, 204, 20);
+  font-size: 25px;
+  text-align: center;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .order-row {
+    flex-direction: column;
+  }
+
+  .form-input {
+    width: 100%;
+  }
+}

@@ -1,0 +1,108 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* Product Section */
+.product-section {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+@media (min-width: 768px) {
+  .product-section {
+    flex-direction: row;
+  }
+}
+
+/* Left Side - Images */
+.image-container {
+  width: 100%;
+}
+
+.featured-image {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-left: -10%;
+  margin-top: 5%;
+}
+
+/* Right Side - Product Details */
+.details-container {
+  width: 100%;
+}
+
+.product-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.price {
+  font-size: 20px;
+  color: red;
+  margin-top: 8px;
+}
+
+.original-price {
+  color: gray;
+  text-decoration: line-through;
+}
+
+/* Product Description */
+.description {
+  color: gray;
+  margin-top: 16px;
+}
+
+/* Quantity & Add to Cart */
+.quantity-container {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.add-to-cart {
+  background-color: teal;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.add-to-cart:hover {
+  background-color: red;
+}
+
+/* Delivery Info */
+.delivery-info {
+  margin-top: 24px;
+}
+
+.delivery-title {
+  font-weight: bold;
+}
+
+.delivery-options {
+  margin-top: 8px;
+  border-top: 1px solid gray;
+  padding-top: 8px;
+}
+
+.delivery-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: gray;
+  padding: 4px 0;
+}
+
+.delivery-row:not(:last-child) {
+  border-bottom: 1px solid #ddd;
+}
