@@ -1,0 +1,50 @@
+/* Custom styles */
+.News-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.NewsName {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 600;
+  color: #ff0000;
+}
+
+.News-form {
+  background: rgb(188, 178, 178);
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+}
+
+.form-input {
+  font-size: 1rem;
+  color: #333;
+  border-radius: 8px;
+}
+
+.btn-submit {
+  padding: 12px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.form-label {
+  font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+  .News-form {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .News-form {
+    width: 50%;
+  }
+}
