@@ -44,6 +44,24 @@ function AddingGamingLaptops() {
               required
             ></textarea>
           </div>
+          {/* Details */}
+          <div className="form-outline mb-6">
+            <label
+              htmlFor="Details"
+              className="form-label text-gray-700 font-medium"
+            >
+              <b>Laptop Details:</b>
+            </label>
+            <textarea
+              name="Details"
+              id="Details"
+              className="form-input p-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 w-full"
+              placeholder="Enter the Laptop Details"
+              autoComplete="off"
+              rows="4"
+              required
+            ></textarea>
+          </div>
 
           {/* Keywords */}
           {Array.from({ length: 10 }, (_, index) => (
