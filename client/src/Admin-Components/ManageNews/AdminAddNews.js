@@ -52,10 +52,10 @@ function AdminAddNews() {
               <b>News Detail:</b>
             </label>
             <textarea
-              name="description"
-              id="description"
+              name="Detail"
+              id="Detail"
               className="form-input p-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 w-full"
-              placeholder="Enter the News description"
+              placeholder="Enter the News Detail"
               autoComplete="off"
               rows="4"
               required
