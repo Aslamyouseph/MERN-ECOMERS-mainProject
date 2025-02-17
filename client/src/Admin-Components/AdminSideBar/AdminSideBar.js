@@ -274,7 +274,7 @@ function AdminNavBar() {
             className="admin-dropdown-header"
             onClick={() => toggleDropdown("viewProducts")}
           >
-            <FaBox className="admin-icon" /> View Products
+            <FaBox className="admin-icon" /> View Laptops
             <FaChevronDown
               className={`admin-dropdown-icon ${
                 dropdowns.viewProducts ? "rotate" : ""
@@ -318,12 +318,12 @@ function AdminNavBar() {
           )}
 
           <li>
-            <Link to="/AdminViewNews" className="admin-support-item">
+            <Link to="/news" className="admin-support-item">
               <FaNewspaper className="admin-icon" /> View News
             </Link>
           </li>
           <li>
-            <Link to="/AdminViewHowToDo" className="admin-support-item">
+            <Link to="/HowToDO" className="admin-support-item">
               <FaListAlt className="admin-icon" /> View HowToDo
             </Link>
           </li>
