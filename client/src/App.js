@@ -26,8 +26,6 @@ import NewsDetails from "./User-Components/User-pages/NewsDetails";
 import HowToDoDetails from "./User-Components/User-pages/HowToDoDetails";
 // TODO:Admin routes
 import AdminHome from "./Admin-Components/PageAdmin/AdminHome";
-import AdminViewNews from "./Admin-Components/PageAdmin/AdminViewNews";
-import AdminViewHowToDo from "./Admin-Components/PageAdmin/AdminViewHowToDo";
 import AdminViewUserAccount from "./Admin-Components/PageAdmin/AdminViewUserAccount";
 import AdminViewReviews from "./Admin-Components/PageAdmin/AdminViewReviews";
 import AdminUserContact from "./Admin-Components/PageAdmin/AdminViewUserContact";
@@ -78,8 +76,6 @@ function App() {
         <Route path="/HowToDoDetails" element={<HowToDoDetails />} />
         {/*TODO:Admin Routes */}
         <Route path="/AdminHome" element={<AdminHome />} />
-        <Route path="/AdminViewNews" element={<AdminViewNews />} />
-        <Route path="/AdminViewHowToDo" element={<AdminViewHowToDo />} />
         <Route path="/UserAccount" element={<AdminViewUserAccount />} />
         <Route path="/AdminViewReviews" element={<AdminViewReviews />} />
         <Route path="/AdminUserContact" element={<AdminUserContact />} />
