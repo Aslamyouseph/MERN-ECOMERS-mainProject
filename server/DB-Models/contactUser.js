@@ -1,3 +1,4 @@
+//This is Contact Model
 const mongoose = require("mongoose");
 
 // Defining the contact schema
