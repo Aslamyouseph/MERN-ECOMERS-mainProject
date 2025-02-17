@@ -6,7 +6,7 @@ function AdminAllOrders() {
     <div>
       {/*This is used to import the admin Navigation bar  form Admin folder */}
       <AdminNavBar />
-      <AllOrders /> {/*This is used to import the all orders page*/}
+      <AllOrders /> {/*This is used to import the All orders page*/}
     </div>
   );
 }
