@@ -39,7 +39,7 @@ function AdminReturnRefund() {
     <div>
       <div className="admin-container">
         <br />
-        <h1 className="admin-title">Return and Refund Requests s</h1>
+        <h1 className="admin-title">Return and Refund Requests </h1>
         <br />
         <div className="table-container">
           <table className="user-table">
