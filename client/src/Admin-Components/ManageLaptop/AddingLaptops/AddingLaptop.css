@@ -37,6 +37,24 @@
   font-weight: 500;
 }
 
+/* Success & Error Messages */
+.success-message {
+  color: #09b02d;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+.error-message {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
 @media screen and (max-width: 768px) {
   .laptop-form {
     width: 90%;
