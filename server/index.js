@@ -53,6 +53,14 @@ app.use(
   })
 );
 
+// This is the path which is used to store the images (MULTER code)
+app.use(
+  "/AdminProductImages",
+  express.static(
+    path.join(__dirname, "../client/src/Admin-Components/AdminProductImages")
+  )
+);
+
 // Routes
 app.use("/api/user", UserRouter); // This is the UserRouter
 app.use("/api/admin", AdminRoute); // This is the AdminRouter
