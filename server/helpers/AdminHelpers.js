@@ -5,6 +5,8 @@ const BudgetLaptop = require("../DB-Models/BudgetLaptops");
 const StudentLaptop = require("../DB-Models/StudentLaptop");
 const Tablets = require("../DB-Models/Tablets");
 const addTwoInOne = require("../DB-Models/TwoInOne");
+const News = require("../DB-Models/News");
+const HowToDo = require("../DB-Models/HowToDo");
 module.exports = {
   //adding the gaming laptop
   addGamingLaptop: async (product) => {
@@ -267,6 +269,41 @@ module.exports = {
       return await addTwoInOne.findById(id);
     } catch (err) {
       console.error("Error fetching Laptop details:", err.message);
+      throw err;
+    }
+  }, //adding the Latest News
+  addNewNews: async (product) => {
+    try {
+      // Validate required fields before saving
+      if (!product.News_title || !product.News_description) {
+        throw new Error("Missing required fields");
+      }
+
+      // Create a new product document
+      const newProduct = new News(product);
+
+      // Save the new record to the database
+      return await newProduct.save();
+    } catch (err) {
+      console.error("Error adding product:", err.message);
+      throw err;
+    }
+  },
+  //adding the Latest HowToDo
+  addNewHowToDo: async (product) => {
+    try {
+      // Validate required fields before saving
+      if (!product.HowToDo_title || !product.HowToDo_description) {
+        throw new Error("Missing required fields");
+      }
+
+      // Create a new product document
+      const newProduct = new HowToDo(product);
+
+      // Save the new record to the database
+      return await newProduct.save();
+    } catch (err) {
+      console.error("Error adding product:", err.message);
       throw err;
     }
   },

@@ -660,4 +660,124 @@ router.get("/getTwoInOneLaptopDetails/:id", async (req, res) => {
       .json({ success: false, message: "Error fetching Laptop details." });
   }
 });
+// Route to Add Latest News details (Using Multer)
+router.post(
+  "/addNewNews",
+  upload.fields([
+    { name: "News_image_small", maxCount: 1 },
+    { name: "News_image_large", maxCount: 1 },
+  ]),
+  async (req, res) => {
+    try {
+      // Validate file uploads
+      if (
+        !req.files ||
+        !req.files.News_image_small ||
+        !req.files.News_image_large
+      ) {
+        return res.status(400).json({
+          success: false,
+          message: "Both small and large images are required.",
+        });
+      }
+
+      // Validate text fields
+      const { News_title, News_description, News_Details } = req.body;
+      if (!News_title || !News_description || !News_Details) {
+        return res.status(400).json({
+          success: false,
+          message: "News Title, Description, and Details are required.",
+        });
+      }
+
+      // Get uploaded file paths
+      const News_image_smallPath = `/AdminProductImages/${req.files.News_image_small[0].filename}`;
+      const News_image_largePath = `/AdminProductImages/${req.files.News_image_large[0].filename}`;
+
+      // Prepare news data
+      const newsData = {
+        News_title,
+        News_description,
+        News_Details,
+        News_image_small: News_image_smallPath,
+        News_image_large: News_image_largePath,
+      };
+
+      // Insert into the database
+      await AdminHelpers.addNewNews(newsData);
+
+      res.status(200).json({
+        success: true,
+        message: "Latest News Added Successfully",
+      });
+    } catch (err) {
+      console.error("Error adding Latest News:", err);
+      res.status(500).json({
+        success: false,
+        message: "Error adding Latest News to the database.",
+      });
+    }
+  }
+);
+//Admin adding the HowToDO
+router.post(
+  "/addNewHowToDo",
+  upload.fields([
+    { name: "HowToDo_image_small", maxCount: 1 },
+    { name: "HowToDo_image_large", maxCount: 1 },
+  ]),
+  async (req, res) => {
+    try {
+      // Validate file uploads
+      if (
+        !req.files ||
+        !req.files.HowToDo_image_small ||
+        !req.files.HowToDo_image_large
+      ) {
+        return res.status(400).json({
+          success: false,
+          message: "Both small and large images are required.",
+        });
+      }
+
+      // Validate text fields
+      const { HowToDo_title, HowToDo_description, HowToDo_Details } = req.body;
+      if (!HowToDo_title || !HowToDo_description || !HowToDo_Details) {
+        return res.status(400).json({
+          success: false,
+          message: "HowToDo Title, Description, and Details are required.",
+        });
+      }
+
+      // Get uploaded file paths
+      const HowToDo_image_smallPath = `/AdminProductImages/${req.files.HowToDo_image_small[0].filename}`;
+      const HowToDo_image_largePath = `/AdminProductImages/${req.files.HowToDo_image_large[0].filename}`;
+
+      // Prepare HowToDo data
+      const HowToDoData = {
+        HowToDo_title,
+        HowToDo_description,
+        HowToDo_Details,
+        HowToDo_image_small: HowToDo_image_smallPath,
+        HowToDo_image_large: HowToDo_image_largePath,
+      };
+
+      // Insert into the database
+      await AdminHelpers.addNewHowToDo(HowToDoData);
+
+      res.status(200).json({
+        success: true,
+        message: "Latest HowToDo Added Successfully",
+      });
+    } catch (err) {
+      console.error("Error adding Latest HowToDo:", err);
+      res.status(500).json({
+        success: false,
+        message: "Error adding Latest HowToDo to the database.",
+        error: err.message, // Send the actual error message for debugging
+      });
+    }
+  }
+);
+
 module.exports = router;
