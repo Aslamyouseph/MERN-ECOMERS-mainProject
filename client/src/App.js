@@ -16,7 +16,12 @@ import Tablets from "./User-Components/User-pages/Tablets";
 import TwoInOne from "./User-Components/User-pages/TwoInOne";
 import Order_page from "./User-Components/User-pages/Order_page";
 import OrderProductDisplay from "./User-Components/User-pages/OrderProductDisplay";
-import ProductDetails from "./User-Components/User-pages/productDetails";
+import GamingLaptopDetails from "./User-Components/User-pages/GamingLaptopDetails";
+import BusinessLaptopDetails from "./User-Components/User-pages/BusinessLaptopDetails";
+import BudgetLaptopDetails from "./User-Components/User-pages/BudgetLaptopDetailss";
+import StudentLaptopDetails from "./User-Components/User-pages/StudentLaptopDetailss";
+import TabletsDetails from "./User-Components/User-pages/TabletsDetails";
+import TwoInOneLaptopDetails from "./User-Components/User-pages/TwoInOneLaptopdetails";
 import Cart from "./User-Components/User-pages/Cart";
 import PlaceOrder from "./User-Components/User-pages/PlaceOrder";
 import SignUp from "./User-Components/User-pages/SignUp";
@@ -66,7 +71,28 @@ function App() {
         <Route path="/TwoInOne" element={<TwoInOne />} />
         <Route path="/OrderPage" element={<Order_page />} />
         <Route path="/OrderProductDisplay" element={<OrderProductDisplay />} />
-        <Route path="/productDetails" element={<ProductDetails />} />
+        {/* When the user click on the view more button then the product id will came to here and pass to the particular page */}
+        <Route
+          path="/GamingLaptopDetails/:id"
+          element={<GamingLaptopDetails />}
+        />
+        <Route
+          path="/BusinessLaptopDetails/:id"
+          element={<BusinessLaptopDetails />}
+        />
+        <Route
+          path="/BudgetLaptopDetails/:id"
+          element={<BudgetLaptopDetails />}
+        />
+        <Route
+          path="/StudentLaptopDetails/:id"
+          element={<StudentLaptopDetails />}
+        />
+        <Route path="/TabletsDetails/:id" element={<TabletsDetails />} />
+        <Route
+          path="/TwoInOneLaptopDetails/:id"
+          element={<TwoInOneLaptopDetails />}
+        />
         <Route path="/Cart" element={<Cart />} />
         <Route path="/PlaceOrder" element={<PlaceOrder />} />
         <Route path="/signup" element={<SignUp />} />
