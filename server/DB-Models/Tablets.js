@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const TabletsSchema = new mongoose.Schema(
+const TabletSchema = new mongoose.Schema(
   {
     Laptop_title: {
       type: String,
@@ -38,13 +38,13 @@ const TabletsSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      match: /\.(jpg|jpeg|png)$/i, // Validate image file format
+      match: /\.(jpg|jpeg|png|webp)$/i, // Validate image file format
     },
     Laptop_image_large: {
       type: String,
       required: true,
       trim: true,
-      match: /\.(jpg|jpeg|png)$/i,
+      match: /\.(jpg|jpeg|png|webp)$/i,
     },
     Laptop_original_price: { type: Number, required: true, min: 0 }, // Prevent negative price
     Laptop_discount_price: { type: Number, required: true, min: 0 },
@@ -52,6 +52,6 @@ const TabletsSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Tablets = mongoose.model("Tablets", TabletsSchema);
+const Tablets = mongoose.model("Tablets", TabletSchema);
 
 module.exports = Tablets;
