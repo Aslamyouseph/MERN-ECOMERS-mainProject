@@ -1,9 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./BusinesLaptop.css";
-import image1 from "../User-images/laptop35.webp";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function BusinesLaptops() {
+  const [laptops, setLaptops] = useState([]); // Initialize as an empty array
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchLaptopDetails = async () => {
+      try {
+        const res = await fetch(
+          "http://localhost:5000/api/admin/getBusinessLaptops",
+          {
+            method: "GET",
+            credentials: "include", // Ensures that the session is used for authentication
+          }
+        );
+
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const data = await res.json();
+        // console.log("gaming laptops from frontend", data);
+        setLaptops(data.laptops); // Saving the laptops details to the state
+      } catch (error) {
+        console.error("Error fetching laptop details:", error);
+        setError("Something went wrong. Please try again.");
+      }
+    };
+
+    fetchLaptopDetails();
+  }, []);
+
   return (
     <div className="laptop-container">
       <link
@@ -22,115 +51,60 @@ function BusinesLaptops() {
       </h3>
       <br />
       <div className="container">
-        <div className="col-xs-12 col-md-12 bootstrap snippets bootdeys">
-          <div className="product-content product-wrap clearfix">
-            <div className="product-image">
-              <img src={image1} alt="Laptop" className="img-responsive" />
-            </div>
-            <div className="product-detail">
-              <h5 className="name">
-                <a href="#">
-                  Lenovo Legion 5 <span>Laptop</span>
-                </a>
-              </h5>
-              <p className="price-container">
-                <span>$99</span>
-              </p>
-              <div className="description">
-                <p>
-                  Proin in ullamcorper lorem. Maecenas eu ipsum. Use the latest
-                  version of Font Awesome for modern icons and better
-                  performance.
-                </p>
-              </div>
-              <div className="product-info smart-form">
-                <div className="row">
-                  <div className="col-md-6 col-sm-6 col-xs-6">
-                    <Link to="/ProductDetails" className="btn btn-success">
-                      View More
-                    </Link>
+        <div className="col-xs-8 col-md-8 bootstrap snippets bootdeys">
+          {error && <p className="error-message">{error}</p>}
+          {/* Mapping operation is stating from here onwards */}
+          {Array.isArray(laptops) && laptops.length > 0 ? (
+            laptops.map((laptops) => (
+              <div
+                key={laptops._id}
+                className="product-content product-wrap clearfix"
+              >
+                <div className="product-image">
+                  <img
+                    src={`http://localhost:5000${laptops.Laptop_image_small}`}
+                    alt={laptops.Laptop_title}
+                    className="img-responsive"
+                    onError={(e) => {
+                      console.error("Image failed to load:", e.target.src);
+                    }}
+                  />
+                </div>
+                {/* <h1>{laptops._id}</h1> */}
+                <div className="product-detail">
+                  <h5 className="name">{laptops.Laptop_title}</h5>
+
+                  <p className="price-container">
+                    <span>$ {laptops.Laptop_discount_price}</span>
+                  </p>
+                  <div className="description">
+                    <p>{laptops.Laptop_description}</p>
+                    <br />
                   </div>
-                  <div className="col-md-6 col-sm-6 col-xs-6">
-                    <a href="#" className="btn btn-success">
-                      Add To Cart
-                    </a>
+                  <br />
+
+                  <div className="product-info">
+                    <div className="button-container">
+                      <Link
+                        //Sending the Particular laptop id when the View more button is clicked time
+                        // This id first go to the route setup in App.js and then to the ProductDetails component
+                        //TODO:CHECK the APP.Js for more details
+                        to={`/BusinessLaptopDetails/${laptops._id}`}
+                        className="btn btn-success"
+                      >
+                        View More
+                      </Link>
+                      <a href="#" className="btn btn-success">
+                        Add To Cart
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="product-content product-wrap clearfix">
-            <div className="product-image">
-              <img src={image1} alt="Laptop" className="img-responsive" />
-            </div>
-            <div className="product-detail">
-              <h5 className="name">
-                <a href="#">
-                  Lenovo Legion 5 <span>Laptop</span>
-                </a>
-              </h5>
-              <p className="price-container">
-                <span>$99</span>
-              </p>
-              <div className="description">
-                <p>
-                  Proin in ullamcorper lorem. Maecenas eu ipsum. Use the latest
-                  version of Font Awesome for modern icons and better
-                  performance.
-                </p>
-              </div>
-              <div className="product-info smart-form">
-                <div className="row">
-                  <div className="col-md-6 col-sm-6 col-xs-6">
-                    <Link to="/ProductDetails" className="btn btn-success">
-                      View More
-                    </Link>
-                  </div>
-                  <div className="col-md-6 col-sm-6 col-xs-6">
-                    <a href="#" className="btn btn-success">
-                      Add To Cart
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="product-content product-wrap clearfix">
-            <div className="product-image">
-              <img src={image1} alt="Laptop" className="img-responsive" />
-            </div>
-            <div className="product-detail">
-              <h5 className="name">
-                <a href="#">
-                  Lenovo Legion 5 <span>Laptop</span>
-                </a>
-              </h5>
-              <p className="price-container">
-                <span>$99</span>
-              </p>
-              <div className="description">
-                <p>
-                  Proin in ullamcorper lorem. Maecenas eu ipsum. Use the latest
-                  version of Font Awesome for modern icons and better
-                  performance.
-                </p>
-              </div>
-              <div className="product-info smart-form">
-                <div className="row">
-                  <div className="col-md-6 col-sm-6 col-xs-6">
-                    <Link to="/ProductDetails" className="btn btn-success">
-                      View More
-                    </Link>
-                  </div>
-                  <div className="col-md-6 col-sm-6 col-xs-6">
-                    <a href="#" className="btn btn-success">
-                      Add To Cart
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            ))
+          ) : (
+            <p>No laptops available at the moment.</p>
+          )}
         </div>
       </div>
     </div>
