@@ -137,7 +137,7 @@ function AddingGamingLaptops() {
         });
         setTimeout(() => navigate("/AdminHome"), 1000);
       } else {
-        setError(data.message || "Gaming Laptop Addition failed. Try again.");
+        setError(data.message || "Gaming Laptop Adding failed. Try again.");
       }
     } catch (error) {
       console.error("Error:", error);
