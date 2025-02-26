@@ -57,25 +57,57 @@ button {
   transition: all 0.3s ease-in-out;
 }
 
+.delete-btn,
+.update-btn {
+  padding: 8px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+  text-decoration: none; /* Remove default link underline */
+  display: inline-block;
+}
+
+/* Delete Button */
 .delete-btn {
-  background: #ff4d4d;
+  background-color: #ff4d4d; /* Red */
   color: white;
-  margin: 10px;
-  border-radius: 20px;
+  box-shadow: 0 3px 6px rgba(255, 0, 0, 0.2);
 }
 
 .delete-btn:hover {
-  background: #cc0000;
+  background-color: #cc0000;
+  box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);
+  transform: scale(1.05);
 }
 
+/* Update Button */
 .update-btn {
-  background: #28a745;
+  background-color: #007bff; /* Blue */
   color: white;
-  border-radius: 20px;
+  box-shadow: 0 3px 6px rgba(0, 123, 255, 0.2);
 }
 
 .update-btn:hover {
-  background: #218838;
+  background-color: #0056b3;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  td {
+    flex-direction: column;
+  }
+
+  .delete-btn,
+  .update-btn {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 @media (max-width: 768px) {
