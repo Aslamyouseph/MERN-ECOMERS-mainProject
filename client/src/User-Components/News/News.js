@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./News.css";
-import image1 from "../User-images/laptop29.webp";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function News() {
-  const navigate = useNavigate();
+  const [News, setNews] = useState([]); // Initialize as an empty array
+  const [error, setError] = useState("");
+  useEffect(() => {
+    const fetchNewsDetails = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/admin/getNews", {
+          method: "GET",
+          credentials: "include", // Ensures that the session is used for authentication
+        });
 
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const data = await res.json();
+        // console.log("gaming laptops from frontend", data);
+        setNews(data.News); // Saving the laptops details to the state
+      } catch (error) {
+        console.error("Error fetching News details:", error);
+        setError("Something went wrong. Please try again.");
+      }
+    };
+
+    fetchNewsDetails();
+  }, []);
   return (
     <div>
       <h1
@@ -25,90 +47,33 @@ function News() {
       <hr style={{ marginLeft: "5%", marginRight: "5%" }} />
       <br />
       <div className="card-container-main">
-        <div className="card-main h-100">
-          <img src={image1} alt="news image" className="card-img" />
-          <div className="card-bodySection">
-            <h5 className="card-heading">It is the long established</h5>
-            <p className="card-para">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s.
-            </p>
-          </div>
-          <div className="card-footer">
-            <button onClick={() => navigate("/NewsDetails")}>Read more</button>
-          </div>
-        </div>
-        <div className="card-main h-100">
-          <img src={image1} alt="news image" className="card-img" />
-          <div className="card-bodySection">
-            <h5 className="card-heading">It is the long established</h5>
-            <p className="card-para">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s.
-            </p>
-          </div>
-          <div className="card-footer">
-            <button onClick={() => navigate("/NewsDetails")}>Read more</button>
-          </div>
-        </div>
-        <div className="card-main h-100">
-          <img src={image1} alt="news image" className="card-img" />
-          <div className="card-bodySection">
-            <h5 className="card-heading">It is the long established</h5>
-            <p className="card-para">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s.
-            </p>
-          </div>
-          <div className="card-footer">
-            <button onClick={() => navigate("/NewsDetails")}>Read more</button>
-          </div>
-        </div>
-        <div className="card-main h-100">
-          <img src={image1} alt="news image" className="card-img" />
-          <div className="card-bodySection">
-            <h5 className="card-heading">It is the long established</h5>
-            <p className="card-para">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s.
-            </p>
-          </div>
-          <div className="card-footer">
-            <button onClick={() => navigate("/NewsDetails")}>Read more</button>
-          </div>
-        </div>
-        <div className="card-main h-100">
-          <img src={image1} alt="news image" className="card-img" />
-          <div className="card-bodySection">
-            <h5 className="card-heading">It is the long established</h5>
-            <p className="card-para">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s.
-            </p>
-          </div>
-          <div className="card-footer">
-            <button onClick={() => navigate("/NewsDetails")}>Read more</button>
-          </div>
-        </div>
-        <div className="card-main h-100">
-          <img src={image1} alt="news image" className="card-img" />
-          <div className="card-bodySection">
-            <h5 className="card-heading">It is the long established</h5>
-            <p className="card-para">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s.
-            </p>
-          </div>
-          <div className="card-footer">
-            <button onClick={() => navigate("/NewsDetails")}>Read more</button>
-          </div>
-        </div>
+        {error && <p className="error-message">{error}</p>}
+        {/* Mapping operation is stating from here onwards */}
+        {Array.isArray(News) && News.length > 0 ? (
+          News.map((News) => (
+            <div className="card-main h-100">
+              <img
+                src={`http://localhost:5000${News.News_image_small}`}
+                alt={News.News_title}
+                className="card-img"
+                onError={(e) => {
+                  console.error("Image failed to load:", e.target.src);
+                }}
+              />{" "}
+              <div className="card-bodySection">
+                <h5 className="card-heading">{News.News_title}</h5>
+                <p className="card-para">{News.News_description}</p>
+              </div>
+              <div className="card-footer">
+                <Link to={`/NewsDetails/${News._id}`} className="read-more-btn">
+                  Read More
+                </Link>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p>No News available at the moment.</p>
+        )}
       </div>
       <br />
     </div>

@@ -1,7 +1,6 @@
 .card-container-main {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   gap: 20px;
   max-width: 90%;
   max-height: 50%;
@@ -42,18 +41,25 @@
   color: #555;
 }
 
-.card-footer button {
-  background-color: #ff0000;
-  padding: 5px 15px;
+.read-more-btn {
+  display: block; /* Ensures it takes full width */
+  width: 200px; /* Adjust button width */
+  margin: 20px auto; /* Centers the button */
+  padding: 12px 20px;
   font-size: 18px;
-  color: #fff7f7;
-  border-radius: 20px;
-  margin-left: 30%;
-  margin-bottom: 2%;
+  font-weight: bold;
+  text-align: center;
+  background-color: #28a745; /* Green color */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
 }
-.card-footer button:hover {
-  background-color: #ffffff;
-  color: #ff0000;
+
+.read-more-btn:hover {
+  background-color: #218838; /* Darker green on hover */
+  transform: scale(1.05);
 }
 
 .text-body-secondary {
