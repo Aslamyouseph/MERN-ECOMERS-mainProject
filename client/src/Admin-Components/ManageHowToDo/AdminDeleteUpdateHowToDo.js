@@ -1,166 +1,130 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./AdminDeleteUpdateToDo.css";
+
 function AdminDeleteUpdateHowToDo() {
+  const [HowToDo, setHowToDo] = useState([]);
+  const [error, setError] = useState("");
+  const [deletingId, setDeletingId] = useState(null);
+
+  useEffect(() => {
+    const fetchHowToDoDetails = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/admin/getHowToDO", {
+          method: "GET",
+          credentials: "include",
+        });
+
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const data = await res.json();
+        setHowToDo(data.HowToDO || []);
+      } catch (error) {
+        console.error("Error fetching HowToDo details:", error);
+        setError("Something went wrong. Please try again.");
+      }
+    };
+
+    fetchHowToDoDetails();
+  }, []);
+
+  // Delete HowToDo item from the database
+  const handleDelete = async (item) => {
+    const confirmDelete = window.confirm(
+      `Are you sure you want to delete "${item.HowToDo_title}"?`
+    );
+    if (!confirmDelete) return;
+
+    setDeletingId(item._id); // Disable button for the item being deleted
+
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/admin/deleteHowToDoDetails/${item._id}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+        }
+      );
+
+      if (!response.ok) throw new Error("Failed to delete HowToDo");
+
+      setHowToDo((prevHowToDo) =>
+        prevHowToDo.filter((howToDoItem) => howToDoItem._id !== item._id)
+      );
+
+      alert("HowToDo deleted successfully!");
+    } catch (error) {
+      console.error("Error deleting HowToDo:", error);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setDeletingId(null); // Re-enable button after operation
+    }
+  };
+
   return (
     <div>
-      <div>
-        <br />
-        <h1 className="Managing-heading">Remove or Update How To Do Section</h1>
-        <div className="table-container-Laptop">
-          <table>
-            <thead>
-              <tr>
-                <th>Product ID</th>
-                <th>Title</th>
-                <th>Small Description</th>
-                <th>Detailed Description</th>
-                <th>Small Image</th>
-                <th>Large Image</th>
-                <th>Operations</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Asus ROG Strix</td>
-                <td>High-performance gaming laptop</td>
-                <td>
-                  The Asus ROG Strix is a cutting-edge gaming laptop designed
-                  for enthusiasts who demand top-tier performance. Equipped with
-                  advanced cooling technology, high refresh rate displays, and
-                  powerful graphics, this laptop delivers an immersive gaming
-                  experience. Ideal for hardcore gamers and creative
-                  professionals.
-                </td>
+      <br />
+      <h1 className="Managing-heading">Remove or Update How To Do Section</h1>
+      {error && <p className="error-message">{error}</p>}
+      <div className="table-container-Laptop">
+        <table>
+          <thead>
+            <tr>
+              <th>Product ID</th>
+              <th>Title</th>
+              <th>Small Description</th>
+              <th>Detailed Description</th>
+              <th>Small Image</th>
+              <th>Large Image</th>
+              <th>Operations</th>
+            </tr>
+          </thead>
+          <tbody>
+            {HowToDo.map((item, index) => (
+              <tr key={item._id}>
+                <td>{index + 1}</td>
+                <td>{item.HowToDo_title}</td>
+                <td>{item.HowToDo_description}</td>
+                <td>{item.HowToDo_Details}</td>
                 <td>
                   <img
-                    src="https://via.placeholder.com/50"
-                    alt="Asus ROG Strix"
-                    width="50"
+                    src={`http://localhost:5000${item.HowToDo_image_small}`}
+                    alt={item.HowToDo_title}
+                    width="200"
+                    height="200"
                   />
                 </td>
                 <td>
                   <img
-                    src="https://via.placeholder.com/150"
-                    alt="Asus ROG Strix"
-                    width="150"
+                    src={`http://localhost:5000${item.HowToDo_image_large}`}
+                    alt={item.HowToDo_title}
+                    width="200"
+                    height="200"
                   />
                 </td>
                 <td>
-                  <button className="delete-btn">
-                    <b>Delete</b>
+                  {/* Delete Button */}
+                  <button
+                    className="delete-btn"
+                    onClick={() => handleDelete(item)}
+                    disabled={deletingId === item._id} // Disable while deleting
+                  >
+                    {deletingId === item._id ? "Deleting..." : "Delete"}
                   </button>
-                  <button className="update-btn">
-                    <b>Update</b>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>MSI Raider</td>
-                <td>Ultimate gaming performance</td>
-                <td>
-                  The MSI Raider is a premium gaming laptop known for its sleek
-                  design, high-performance hardware, and RGB lighting. Featuring
-                  the latest NVIDIA RTX graphics, ultra-fast SSDs, and a 144Hz
-                  display, this machine ensures seamless gameplay and smooth
-                  multitasking. Built for both professional gaming and heavy
-                  workloads.
-                </td>
-                <td>
-                  <img
-                    src="https://via.placeholder.com/50"
-                    alt="MSI Raider"
-                    width="50"
-                  />
-                </td>
-                <td>
-                  <img
-                    src="https://via.placeholder.com/150"
-                    alt="MSI Raider"
-                    width="150"
-                  />
-                </td>
-                <td>
-                  <button className="delete-btn">
-                    <b>Delete</b>
-                  </button>
-                  <button className="update-btn">
-                    <b>Update</b>
-                  </button>
+                  {/* Update Button */}
+                  <Link
+                    to={`/GamingLaptopUpdate/${item._id}`}
+                    className="update-btn"
+                  >
+                    Update
+                  </Link>
                 </td>
               </tr>
-              <tr>
-                <td>3</td>
-                <td>Dell XPS 15</td>
-                <td>Powerful ultrabook for professionals</td>
-                <td>
-                  The Dell XPS 15 is a sleek and powerful ultrabook, perfect for
-                  professionals and content creators. It comes with a
-                  high-resolution 4K display, Intel Core i7/i9 processors, and
-                  long battery life, making it an excellent choice for those who
-                  need high performance on the go.
-                </td>
-                <td>
-                  <img
-                    src="https://via.placeholder.com/50"
-                    alt="Dell XPS 15"
-                    width="50"
-                  />
-                </td>
-                <td>
-                  <img
-                    src="https://via.placeholder.com/150"
-                    alt="Dell XPS 15"
-                    width="150"
-                  />
-                </td>
-                <td>
-                  <button className="delete-btn">
-                    <b>Delete</b>
-                  </button>
-                  <button className="update-btn">
-                    <b>Update</b>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>HP Spectre x360</td>
-                <td>Premium 2-in-1 laptop</td>
-                <td>
-                  The HP Spectre x360 is a stylish and versatile 2-in-1 laptop
-                  that offers premium build quality, a stunning OLED display,
-                  and excellent battery life. It’s perfect for professionals who
-                  need a powerful yet portable device for both work and
-                  entertainment.
-                </td>
-                <td>
-                  <img
-                    src="https://via.placeholder.com/50"
-                    alt="HP Spectre x360"
-                    width="50"
-                  />
-                </td>
-                <td>
-                  <img
-                    src="https://via.placeholder.com/150"
-                    alt="HP Spectre x360"
-                    width="150"
-                  />
-                </td>
-                <td>
-                  <button className="delete-btn">
-                    <b>Delete</b>
-                  </button>
-                  <button className="update-btn">
-                    <b>Update</b>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
