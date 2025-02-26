@@ -1,7 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import "./NewsDetails.css";
-import image from "../User-images/NewsImage1.webp";
+
 function NewsDetails() {
+  const { id } = useParams(); // Get the particular id of the product from the URL
+  const [NewsDetails, setNewsDetails] = useState(null);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchNewsDetails = async () => {
+      try {
+        const res = await fetch(
+          `http://localhost:5000/api/admin/getNewsDetails/${id}`,
+          {
+            method: "GET",
+            credentials: "include", // Ensures that the session is used for authentication
+          }
+        );
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await res.json();
+        setNewsDetails(data.NewsDetails); // Ensure backend returns correct structure
+      } catch (error) {
+        console.error("Error fetching News details:", error);
+        setError("Something went wrong. Please try again.");
+      }
+    };
+
+    fetchNewsDetails();
+  }, [id]);
+
   return (
     <div>
       <h1
@@ -15,72 +44,34 @@ function NewsDetails() {
         NEWS
       </h1>
       <br />
-      <div className="NewsContainer">
-        <h1 className="NewsHeading">
-          Here's How the Samsung Galaxy S25's Satellite Feature Works on Verizon
-        </h1>
-        <br />
-        <br />
-        <div className="imageContainer">
-          <img className="NewsImage" src={image} alt="Laptop image" />
-        </div>
-      </div>
-      <br />
-      <br />
-      <div className="NewsContent">
-        <p>
-          Contrary to popular belief, Lorem Ipsum is not simply random text. It
-          has roots in a piece of classical Latin literature from 45 BC, making
-          it over 2000 years old. Richard McClintock, a Latin professor at
-          Hampden-Sydney College in Virginia, looked up one of the more obscure
-          Latin words, consectetur, from a Lorem Ipsum passage, and going
-          through the cites of the word in classical literature, discovered the
-          undoubtable source. Lorem Ipsum comes from sections 1.10.32 and
-          1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and
-          Evil) by Cicero, written in 45 BC. This book is a treatise on the
-          theory of ethics, very popular during the Renaissance. The first line
-          of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in
-          section 1.10.32. The standard chunk of Lorem Ipsum used since the
-          1500s is reproduced below for those interested. Sections 1.10.32 and
-          1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also
-          reproduced in their exact original form, accompanied by English
-          versions from the 1914 translation by H. Rackham.Contrary to popular
-          belief, Lorem Ipsum is not simply random text. It has roots in a piece
-          of classical Latin literature from 45 BC, making it over 2000 years
-          old. Richard McClintock, a Latin professor at Hampden-Sydney College
-          in Virginia, looked up one of the more obscure Latin words,
-          consectetur, from a Lorem Ipsum passage, and going through the cites
-          of the word in classical literature, discovered the undoubtable
-          source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de
-          Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero,
-          written in 45 BC. This book is a treatise on the theory of ethics,
-          very popular during the Renaissance. The first line of Lorem Ipsum,
-          "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-          The standard chunk of Lorem Ipsum used since the 1500s is reproduced
-          below for those interested. Sections 1.10.32 and 1.10.33 from "de
-          Finibus Bonorum et Malorum" by Cicero are also reproduced in their
-          exact original form, accompanied by English versions from the 1914
-          translation by H. Rackham. Contrary to popular belief, Lorem Ipsum is
-          not simply random text. It has roots in a piece of classical Latin
-          literature from 45 BC, making it over 2000 years old. Richard
-          McClintock, a Latin professor at Hampden-Sydney College in Virginia,
-          looked up one of the more obscure Latin words, consectetur, from a
-          Lorem Ipsum passage, and going through the cites of the word in
-          classical literature, discovered the undoubtable source. Lorem Ipsum
-          comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et
-          Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
-          This book is a treatise on the theory of ethics, very popular during
-          the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit
-          amet..", comes from a line in section 1.10.32. The standard chunk of
-          Lorem Ipsum used since the 1500s is reproduced below for those
-          interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et
-          Malorum" by Cicero are also reproduced in their exact original form,
-          accompanied by English versions from the 1914 translation by H.
-          Rackham.
-        </p>
-        <br />
-        <br />
-      </div>
+
+      {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
+
+      {NewsDetails ? (
+        <>
+          <div className="NewsContainer">
+            <h1 className="NewsHeading">{NewsDetails.News_title}</h1>
+            <br />
+            <br />
+            <div className="imageContainer">
+              <img
+                src={`http://localhost:5000${NewsDetails.News_image_large}`}
+                alt={NewsDetails.News_title}
+                className="NewsImage"
+              />
+            </div>
+          </div>
+          <br />
+          <br />
+          <div className="NewsContent">
+            <p>{NewsDetails.News_Details}</p>
+            <br />
+            <br />
+          </div>
+        </>
+      ) : (
+        <p style={{ textAlign: "center", fontSize: "20px" }}>Loading News...</p>
+      )}
     </div>
   );
 }
