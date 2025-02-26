@@ -47,11 +47,12 @@ import AddStudentLaptops from "./Admin-Components/PageAdmin/AddingStudentsLaptop
 import AddingTablets from "./Admin-Components/PageAdmin/AddingTablets";
 import AddingTwoInOne from "./Admin-Components/PageAdmin/AddingTwoInOne";
 import RemoveUpdateBudgetLaptops from "./Admin-Components/PageAdmin/RemoveUpdateBudgetLaptop";
-import RemoveUpdateBusinessLaptops from "./Admin-Components/PageAdmin/AddingBusinessLaptop";
+import RemoveUpdateBusinessLaptops from "./Admin-Components/PageAdmin/RemoveUpdateBusinessLaptop";
 import RemoveUpdateGamingLaptops from "./Admin-Components/PageAdmin/RemoveUpdateGamingLaptop";
 import RemoveUpdateStudentLaptops from "./Admin-Components/PageAdmin/RemoveUpdateStudentLaptop";
 import RemoveUpdateTablets from "./Admin-Components/PageAdmin/RemoveUpdateTablets";
 import RemoveUpdateTwoInOne from "./Admin-Components/PageAdmin/RemoveUpdateTwoInOnes";
+import UpdateGamingLaptops from "./Admin-Components/PageAdmin/UpdatingGamingLaptops";
 function App() {
   return (
     <div>
@@ -98,8 +99,8 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/Return&Refund" element={<Return_Refund />} />
-        <Route path="/NewsDetails" element={<NewsDetails />} />
-        <Route path="/HowToDoDetails" element={<HowToDoDetails />} />
+        <Route path="/NewsDetails/:id" element={<NewsDetails />} />
+        <Route path="/HowToDoDetails/:id" element={<HowToDoDetails />} />
         {/*TODO:Admin Routes */}
         <Route path="/AdminHome" element={<AdminHome />} />
         <Route path="/UserAccount" element={<AdminViewUserAccount />} />
@@ -137,6 +138,10 @@ function App() {
         <Route
           path="/RemoveUpdateTwoInOne"
           element={<RemoveUpdateTwoInOne />}
+        />
+        <Route
+          path="/UpdateGamingLaptops/:id"
+          element={<UpdateGamingLaptops />}
         />
       </Routes>
     </div>
