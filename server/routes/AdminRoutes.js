@@ -780,4 +780,274 @@ router.post(
   }
 );
 
+//Accessing the Latest News details for frond page
+router.get("/getNews", async (req, res) => {
+  try {
+    const News = await AdminHelpers.getNews();
+    res.status(200).json({ News: News });
+  } catch (err) {
+    console.error("Error fetching Latest News information:", err);
+    res
+      .status(500)
+      .json({ success: false, message: "Error fetching News Details ." });
+  }
+});
+//The News  details are fetched here (When the user click the view more then the id will also passed)
+router.get("/getNewsDetails/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const NewsDetails = await AdminHelpers.getNewsDetails(id);
+    res.status(200).json({ NewsDetails: NewsDetails });
+  } catch (err) {
+    console.error("Error fetching News details:", err);
+    res
+      .status(500)
+      .json({ success: false, message: "Error fetching News details." });
+  }
+});
+
+//Accessing the Latest HowTo details for frond page
+router.get("/getHowToDO", async (req, res) => {
+  try {
+    const HowToDO = await AdminHelpers.getHowToDO();
+    res.status(200).json({ HowToDO: HowToDO });
+  } catch (err) {
+    console.error("Error fetching Latest HowToDO information:", err);
+    res
+      .status(500)
+      .json({ success: false, message: "Error fetching HowToDO Details ." });
+  }
+});
+//The HowToDo  details are fetched here (When the user click the view more then the id will also passed)
+router.get("/getHowToDoDetails/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const HowToDODetails = await AdminHelpers.getHowToDoDetails(id);
+    res.status(200).json({ HowToDODetails: HowToDODetails });
+  } catch (err) {
+    console.error("Error fetching HowToDo details:", err);
+    res
+      .status(500)
+      .json({ success: false, message: "Error fetching HowToDo details." });
+  }
+});
+
+// Removing or deleting the gaming laptop by admin
+router.delete("/deleteGamingLaptop/:id", async (req, res) => {
+  try {
+    const productId = req.params.id; // Getting the laptop ID from request params
+
+    const deletedLaptop = await AdminHelpers.deleteGamingLaptop(productId); // Await the delete operation
+
+    if (!deletedLaptop) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Laptop not found" });
+    }
+
+    res
+      .status(200)
+      .json({ success: true, message: "Laptop deleted successfully!" });
+  } catch (err) {
+    console.error("Error deleting laptop:", err);
+    res.status(500).json({ success: false, message: "Error deleting laptop." });
+  }
+});
+// Removing or deleting the Budget laptop by admin
+router.delete("/deleteBudgetLaptop/:id", async (req, res) => {
+  try {
+    const productId = req.params.id; // Getting the laptop ID from request params
+
+    const deletedLaptop = await AdminHelpers.deleteBudgetLaptop(productId); // Await the delete operation
+
+    if (!deletedLaptop) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Laptop not found" });
+    }
+
+    res
+      .status(200)
+      .json({ success: true, message: "Laptop deleted successfully!" });
+  } catch (err) {
+    console.error("Error deleting laptop:", err);
+    res.status(500).json({ success: false, message: "Error deleting laptop." });
+  }
+});
+// Removing or deleting the Business laptop by admin
+router.delete("/deleteBusinessLaptop/:id", async (req, res) => {
+  try {
+    const productId = req.params.id; // Getting the laptop ID from request params
+
+    const deletedLaptop = await AdminHelpers.deleteBusinessLaptop(productId); // Await the delete operation
+
+    if (!deletedLaptop) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Laptop not found" });
+    }
+
+    res
+      .status(200)
+      .json({ success: true, message: "Laptop deleted successfully!" });
+  } catch (err) {
+    console.error("Error deleting laptop:", err);
+    res.status(500).json({ success: false, message: "Error deleting laptop." });
+  }
+});
+// Removing or deleting the Students laptop by admin
+router.delete("/deleteStudentsLaptop/:id", async (req, res) => {
+  try {
+    const productId = req.params.id; // Getting the laptop ID from request params
+
+    const deletedLaptop = await AdminHelpers.deleteStudentsLaptop(productId); // Await the delete operation
+
+    if (!deletedLaptop) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Laptop not found" });
+    }
+
+    res
+      .status(200)
+      .json({ success: true, message: "Laptop deleted successfully!" });
+  } catch (err) {
+    console.error("Error deleting laptop:", err);
+    res.status(500).json({ success: false, message: "Error deleting laptop." });
+  }
+});
+// Removing or deleting the Tablets by admin
+router.delete("/deleteTablets/:id", async (req, res) => {
+  try {
+    const productId = req.params.id; // Getting the laptop ID from request params
+
+    const deletedLaptop = await AdminHelpers.deleteTablets(productId); // Await the delete operation
+
+    if (!deletedLaptop) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Laptop not found" });
+    }
+
+    res
+      .status(200)
+      .json({ success: true, message: "Laptop deleted successfully!" });
+  } catch (err) {
+    console.error("Error deleting laptop:", err);
+    res.status(500).json({ success: false, message: "Error deleting laptop." });
+  }
+});
+// Removing or deleting the TwoInOne Laptops by admin
+router.delete("/deleteTwoInOneLaptop/:id", async (req, res) => {
+  try {
+    const productId = req.params.id; // Getting the laptop ID from request params
+
+    const deletedLaptop = await AdminHelpers.deleteTwoInOneLaptop(productId); // Await the delete operation
+
+    if (!deletedLaptop) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Laptop not found" });
+    }
+
+    res
+      .status(200)
+      .json({ success: true, message: "Laptop deleted successfully!" });
+  } catch (err) {
+    console.error("Error deleting laptop:", err);
+    res.status(500).json({ success: false, message: "Error deleting laptop." });
+  }
+});
+
+// Removing or deleting the News by admin
+router.delete("/deleteNewsDetails/:id", async (req, res) => {
+  try {
+    const productId = req.params.id; // Getting the laptop ID from request params
+
+    const deletedNews = await AdminHelpers.deleteNewsDetails(productId); // Await the delete operation
+
+    if (!deletedNews) {
+      return res
+        .status(404)
+        .json({ success: false, message: "News Details not found" });
+    }
+
+    res
+      .status(200)
+      .json({ success: true, message: "News deleted successfully!" });
+  } catch (err) {
+    console.error("Error deleting News:", err);
+    res.status(500).json({ success: false, message: "Error deleting News." });
+  }
+});
+// Removing or deleting the HowToDo by admin
+router.delete("/deleteHowToDoDetails/:id", async (req, res) => {
+  try {
+    const productId = req.params.id; // Getting the laptop ID from request params
+
+    const deleteHowToDo = await AdminHelpers.deleteHowToDoDetails(productId); // Await the delete operation
+
+    if (!deleteHowToDo) {
+      return res
+        .status(404)
+        .json({ success: false, message: "HowToDo Details not found" });
+    }
+
+    res
+      .status(200)
+      .json({ success: true, message: "HowToDo deleted successfully!" });
+  } catch (err) {
+    console.error("Error deleting HowToDo:", err);
+    res
+      .status(500)
+      .json({ success: false, message: "Error deleting HowToDo." });
+  }
+});
+//Updating the gaming laptops
+router.put(
+  "/updateGamingLaptop/:id",
+  upload.fields([
+    { name: "Laptop_image_small" },
+    { name: "Laptop_image_large" },
+  ]),
+  async (req, res) => {
+    const { id } = req.params;
+
+    // Prepare product details
+    const productDetails = {
+      Laptop_title: req.body.Laptop_title,
+      Laptop_description: req.body.Laptop_description,
+      Laptop_Details: req.body.Laptop_Details,
+      Laptop_keywords: req.body.Laptop_keywords || [], // Ensure it's an array
+      Laptop_original_price: req.body.Laptop_original_price,
+      Laptop_discount_price: req.body.Laptop_discount_price,
+    };
+
+    // Handle image uploads
+    if (req.files) {
+      if (req.files.Laptop_image_small) {
+        const smallImageFile = req.files.Laptop_image_small[0];
+        const smallImagePath = `/AdminProductImages/${smallImageFile.filename}`; // Adjust path as needed
+        productDetails.Laptop_image_small = smallImagePath; // Set the path for small image
+      }
+
+      if (req.files.Laptop_image_large) {
+        const largeImageFile = req.files.Laptop_image_large[0];
+        const largeImagePath = `/AdminProductImages/${largeImageFile.filename}`; // Adjust path as needed
+        productDetails.Laptop_image_large = largeImagePath; // Set the path for large image
+      }
+    }
+
+    try {
+      await AdminHelpers.updateGamingLaptop(id, productDetails);
+      res.status(200).json({ message: "Laptop updated successfully" });
+    } catch (error) {
+      console.error("Error updating laptop:", error);
+      res
+        .status(500)
+        .json({ message: "Failed to update laptop. Please try again." });
+    }
+  }
+);
+
 module.exports = router;

@@ -307,4 +307,196 @@ module.exports = {
       throw err;
     }
   },
+  //Fetching the Latest news  information
+  getNews: async () => {
+    try {
+      //"".sort({ createdAt: -1 })""  =>This is used to display the products in latest added order
+      return await News.find().sort({ createdAt: -1 }); // Newest first;
+    } catch (err) {
+      console.error("Error fetching Latest  News Details:", err.message);
+      throw err;
+    }
+  },
+  //Particular News  details are fetcher here using the ID
+  getNewsDetails: async (id) => {
+    try {
+      return await News.findById(id);
+    } catch (err) {
+      console.error("Error fetching News :", err.message);
+      throw err;
+    }
+  }, //Fetching the Latest news  information
+  getHowToDO: async () => {
+    try {
+      //"".sort({ createdAt: -1 })""  =>This is used to display the products in latest added order
+      return await HowToDo.find().sort({ createdAt: -1 }); // Newest first;
+    } catch (err) {
+      console.error("Error fetching Latest  HowToDO Details:", err.message);
+      throw err;
+    }
+  }, //Particular HowToDo  details are fetcher here using the ID
+  getHowToDoDetails: async (id) => {
+    try {
+      return await HowToDo.findById(id);
+    } catch (err) {
+      console.error("Error fetching HowToDo Details :", err.message);
+      throw err;
+    }
+  }, // Removing or deleting the gaming laptop by admin
+  deleteGamingLaptop: async (productId) => {
+    try {
+      const deletedProduct = await GamingLaptop.findByIdAndDelete(productId);
+
+      if (!deletedProduct) {
+        throw new Error("Laptop not found");
+      }
+
+      return deletedProduct;
+    } catch (error) {
+      throw error;
+    }
+  },
+  // Removing or deleting the gaming laptop by admin
+  deleteBudgetLaptop: async (productId) => {
+    try {
+      const deletedProduct = await BudgetLaptop.findByIdAndDelete(productId);
+
+      if (!deletedProduct) {
+        throw new Error("Laptop not found");
+      }
+
+      return deletedProduct;
+    } catch (error) {
+      throw error;
+    }
+  },
+  // Removing or deleting the Business laptop by admin
+  deleteBusinessLaptop: async (productId) => {
+    try {
+      const deletedProduct = await BusinessLaptop.findByIdAndDelete(productId);
+
+      if (!deletedProduct) {
+        throw new Error("Laptop not found");
+      }
+
+      return deletedProduct;
+    } catch (error) {
+      throw error;
+    }
+  },
+  // Removing or deleting the Students laptop by admin
+  deleteStudentsLaptop: async (productId) => {
+    try {
+      const deletedProduct = await StudentLaptop.findByIdAndDelete(productId);
+
+      if (!deletedProduct) {
+        throw new Error("Laptop not found");
+      }
+
+      return deletedProduct;
+    } catch (error) {
+      throw error;
+    }
+  },
+  // Removing or deleting the Tablets by admin
+  deleteTablets: async (productId) => {
+    try {
+      const deletedProduct = await Tablets.findByIdAndDelete(productId);
+
+      if (!deletedProduct) {
+        throw new Error("Laptop not found");
+      }
+
+      return deletedProduct;
+    } catch (error) {
+      throw error;
+    }
+  },
+  // Removing or deleting the TwoInOne laptop by admin
+  deleteTwoInOneLaptop: async (productId) => {
+    try {
+      const deletedProduct = await addTwoInOne.findByIdAndDelete(productId);
+
+      if (!deletedProduct) {
+        throw new Error("Laptop not found");
+      }
+
+      return deletedProduct;
+    } catch (error) {
+      throw error;
+    }
+  }, // Removing or deleting the News by admin
+  deleteNewsDetails: async (productId) => {
+    try {
+      const deletedProduct = await News.findByIdAndDelete(productId);
+
+      if (!deletedProduct) {
+        throw new Error("News Detail is  not found");
+      }
+      return deletedProduct;
+    } catch (error) {
+      throw error;
+    }
+  },
+  // Removing or deleting the HowToDo by admin
+  deleteHowToDoDetails: async (productId) => {
+    try {
+      const deletedProduct = await HowToDo.findByIdAndDelete(productId);
+
+      if (!deletedProduct) {
+        throw new Error("News Detail is  not found");
+      }
+      return deletedProduct;
+    } catch (error) {
+      throw error;
+    }
+  },
+  //Updating the gaming Laptop
+  updateGamingLaptop: (id, productDetails) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await GamingLaptop.findByIdAndUpdate(
+          id,
+          {
+            Laptop_title: productDetails.Laptop_title,
+            Laptop_description: productDetails.Laptop_description,
+            Laptop_Details: productDetails.Laptop_Details,
+            Laptop_keywords: productDetails.Laptop_keywords, // Ensure this is set correctly
+            Laptop_original_price: productDetails.Laptop_original_price,
+            Laptop_discount_price: productDetails.Laptop_discount_price,
+          },
+          { new: true, runValidators: true }
+        ); // Return the updated document and run validators
+        resolve();
+      } catch (error) {
+        console.error("Error updating gaming laptop:", error);
+        reject(error);
+      }
+    });
+  },
+
+  updateGamingLaptop: (id, productDetails) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await GamingLaptop.findByIdAndUpdate(
+          id,
+          {
+            Laptop_title: productDetails.Laptop_title,
+            Laptop_description: productDetails.Laptop_description,
+            Laptop_Details: productDetails.Laptop_Details,
+            Laptop_keywords: productDetails.Laptop_keywords, // Ensure this is set correctly
+            Laptop_image_small: productDetails.Laptop_image_small, // Update image path
+            Laptop_image_large: productDetails.Laptop_image_large, // Update image path
+            Laptop_original_price: productDetails.Laptop_original_price,
+            Laptop_discount_price: productDetails.Laptop_discount_price,
+          },
+          { new: true, runValidators: true }
+        ); // Return the updated document and run validators
+        resolve();
+      } catch (error) {
+        console.error("Error updating gaming laptop:", error);
+        reject(error);
+      }
+    });
+  },
 };
