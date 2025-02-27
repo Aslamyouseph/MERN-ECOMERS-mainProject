@@ -115,7 +115,7 @@ function AdminDeleteUpdateHowToDo() {
                   </button>
                   {/* Update Button */}
                   <Link
-                    to={`/GamingLaptopUpdate/${item._id}`}
+                    to={`/UpdateHowToDo/${item._id}`}
                     className="update-btn"
                   >
                     Update
