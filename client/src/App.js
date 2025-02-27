@@ -53,6 +53,13 @@ import RemoveUpdateStudentLaptops from "./Admin-Components/PageAdmin/RemoveUpdat
 import RemoveUpdateTablets from "./Admin-Components/PageAdmin/RemoveUpdateTablets";
 import RemoveUpdateTwoInOne from "./Admin-Components/PageAdmin/RemoveUpdateTwoInOnes";
 import UpdateGamingLaptops from "./Admin-Components/PageAdmin/UpdatingGamingLaptops";
+import UpdateBusinessLaptops from "./Admin-Components/PageAdmin/UpdateBusinessLaptop";
+import UpdateBudgetLaptops from "./Admin-Components/PageAdmin/UpdatingBudgetLaptop";
+import UpdateStudentLaptops from "./Admin-Components/PageAdmin/UpdatingStudentLaptop";
+import UpdateTablets from "./Admin-Components/PageAdmin/UpdateTablets";
+import UpdateTwoInOneLaptops from "./Admin-Components/PageAdmin/UpdatingTwoInOneLaptops";
+import UpdateNews from "./Admin-Components/PageAdmin/UpdatingNews";
+import UpdateHowToDo from "./Admin-Components/PageAdmin/UpdateHowToDo";
 function App() {
   return (
     <div>
@@ -143,6 +150,25 @@ function App() {
           path="/UpdateGamingLaptops/:id"
           element={<UpdateGamingLaptops />}
         />
+        <Route
+          path="/UpdateBusinessLaptops/:id"
+          element={<UpdateBusinessLaptops />}
+        />
+        <Route
+          path="/UpdateBudgetLaptops/:id"
+          element={<UpdateBudgetLaptops />}
+        />
+        <Route
+          path="/UpdateStudentLaptops/:id"
+          element={<UpdateStudentLaptops />}
+        />
+        <Route path="/UpdateTablets/:id" element={<UpdateTablets />} />
+        <Route
+          path="/UpdateTwoInOneLaptops/:id"
+          element={<UpdateTwoInOneLaptops />}
+        />
+        <Route path="/UpdateNews/:id" element={<UpdateNews />} />
+        <Route path="/UpdateHowToDo/:id" element={<UpdateHowToDo />} />
       </Routes>
     </div>
   );
