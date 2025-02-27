@@ -132,7 +132,7 @@ function RemoveUpdateStudentLaptops() {
 
                   {/* Update Button */}
                   <Link
-                    to={`/GamingLaptopUpdate/${laptop._id}`}
+                    to={`/UpdateStudentLaptops/${laptop._id}`}
                     className="update-btn"
                   >
                     Update

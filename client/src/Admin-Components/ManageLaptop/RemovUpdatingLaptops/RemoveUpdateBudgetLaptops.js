@@ -131,7 +131,7 @@ function RemoveUpdateBudgetLaptops() {
 
                   {/* Update Button */}
                   <Link
-                    to={`/GamingLaptopUpdate/${laptop._id}`}
+                    to={`/UpdateBudgetLaptops/${laptop._id}`}
                     className="update-btn"
                   >
                     Update

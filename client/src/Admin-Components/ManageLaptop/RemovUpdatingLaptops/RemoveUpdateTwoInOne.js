@@ -131,7 +131,7 @@ function RemoveUpdateTwoInOne() {
 
                   {/* Update Button */}
                   <Link
-                    to={`/GamingLaptopUpdate/${laptop._id}`}
+                    to={`/UpdateTwoInOneLaptops/${laptop._id}`}
                     className="update-btn"
                   >
                     Update
