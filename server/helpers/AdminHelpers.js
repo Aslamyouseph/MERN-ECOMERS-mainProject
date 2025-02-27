@@ -462,6 +462,8 @@ module.exports = {
             Laptop_description: productDetails.Laptop_description,
             Laptop_Details: productDetails.Laptop_Details,
             Laptop_keywords: productDetails.Laptop_keywords, // Ensure this is set correctly
+            Laptop_image_small: productDetails.Laptop_image_small, // Update image path
+            Laptop_image_large: productDetails.Laptop_image_large, // Update image path
             Laptop_original_price: productDetails.Laptop_original_price,
             Laptop_discount_price: productDetails.Laptop_discount_price,
           },
@@ -474,11 +476,11 @@ module.exports = {
       }
     });
   },
-
-  updateGamingLaptop: (id, productDetails) => {
+  //Updating the Business Laptop
+  updateBusinessLaptop: (id, productDetails) => {
     return new Promise(async (resolve, reject) => {
       try {
-        await GamingLaptop.findByIdAndUpdate(
+        await BusinessLaptop.findByIdAndUpdate(
           id,
           {
             Laptop_title: productDetails.Laptop_title,
@@ -495,6 +497,159 @@ module.exports = {
         resolve();
       } catch (error) {
         console.error("Error updating gaming laptop:", error);
+        reject(error);
+      }
+    });
+  }, //Updating the Budget Laptop
+  updateBudgetLaptop: (id, productDetails) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await BudgetLaptop.findByIdAndUpdate(
+          id,
+          {
+            Laptop_title: productDetails.Laptop_title,
+            Laptop_description: productDetails.Laptop_description,
+            Laptop_Details: productDetails.Laptop_Details,
+            Laptop_keywords: productDetails.Laptop_keywords, // Ensure this is set correctly
+            Laptop_image_small: productDetails.Laptop_image_small, // Update image path
+            Laptop_image_large: productDetails.Laptop_image_large, // Update image path
+            Laptop_original_price: productDetails.Laptop_original_price,
+            Laptop_discount_price: productDetails.Laptop_discount_price,
+          },
+          { new: true, runValidators: true }
+        ); // Return the updated document and run validators
+        resolve();
+      } catch (error) {
+        console.error("Error updating gaming laptop:", error);
+        reject(error);
+      }
+    });
+  },
+  //Updating the student Laptop
+  updateStudentLaptop: (id, productDetails) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await StudentLaptop.findByIdAndUpdate(
+          id,
+          {
+            Laptop_title: productDetails.Laptop_title,
+            Laptop_description: productDetails.Laptop_description,
+            Laptop_Details: productDetails.Laptop_Details,
+            Laptop_keywords: productDetails.Laptop_keywords, // Ensure this is set correctly
+            Laptop_image_small: productDetails.Laptop_image_small, // Update image path
+            Laptop_image_large: productDetails.Laptop_image_large, // Update image path
+            Laptop_original_price: productDetails.Laptop_original_price,
+            Laptop_discount_price: productDetails.Laptop_discount_price,
+          },
+          { new: true, runValidators: true }
+        ); // Return the updated document and run validators
+        resolve();
+      } catch (error) {
+        console.error("Error updating gaming laptop:", error);
+        reject(error);
+      }
+    });
+  },
+  //Updating the Tablets
+  updateTablets: (id, productDetails) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await Tablets.findByIdAndUpdate(
+          id,
+          {
+            Laptop_title: productDetails.Laptop_title,
+            Laptop_description: productDetails.Laptop_description,
+            Laptop_Details: productDetails.Laptop_Details,
+            Laptop_keywords: productDetails.Laptop_keywords, // Ensure this is set correctly
+            Laptop_image_small: productDetails.Laptop_image_small, // Update image path
+            Laptop_image_large: productDetails.Laptop_image_large, // Update image path
+            Laptop_original_price: productDetails.Laptop_original_price,
+            Laptop_discount_price: productDetails.Laptop_discount_price,
+          },
+          { new: true, runValidators: true }
+        ); // Return the updated document and run validators
+        resolve();
+      } catch (error) {
+        console.error("Error updating gaming laptop:", error);
+        reject(error);
+      }
+    });
+  },
+  //Updating the TwoInOne Laptops
+  updateTwoInOneLaptops: (id, productDetails) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await addTwoInOne.findByIdAndUpdate(
+          id,
+          {
+            Laptop_title: productDetails.Laptop_title,
+            Laptop_description: productDetails.Laptop_description,
+            Laptop_Details: productDetails.Laptop_Details,
+            Laptop_keywords: productDetails.Laptop_keywords, // Ensure this is set correctly
+            Laptop_image_small: productDetails.Laptop_image_small, // Update image path
+            Laptop_image_large: productDetails.Laptop_image_large, // Update image path
+            Laptop_original_price: productDetails.Laptop_original_price,
+            Laptop_discount_price: productDetails.Laptop_discount_price,
+          },
+          { new: true, runValidators: true }
+        ); // Return the updated document and run validators
+        resolve();
+      } catch (error) {
+        console.error("Error updating gaming laptop:", error);
+        reject(error);
+      }
+    });
+  },
+  // Updating the News in the database
+  updateNews: (id, NewsDetails) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const updatedNews = await News.findByIdAndUpdate(
+          id,
+          {
+            News_title: NewsDetails.News_title,
+            News_description: NewsDetails.News_description,
+            News_Details: NewsDetails.News_Details,
+            News_image_small: NewsDetails.News_image_small, // Update image path
+            News_image_large: NewsDetails.News_image_large, // Update image path
+          },
+          { new: true, runValidators: true } // Return the updated document and run validators
+        );
+
+        if (!updatedNews) {
+          return reject(new Error("News not found"));
+        }
+
+        resolve(updatedNews); // Resolve with the updated document if needed
+      } catch (error) {
+        console.error("Error updating News:", error);
+        reject(error);
+      }
+    });
+  },
+  // Updating the HowToDo in the database
+  updateHowToDo: (id, HowToDoDetails) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const updatedHowToDo = await HowToDo.findByIdAndUpdate(
+          id,
+          {
+            HowToDo_title: HowToDoDetails.HowToDo_title,
+            HowToDo_description: HowToDoDetails.HowToDo_description,
+            HowToDo_Details: HowToDoDetails.HowToDo_Details,
+            HowToDo_image_small: HowToDoDetails.HowToDo_image_small, // Update image path
+            HowToDo_image_large: HowToDoDetails.HowToDo_image_large, // Update image path
+          },
+          { new: true, runValidators: true } // Return the updated document and run validators
+        );
+
+        if (!updatedHowToDo) {
+          return reject(new Error("HowToDo not found"));
+        }
+
+        resolve(updatedHowToDo); // Resolve with the updated document if needed
+      } catch (error) {
+        console.error("Error updating HowToDo:", error);
         reject(error);
       }
     });

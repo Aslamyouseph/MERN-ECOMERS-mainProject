@@ -1049,5 +1049,326 @@ router.put(
     }
   }
 );
+//Updating the Business laptops
+router.put(
+  "/updateBusinessLaptop/:id",
+  upload.fields([
+    { name: "Laptop_image_small" },
+    { name: "Laptop_image_large" },
+  ]),
+  async (req, res) => {
+    const { id } = req.params;
 
+    // Prepare product details
+    const productDetails = {
+      Laptop_title: req.body.Laptop_title,
+      Laptop_description: req.body.Laptop_description,
+      Laptop_Details: req.body.Laptop_Details,
+      Laptop_keywords: req.body.Laptop_keywords || [], // Ensure it's an array
+      Laptop_original_price: req.body.Laptop_original_price,
+      Laptop_discount_price: req.body.Laptop_discount_price,
+    };
+
+    // Handle image uploads
+    if (req.files) {
+      if (req.files.Laptop_image_small) {
+        const smallImageFile = req.files.Laptop_image_small[0];
+        const smallImagePath = `/AdminProductImages/${smallImageFile.filename}`; // Adjust path as needed
+        productDetails.Laptop_image_small = smallImagePath; // Set the path for small image
+      }
+
+      if (req.files.Laptop_image_large) {
+        const largeImageFile = req.files.Laptop_image_large[0];
+        const largeImagePath = `/AdminProductImages/${largeImageFile.filename}`; // Adjust path as needed
+        productDetails.Laptop_image_large = largeImagePath; // Set the path for large image
+      }
+    }
+
+    try {
+      await AdminHelpers.updateBusinessLaptop(id, productDetails);
+      res.status(200).json({ message: "Laptop updated successfully" });
+    } catch (error) {
+      console.error("Error updating laptop:", error);
+      res
+        .status(500)
+        .json({ message: "Failed to update laptop. Please try again." });
+    }
+  }
+);
+//Updating the Budget laptops
+router.put(
+  "/updateBudgetLaptop/:id",
+  upload.fields([
+    { name: "Laptop_image_small" },
+    { name: "Laptop_image_large" },
+  ]),
+  async (req, res) => {
+    const { id } = req.params;
+
+    // Prepare product details
+    const productDetails = {
+      Laptop_title: req.body.Laptop_title,
+      Laptop_description: req.body.Laptop_description,
+      Laptop_Details: req.body.Laptop_Details,
+      Laptop_keywords: req.body.Laptop_keywords || [], // Ensure it's an array
+      Laptop_original_price: req.body.Laptop_original_price,
+      Laptop_discount_price: req.body.Laptop_discount_price,
+    };
+
+    // Handle image uploads
+    if (req.files) {
+      if (req.files.Laptop_image_small) {
+        const smallImageFile = req.files.Laptop_image_small[0];
+        const smallImagePath = `/AdminProductImages/${smallImageFile.filename}`; // Adjust path as needed
+        productDetails.Laptop_image_small = smallImagePath; // Set the path for small image
+      }
+
+      if (req.files.Laptop_image_large) {
+        const largeImageFile = req.files.Laptop_image_large[0];
+        const largeImagePath = `/AdminProductImages/${largeImageFile.filename}`; // Adjust path as needed
+        productDetails.Laptop_image_large = largeImagePath; // Set the path for large image
+      }
+    }
+
+    try {
+      await AdminHelpers.updateBudgetLaptop(id, productDetails);
+      res.status(200).json({ message: "Laptop updated successfully" });
+    } catch (error) {
+      console.error("Error updating laptop:", error);
+      res
+        .status(500)
+        .json({ message: "Failed to update laptop. Please try again." });
+    }
+  }
+);
+//Updating the Budget laptops
+router.put(
+  "/updateStudentLaptop/:id",
+  upload.fields([
+    { name: "Laptop_image_small" },
+    { name: "Laptop_image_large" },
+  ]),
+  async (req, res) => {
+    const { id } = req.params;
+
+    // Prepare product details
+    const productDetails = {
+      Laptop_title: req.body.Laptop_title,
+      Laptop_description: req.body.Laptop_description,
+      Laptop_Details: req.body.Laptop_Details,
+      Laptop_keywords: req.body.Laptop_keywords || [], // Ensure it's an array
+      Laptop_original_price: req.body.Laptop_original_price,
+      Laptop_discount_price: req.body.Laptop_discount_price,
+    };
+
+    // Handle image uploads
+    if (req.files) {
+      if (req.files.Laptop_image_small) {
+        const smallImageFile = req.files.Laptop_image_small[0];
+        const smallImagePath = `/AdminProductImages/${smallImageFile.filename}`; // Adjust path as needed
+        productDetails.Laptop_image_small = smallImagePath; // Set the path for small image
+      }
+
+      if (req.files.Laptop_image_large) {
+        const largeImageFile = req.files.Laptop_image_large[0];
+        const largeImagePath = `/AdminProductImages/${largeImageFile.filename}`; // Adjust path as needed
+        productDetails.Laptop_image_large = largeImagePath; // Set the path for large image
+      }
+    }
+
+    try {
+      await AdminHelpers.updateStudentLaptop(id, productDetails);
+      res.status(200).json({ message: "Laptop updated successfully" });
+    } catch (error) {
+      console.error("Error updating laptop:", error);
+      res
+        .status(500)
+        .json({ message: "Failed to update laptop. Please try again." });
+    }
+  }
+);
+//Updating the Tablets
+router.put(
+  "/updateTablets/:id",
+  upload.fields([
+    { name: "Laptop_image_small" },
+    { name: "Laptop_image_large" },
+  ]),
+  async (req, res) => {
+    const { id } = req.params;
+
+    // Prepare product details
+    const productDetails = {
+      Laptop_title: req.body.Laptop_title,
+      Laptop_description: req.body.Laptop_description,
+      Laptop_Details: req.body.Laptop_Details,
+      Laptop_keywords: req.body.Laptop_keywords || [], // Ensure it's an array
+      Laptop_original_price: req.body.Laptop_original_price,
+      Laptop_discount_price: req.body.Laptop_discount_price,
+    };
+
+    // Handle image uploads
+    if (req.files) {
+      if (req.files.Laptop_image_small) {
+        const smallImageFile = req.files.Laptop_image_small[0];
+        const smallImagePath = `/AdminProductImages/${smallImageFile.filename}`; // Adjust path as needed
+        productDetails.Laptop_image_small = smallImagePath; // Set the path for small image
+      }
+
+      if (req.files.Laptop_image_large) {
+        const largeImageFile = req.files.Laptop_image_large[0];
+        const largeImagePath = `/AdminProductImages/${largeImageFile.filename}`; // Adjust path as needed
+        productDetails.Laptop_image_large = largeImagePath; // Set the path for large image
+      }
+    }
+
+    try {
+      await AdminHelpers.updateTablets(id, productDetails);
+      res.status(200).json({ message: "Laptop updated successfully" });
+    } catch (error) {
+      console.error("Error updating laptop:", error);
+      res
+        .status(500)
+        .json({ message: "Failed to update laptop. Please try again." });
+    }
+  }
+);
+//Updating the TwoInOne Laptops
+router.put(
+  "/updateTwoInOneLaptops/:id",
+  upload.fields([
+    { name: "Laptop_image_small" },
+    { name: "Laptop_image_large" },
+  ]),
+  async (req, res) => {
+    const { id } = req.params;
+
+    // Prepare product details
+    const productDetails = {
+      Laptop_title: req.body.Laptop_title,
+      Laptop_description: req.body.Laptop_description,
+      Laptop_Details: req.body.Laptop_Details,
+      Laptop_keywords: req.body.Laptop_keywords || [], // Ensure it's an array
+      Laptop_original_price: req.body.Laptop_original_price,
+      Laptop_discount_price: req.body.Laptop_discount_price,
+    };
+
+    // Handle image uploads
+    if (req.files) {
+      if (req.files.Laptop_image_small) {
+        const smallImageFile = req.files.Laptop_image_small[0];
+        const smallImagePath = `/AdminProductImages/${smallImageFile.filename}`; // Adjust path as needed
+        productDetails.Laptop_image_small = smallImagePath; // Set the path for small image
+      }
+
+      if (req.files.Laptop_image_large) {
+        const largeImageFile = req.files.Laptop_image_large[0];
+        const largeImagePath = `/AdminProductImages/${largeImageFile.filename}`; // Adjust path as needed
+        productDetails.Laptop_image_large = largeImagePath; // Set the path for large image
+      }
+    }
+
+    try {
+      await AdminHelpers.updateTwoInOneLaptops(id, productDetails);
+      res.status(200).json({ message: "Laptop updated successfully" });
+    } catch (error) {
+      console.error("Error updating laptop:", error);
+      res
+        .status(500)
+        .json({ message: "Failed to update laptop. Please try again." });
+    }
+  }
+);
+// Updating the News
+router.put(
+  "/updateNews/:id",
+  upload.fields([{ name: "News_image_small" }, { name: "News_image_large" }]),
+  async (req, res) => {
+    const { id } = req.params;
+
+    // Prepare news details
+    const NewsDetails = {
+      News_title: req.body.News_title,
+      News_description: req.body.News_description,
+      News_Details: req.body.News_Details,
+    };
+
+    // Handle image uploads
+    if (req.files) {
+      if (req.files.News_image_small) {
+        const smallImageFile = req.files.News_image_small[0];
+        const smallImagePath = `/AdminProductImages/${smallImageFile.filename}`; // Adjust path as needed
+        NewsDetails.News_image_small = smallImagePath; // Set the path for small image
+      }
+
+      if (req.files.News_image_large) {
+        const largeImageFile = req.files.News_image_large[0];
+        const largeImagePath = `/AdminProductImages/${largeImageFile.filename}`; // Adjust path as needed
+        NewsDetails.News_image_large = largeImagePath; // Set the path for large image
+      }
+    }
+
+    try {
+      const updatedNews = await AdminHelpers.updateNews(id, NewsDetails);
+      if (!updatedNews) {
+        return res.status(404).json({ message: "News not found" });
+      }
+      res.status(200).json({ message: "News updated successfully" });
+    } catch (error) {
+      console.error("Error updating News:", error);
+      res
+        .status(500)
+        .json({ message: "Failed to update News. Please try again." });
+    }
+  }
+);
+// Updating the HowToDo
+router.put(
+  "/updateHowToDo/:id",
+  upload.fields([
+    { name: "HowToDo_image_small" },
+    { name: "HowToDo_image_large" },
+  ]),
+  async (req, res) => {
+    const { id } = req.params;
+
+    // Prepare HowToDo details
+    const HowToDoDetails = {
+      HowToDo_title: req.body.HowToDo_title,
+      HowToDo_description: req.body.HowToDo_description,
+      HowToDo_Details: req.body.HowToDo_Details,
+    };
+
+    // Handle image uploads
+    if (req.files) {
+      if (req.files.HowToDo_image_small) {
+        const smallImageFile = req.files.HowToDo_image_small[0];
+        const smallImagePath = `/AdminProductImages/${smallImageFile.filename}`; // Adjust path as needed
+        HowToDoDetails.HowToDo_image_small = smallImagePath; // Set the path for small image
+      }
+
+      if (req.files.HowToDo_image_large) {
+        const largeImageFile = req.files.HowToDo_image_large[0];
+        const largeImagePath = `/AdminProductImages/${largeImageFile.filename}`; // Adjust path as needed
+        HowToDoDetails.HowToDo_image_large = largeImagePath; // Set the path for large image
+      }
+    }
+
+    try {
+      const updatedHowToDo = await AdminHelpers.updateHowToDo(
+        id,
+        HowToDoDetails
+      );
+      if (!updatedHowToDo) {
+        return res.status(404).json({ message: "HowToDo not found" });
+      }
+      res.status(200).json({ message: "HowToDo updated successfully" });
+    } catch (error) {
+      console.error("Error updating HowToDo:", error);
+      res
+        .status(500)
+        .json({ message: "Failed to update HowToDo. Please try again." });
+    }
+  }
+);
 module.exports = router;
