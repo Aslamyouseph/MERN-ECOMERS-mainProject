@@ -115,7 +115,7 @@ function AdminDeleteUpdateNews() {
                   </button>
                   {/* Update Button */}
                   <Link
-                    to={`/GamingLaptopUpdate/${newsItem._id}`}
+                    to={`/UpdateNews/${newsItem._id}`}
                     className="update-btn"
                   >
                     Update
