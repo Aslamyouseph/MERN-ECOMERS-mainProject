@@ -1371,4 +1371,111 @@ router.put(
     }
   }
 );
+//Accessing the User details for frond page
+router.get("/getUsersDetails", async (req, res) => {
+  try {
+    const users = await AdminHelpers.getUsersDetails();
+    res.status(200).json({ users: users });
+  } catch (err) {
+    console.error("Error fetching User information:", err);
+    res
+      .status(500)
+      .json({ success: false, message: "Error fetching User Details ." });
+  }
+});
+
+// Removing or deleting the User Details by admin
+router.delete("/deleteUserDetails/:id", async (req, res) => {
+  try {
+    const UserId = req.params.id;
+
+    const deletedUser = await AdminHelpers.deleteUserDetails(UserId); // Await the delete operation
+
+    if (!deletedUser) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
+    }
+
+    res
+      .status(200)
+      .json({ success: true, message: "User deleted successfully!" });
+  } catch (err) {
+    console.error("Error deleting User:", err);
+    res.status(500).json({ success: false, message: "Error deleting User." });
+  }
+});
+//Accessing the User Contact details for frond page
+router.get("/getUsersContact", async (req, res) => {
+  try {
+    const usersContact = await AdminHelpers.getUsersContact();
+    res.status(200).json({ usersContact: usersContact });
+  } catch (err) {
+    console.error("Error fetching User contact  information:", err);
+    res.status(500).json({
+      success: false,
+      message: "Error fetching User contact Details .",
+    });
+  }
+});
+// Removing or deleting the User Details by admin
+router.delete("/deleteUsersContact/:id", async (req, res) => {
+  try {
+    const UserId = req.params.id;
+
+    const deletedUserContact = await AdminHelpers.deleteUsersContact(UserId); // Await the delete operation
+
+    if (!deletedUserContact) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User contact not found" });
+    }
+
+    res
+      .status(200)
+      .json({ success: true, message: "User contact deleted successfully!" });
+  } catch (err) {
+    console.error("Error deleting User contact:", err);
+    res
+      .status(500)
+      .json({ success: false, message: "Error deleting User contact." });
+  }
+});
+
+//Accessing the Return and Refund  details for frond page
+router.get("/getReturnRefund", async (req, res) => {
+  try {
+    const returnRefund = await AdminHelpers.getReturnRefund();
+    res.status(200).json({ returnRefund: returnRefund });
+  } catch (err) {
+    console.error("Error fetching return & Refund  information:", err);
+    res.status(500).json({
+      success: false,
+      message: "Error fetching return &Refund Details .",
+    });
+  }
+});
+// Removing or deleting theReturn and Refund Details by admin
+router.delete("/deleteReturnRefund/:id", async (req, res) => {
+  try {
+    const UserId = req.params.id;
+
+    const deletedReturnRefund = await AdminHelpers.deleteReturnRefund(UserId); // Await the delete operation
+
+    if (!deletedReturnRefund) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Return Refund not found" });
+    }
+
+    res
+      .status(200)
+      .json({ success: true, message: "Return Refund deleted successfully!" });
+  } catch (err) {
+    console.error("Error deleting Return Refund :", err);
+    res
+      .status(500)
+      .json({ success: false, message: "Error deleting Return Refund." });
+  }
+});
 module.exports = router;

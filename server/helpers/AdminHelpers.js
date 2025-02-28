@@ -7,6 +7,9 @@ const Tablets = require("../DB-Models/Tablets");
 const addTwoInOne = require("../DB-Models/TwoInOne");
 const News = require("../DB-Models/News");
 const HowToDo = require("../DB-Models/HowToDo");
+const UserModel = require("../DB-Models/userAccount");
+const ContactModel = require("../DB-Models/contactUser");
+const ReturnRefundModel = require("../DB-Models/ReturnRefund");
 module.exports = {
   //adding the gaming laptop
   addGamingLaptop: async (product) => {
@@ -653,5 +656,79 @@ module.exports = {
         reject(error);
       }
     });
+  },
+  //Fetching the User  information
+  getUsersDetails: async () => {
+    try {
+      //"".sort({ createdAt: -1 })""  =>This is used to display the products in latest added order
+      return await UserModel.find().sort({ createdAt: -1 }); // Newest first;
+    } catch (err) {
+      console.error("Error fetching User Details:", err.message);
+      throw err;
+    }
+  },
+  // Removing or deleting the User Details by admin
+  deleteUserDetails: async (UserId) => {
+    try {
+      const deletedUser = await UserModel.findByIdAndDelete(UserId);
+
+      if (!deletedUser) {
+        throw new Error("User not found");
+      }
+
+      return deletedUser;
+    } catch (error) {
+      throw error;
+    }
+  },
+  //Fetching the User contact  information
+  getUsersContact: async () => {
+    try {
+      //"".sort({ createdAt: -1 })""  =>This is used to display the products in latest added order
+      return await ContactModel.find().sort({ createdAt: -1 }); // Newest first;
+    } catch (err) {
+      console.error("Error fetching User Details:", err.message);
+      throw err;
+    }
+  },
+  // Removing or deleting the User Contact Details by admin
+  deleteUsersContact: async (UserId) => {
+    try {
+      const deletedUserContact = await ContactModel.findByIdAndDelete(UserId);
+
+      if (!deletedUserContact) {
+        throw new Error("User not found");
+      }
+
+      return deletedUserContact;
+    } catch (error) {
+      throw error;
+    }
+  },
+  //Fetching the Return & Refund  information
+  getReturnRefund: async () => {
+    try {
+      //"".sort({ createdAt: -1 })""  =>This is used to display the products in latest added order
+      return await ReturnRefundModel.find().sort({ createdAt: -1 }); // Newest first;
+    } catch (err) {
+      console.error("Error fetching  Return & Refund Details:", err.message);
+      throw err;
+    }
+  },
+  // Removing or deleting the Return & Refund Details by admin
+  deleteReturnRefund: async (UserId) => {
+    try {
+      const deletedReturnRefund = await ReturnRefundModel.findByIdAndDelete(
+        UserId
+      );
+
+      if (!deletedReturnRefund) {
+        throw new Error("User not found");
+      }
+
+      return deletedReturnRefund;
+    } catch (error) {
+      throw error;
+    }
   },
 };
