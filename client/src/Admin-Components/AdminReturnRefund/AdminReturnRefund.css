@@ -73,7 +73,7 @@
 .delete-btn:hover {
   background-color: #cc0000;
 }
-.Contact-btn {
+.contact-btn {
   background: #28a745;
   color: white;
   border: none;
@@ -81,8 +81,9 @@
   border-radius: 20px;
   cursor: pointer;
   transition: 0.3s;
+  text-decoration: none;
 }
 
-.Contact-btn:hover {
+.contact-btn:hover {
   background: #218838;
 }
