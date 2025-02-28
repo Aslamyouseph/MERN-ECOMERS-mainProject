@@ -1,74 +1,136 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./AdminViewUserContact.css";
+
 function AdminViewUserContact() {
-  const users = [
-    {
-      id: 1,
-      username: "john_doe",
-      email: "john@example.com",
-      phone: "9876543210",
-      password: "Hello",
-    },
-    {
-      id: 2,
-      username: "jane_smith",
-      email: "jane@example.com",
-      phone: "8765432109",
-      password: "Hi",
-    },
-    {
-      id: 3,
-      username: "mike_ross",
-      email: "mike@example.com",
-      phone: "7654321098",
-      password: "Hello",
-    },
-    {
-      id: 4,
-      username: "sara_connor",
-      email: "sara@example.com",
-      phone: "6543210987",
-      password: "Hi",
-    },
-  ];
+  const [usersContact, setUsersContact] = useState([]); // State to store usersContact
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [deletingId, setDeletingId] = useState(null); // Track the item being deleted
+
+  // Fetch users contact details from the database
+  useEffect(() => {
+    const fetchUsersContactDetails = async () => {
+      try {
+        const res = await fetch(
+          "http://localhost:5000/api/admin/getUsersContact",
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch user contact details");
+        }
+
+        const data = await res.json();
+        setUsersContact(data.usersContact || []); // Ensure it's an array
+      } catch (error) {
+        console.error("Error fetching user contact details:", error);
+        setError("Something went wrong. Please try again.");
+      } finally {
+        setLoading(false); // Stop loading after fetch completes
+      }
+    };
+
+    fetchUsersContactDetails();
+  }, []);
+
+  // Function to delete a user
+  const handleDelete = async (user) => {
+    const confirmDelete = window.confirm(
+      `Are you sure you want to delete ${user.name}?`
+    );
+    if (!confirmDelete) return;
+
+    setDeletingId(user._id); // Disable button for the item being deleted
+
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/admin/deleteUsersContact/${user._id}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to delete user contact details");
+      }
+
+      setUsersContact((prevUsers) =>
+        prevUsers.filter((item) => item._id !== user._id)
+      );
+
+      alert("User contact details deleted successfully!");
+    } catch (error) {
+      console.error("Error deleting user contact details:", error);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setDeletingId(null); // Re-enable button after operation
+    }
+  };
+
   return (
-    <div>
-      <div className="admin-container">
-        <br />
-        <h1 className="admin-title">Respond to Users Messages</h1>
-        <br />
-        <div className="table-container">
-          <table className="user-table">
-            <thead>
+    <div className="admin-container">
+      <br />
+      <h1 className="admin-title">Respond to Users Messages</h1>
+      <br />
+      {error && <p className="error-message">{error}</p>}
+      <div className="table-container">
+        <table className="user-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>User_ID</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th>Message</th>
+              <th>Contact</th>
+              <th>Operations</th>
+            </tr>
+          </thead>
+          <tbody>
+            {usersContact.length === 0 ? (
               <tr>
-                <th>ID</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-                <th>Message</th>
-                <th>Contact</th>
-                <th>Operations</th>
+                <td colSpan="8">No users contact found.</td>
               </tr>
-            </thead>
-            <tbody>
-              {users.map((user) => (
-                <tr key={user.id}>
-                  <td>{user.id}</td>
-                  <td>{user.username}</td>
+            ) : (
+              usersContact.map((user, index) => (
+                <tr key={user._id}>
+                  <td>{index + 1}</td>
+                  <td>{user._id}</td>
+                  <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>{user.phone}</td>
-                  <td>{user.password}</td>
+                  <td>{user.message}</td>
                   <td>
-                    <button className="Contact-btn">Contact</button>
+                    <button className="Contact-btn">
+                      <a
+                        className="Contact-btn"
+                        href={`https://wa.me/${user.phone}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <b>Contact User</b>
+                      </a>
+                    </button>
                   </td>
                   <td>
-                    <button className="delete-btn">Delete</button>
+                    <button
+                      className="delete-btn"
+                      onClick={() => handleDelete(user)}
+                      disabled={deletingId === user._id}
+                    >
+                      {deletingId === user._id ? "Deleting..." : "Delete"}
+                    </button>
                   </td>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              ))
+            )}
+          </tbody>
+        </table>
       </div>
     </div>
   );
