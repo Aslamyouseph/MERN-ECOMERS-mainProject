@@ -106,3 +106,133 @@
 .delivery-row:not(:last-child) {
   border-bottom: 1px solid #ddd;
 }
+/*TODO:Review Entering css starts from here onwards*/
+.product-review-container {
+  width: 90%;
+  margin: 20px auto;
+  padding: 25px;
+  background-color: #fbf7f7;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.product-review-title {
+  font-size: 2.5rem;
+  font-family: "TImes New Roman", Times, serif;
+  color: #fe0000;
+  margin-bottom: 10px;
+}
+
+.product-review-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.product-review-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.productReviewer-name {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  margin-bottom: 10px;
+  display: flex;
+  color: rgb(78, 151, 83);
+}
+
+.product-review-textarea {
+  width: 100%;
+  max-width: 500px;
+  height: 120px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  resize: none;
+  margin-bottom: 15px;
+}
+
+.product-review-button {
+  background: linear-gradient(to right, #007bff, #0056b3);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  width: 100%;
+  max-width: 500px;
+  margin-top: 8px;
+}
+
+.product-review-button:hover {
+  background: linear-gradient(to right, #0056b3, #003d80);
+}
+/*TODO:Review display css*/
+.product-reviewDisplay-container {
+  width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-reviewDisplay-container h3 {
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #f1f1f1;
+  padding-bottom: 10px;
+}
+
+.review-item {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.review-item:hover {
+  transform: translateY(-2px);
+}
+
+.review-item h4 {
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 5px;
+}
+
+.review-item p {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.no-reviews {
+  text-align: center;
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  color: #777;
+  padding: 20px;
+}
+
+.no-reviews span {
+  color: red;
+  font-weight: 500;
+}
