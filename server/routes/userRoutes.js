@@ -181,5 +181,122 @@ router.post("/returnRefund", verifyLogin, async (req, res) => {
     });
   }
 });
+//Adding  the user review for gaming laptops
+router.put("/addReviewGaming", verifyLogin, async (req, res) => {
+  // console.log("Received review data:", req.body); // Debugging
 
+  try {
+    await userHelpers.addReviewGaming(req.body);
+    res.status(200).json({
+      success: true,
+      message: "Review added successfully!",
+    });
+  } catch (error) {
+    console.error("Error adding review:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error adding review.",
+      error: error.message,
+    });
+  }
+});
+//Adding  the user review for Budget laptops
+router.put("/addReviewBudget", verifyLogin, async (req, res) => {
+  // console.log("Received review data:", req.body); // Debugging
+
+  try {
+    await userHelpers.addReviewBudget(req.body);
+    res.status(200).json({
+      success: true,
+      message: "Review added successfully!",
+    });
+  } catch (error) {
+    console.error("Error adding review:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error adding review.",
+      error: error.message,
+    });
+  }
+});
+
+//Adding  the user review for Business laptops
+router.put("/addReviewBusiness", verifyLogin, async (req, res) => {
+  // console.log("Received review data:", req.body); // Debugging
+
+  try {
+    await userHelpers.addReviewBusiness(req.body);
+    res.status(200).json({
+      success: true,
+      message: "Review added successfully!",
+    });
+  } catch (error) {
+    console.error("Error adding review:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error adding review.",
+      error: error.message,
+    });
+  }
+});
+
+//Adding  the user review for Student laptops
+router.put("/addReviewStudent", verifyLogin, async (req, res) => {
+  // console.log("Received review data:", req.body); // Debugging
+
+  try {
+    await userHelpers.addReviewStudent(req.body);
+    res.status(200).json({
+      success: true,
+      message: "Review added successfully!",
+    });
+  } catch (error) {
+    console.error("Error adding review:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error adding review.",
+      error: error.message,
+    });
+  }
+});
+
+//Adding  the user review for Tablets
+router.put("/addReviewTablets", verifyLogin, async (req, res) => {
+  // console.log("Received review data:", req.body); // Debugging
+
+  try {
+    await userHelpers.addReviewTablets(req.body);
+    res.status(200).json({
+      success: true,
+      message: "Review added successfully!",
+    });
+  } catch (error) {
+    console.error("Error adding review:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error adding review.",
+      error: error.message,
+    });
+  }
+});
+
+//Adding  the user review for TwoInOne laptops
+router.put("/addReviewTwoInOne", verifyLogin, async (req, res) => {
+  // console.log("Received review data:", req.body); // Debugging
+
+  try {
+    await userHelpers.addReviewTwoInOne(req.body);
+    res.status(200).json({
+      success: true,
+      message: "Review added successfully!",
+    });
+  } catch (error) {
+    console.error("Error adding review:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error adding review.",
+      error: error.message,
+    });
+  }
+});
 module.exports = router;

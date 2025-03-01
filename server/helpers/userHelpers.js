@@ -3,6 +3,12 @@ const bcrypt = require("bcrypt");
 const UserModel = require("../DB-Models/userAccount");
 const ContactModel = require("../DB-Models/contactUser");
 const ReturnRefundModel = require("../DB-Models/ReturnRefund");
+const GamingLaptop = require("../DB-Models/GamingLaptop");
+const BudgetLaptop = require("../DB-Models/BudgetLaptops");
+const BusinessLaptop = require("../DB-Models/BusinessLaptop");
+const StudentLaptop = require("../DB-Models/StudentLaptop");
+const Tablets = require("../DB-Models/Tablets");
+const addTwoInOne = require("../DB-Models/TwoInOne");
 
 module.exports = {
   // used for the signup operation
@@ -75,6 +81,249 @@ module.exports = {
         const result = await newReturnRefund.save(); // Fixed the variable name
         resolve({ user: result });
       } catch (error) {
+        reject(error);
+      }
+    });
+  },
+  // Adding the user review of gaming laptops
+  addReviewGaming: (reviewData) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const laptopId = reviewData.id; // Correcting the field name
+
+        // Validate the laptopId
+        if (!laptopId) {
+          return reject(new Error("Laptop ID is required"));
+        }
+
+        if (!mongoose.Types.ObjectId.isValid(laptopId)) {
+          return reject(new Error("Invalid Laptop ID format"));
+        }
+
+        const updatedLaptop = await GamingLaptop.findByIdAndUpdate(
+          laptopId,
+          {
+            $push: {
+              Laptop_Review: {
+                name: reviewData.name,
+                review: reviewData.review, // Fixing review field name
+                date: new Date(),
+              },
+            },
+          },
+          { new: true }
+        );
+
+        if (!updatedLaptop) {
+          return reject(new Error("Laptop not found"));
+        }
+
+        resolve(updatedLaptop);
+      } catch (error) {
+        console.error("Error Adding the Reviews:", error);
+        reject(error);
+      }
+    });
+  },
+  // Adding the user review of Budget laptops
+  addReviewBudget: (reviewData) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const laptopId = reviewData.id; // Correcting the field name
+
+        // Validate the laptopId
+        if (!laptopId) {
+          return reject(new Error("Laptop ID is required"));
+        }
+
+        if (!mongoose.Types.ObjectId.isValid(laptopId)) {
+          return reject(new Error("Invalid Laptop ID format"));
+        }
+
+        const updatedLaptop = await BudgetLaptop.findByIdAndUpdate(
+          laptopId,
+          {
+            $push: {
+              Laptop_Review: {
+                name: reviewData.name,
+                review: reviewData.review, // Fixing review field name
+                date: new Date(),
+              },
+            },
+          },
+          { new: true }
+        );
+
+        if (!updatedLaptop) {
+          return reject(new Error("Laptop not found"));
+        }
+
+        resolve(updatedLaptop);
+      } catch (error) {
+        console.error("Error Adding the Reviews:", error);
+        reject(error);
+      }
+    });
+  },
+
+  // Adding the user review of Business laptops
+  addReviewBusiness: (reviewData) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const laptopId = reviewData.id; // Correcting the field name
+
+        // Validate the laptopId
+        if (!laptopId) {
+          return reject(new Error("Laptop ID is required"));
+        }
+
+        if (!mongoose.Types.ObjectId.isValid(laptopId)) {
+          return reject(new Error("Invalid Laptop ID format"));
+        }
+
+        const updatedLaptop = await BusinessLaptop.findByIdAndUpdate(
+          laptopId,
+          {
+            $push: {
+              Laptop_Review: {
+                name: reviewData.name,
+                review: reviewData.review, // Fixing review field name
+                date: new Date(),
+              },
+            },
+          },
+          { new: true }
+        );
+
+        if (!updatedLaptop) {
+          return reject(new Error("Laptop not found"));
+        }
+
+        resolve(updatedLaptop);
+      } catch (error) {
+        console.error("Error Adding the Reviews:", error);
+        reject(error);
+      }
+    });
+  },
+
+  // Adding the user review of students laptops
+  addReviewStudent: (reviewData) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const laptopId = reviewData.id; // Correcting the field name
+
+        // Validate the laptopId
+        if (!laptopId) {
+          return reject(new Error("Laptop ID is required"));
+        }
+
+        if (!mongoose.Types.ObjectId.isValid(laptopId)) {
+          return reject(new Error("Invalid Laptop ID format"));
+        }
+
+        const updatedLaptop = await StudentLaptop.findByIdAndUpdate(
+          laptopId,
+          {
+            $push: {
+              Laptop_Review: {
+                name: reviewData.name,
+                review: reviewData.review, // Fixing review field name
+                date: new Date(),
+              },
+            },
+          },
+          { new: true }
+        );
+
+        if (!updatedLaptop) {
+          return reject(new Error("Laptop not found"));
+        }
+
+        resolve(updatedLaptop);
+      } catch (error) {
+        console.error("Error Adding the Reviews:", error);
+        reject(error);
+      }
+    });
+  },
+  // Adding the user review of Tablets laptops
+  addReviewTablets: (reviewData) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const laptopId = reviewData.id; // Correcting the field name
+
+        // Validate the laptopId
+        if (!laptopId) {
+          return reject(new Error("Laptop ID is required"));
+        }
+
+        if (!mongoose.Types.ObjectId.isValid(laptopId)) {
+          return reject(new Error("Invalid Laptop ID format"));
+        }
+
+        const updatedLaptop = await Tablets.findByIdAndUpdate(
+          laptopId,
+          {
+            $push: {
+              Laptop_Review: {
+                name: reviewData.name,
+                review: reviewData.review, // Fixing review field name
+                date: new Date(),
+              },
+            },
+          },
+          { new: true }
+        );
+
+        if (!updatedLaptop) {
+          return reject(new Error("Laptop not found"));
+        }
+
+        resolve(updatedLaptop);
+      } catch (error) {
+        console.error("Error Adding the Reviews:", error);
+        reject(error);
+      }
+    });
+  },
+
+  // Adding the user review of TwoInOne laptops
+  addReviewTwoInOne: (reviewData) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const laptopId = reviewData.id; // Correcting the field name
+
+        // Validate the laptopId
+        if (!laptopId) {
+          return reject(new Error("Laptop ID is required"));
+        }
+
+        if (!mongoose.Types.ObjectId.isValid(laptopId)) {
+          return reject(new Error("Invalid Laptop ID format"));
+        }
+
+        const updatedLaptop = await addTwoInOne.findByIdAndUpdate(
+          laptopId,
+          {
+            $push: {
+              Laptop_Review: {
+                name: reviewData.name,
+                review: reviewData.review, // Fixing review field name
+                date: new Date(),
+              },
+            },
+          },
+          { new: true }
+        );
+
+        if (!updatedLaptop) {
+          return reject(new Error("Laptop not found"));
+        }
+
+        resolve(updatedLaptop);
+      } catch (error) {
+        console.error("Error Adding the Reviews:", error);
         reject(error);
       }
     });
