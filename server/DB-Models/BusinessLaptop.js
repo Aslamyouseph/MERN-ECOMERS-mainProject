@@ -4,7 +4,6 @@ const BusinessLaptopSchema = new mongoose.Schema(
   {
     Laptop_title: {
       type: String,
-      required: true,
       trim: true,
       validate: {
         validator: (value) => value.length > 0,
@@ -13,7 +12,6 @@ const BusinessLaptopSchema = new mongoose.Schema(
     },
     Laptop_description: {
       type: String,
-      required: true,
       trim: true,
       validate: {
         validator: (value) => value.length > 0,
@@ -22,7 +20,6 @@ const BusinessLaptopSchema = new mongoose.Schema(
     },
     Laptop_Details: {
       type: String,
-      required: true,
       trim: true,
       validate: {
         validator: (value) => value.length > 0,
@@ -31,23 +28,28 @@ const BusinessLaptopSchema = new mongoose.Schema(
     },
     Laptop_keywords: {
       type: [String],
-      required: true,
       set: (keywords) => keywords.map((kw) => kw.toLowerCase().trim()), // Convert to lowercase & trim
     },
     Laptop_image_small: {
       type: String,
-      required: true,
       trim: true,
       match: /\.(jpg|jpeg|png|webp)$/i, // Validate image file format
     },
     Laptop_image_large: {
       type: String,
-      required: true,
       trim: true,
       match: /\.(jpg|jpeg|png|webp)$/i,
     },
-    Laptop_original_price: { type: Number, required: true, min: 0 }, // Prevent negative price
-    Laptop_discount_price: { type: Number, required: true, min: 0 },
+    Laptop_original_price: { type: Number, min: 0 }, // Prevent negative price
+    Laptop_discount_price: { type: Number, min: 0 },
+    //laptop reviews
+    Laptop_Review: [
+      {
+        name: String, // Store the name of the reviewer
+        review: String, // Store the review text
+        date: { type: Date, default: Date.now }, // Store review date
+      },
+    ],
   },
   { timestamps: true }
 );
