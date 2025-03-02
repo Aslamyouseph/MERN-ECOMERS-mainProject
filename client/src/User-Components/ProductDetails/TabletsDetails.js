@@ -235,7 +235,8 @@ export default function ProductPage() {
                 >
                   <br />
                   <br />
-                  {review.date}
+                  {/* This is used to display the date and time of the review */}
+                  {new Date(review.date).toLocaleString()}
                 </span>
               </p>
             </div>
