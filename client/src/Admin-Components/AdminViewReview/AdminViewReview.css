@@ -1,0 +1,67 @@
+.reviewHeading {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 600;
+  color: #ff0000;
+}
+
+/* Container styling */
+.admin-review-container {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  max-width: 80%;
+  margin: 20px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Section heading styles */
+h1 {
+  font-size: 22px;
+  color: #333;
+  padding: 10px 0;
+}
+
+/* Category headings */
+.category-heading {
+  font-size: 30px;
+  background: #ff0000;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 20px 0 10px;
+  text-align: center;
+}
+
+/* Review card container */
+.review-card {
+  background: #ffffff;
+  border-left: 5px solid #007bff;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Reviewer details */
+.reviewer-name {
+  font-weight: bold;
+  color: #555;
+}
+
+.review-text {
+  font-size: 16px;
+  color: #333;
+  margin-top: 5px;
+}
+
+/* Divider */
+hr {
+  border: 1px solid #ddd;
+}
