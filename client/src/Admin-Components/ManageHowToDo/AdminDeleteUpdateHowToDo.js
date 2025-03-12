@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./AdminDeleteUpdateToDo.css";
-
+// Data Table implemented
+import Table from "react-bootstrap/Table";
+import $ from "jquery";
+import "datatables.net-bs5";
 function AdminDeleteUpdateHowToDo() {
   const [HowToDo, setHowToDo] = useState([]);
   const [error, setError] = useState("");
@@ -62,14 +65,29 @@ function AdminDeleteUpdateHowToDo() {
       setDeletingId(null); // Re-enable button after operation
     }
   };
+  // Data Table implemented block
+  useEffect(() => {
+    if (HowToDo.length > 0) {
+      const table = $("#orderTable").DataTable({
+        responsive: true, // Enable responsiveness
+        scrollX: true, // Enable horizontal scrolling
+        destroy: true, // Prevent duplicate initialization
+      });
 
+      return () => {
+        if ($.fn.DataTable.isDataTable("#orderTable")) {
+          table.destroy(); // Cleanup on component unmount
+        }
+      };
+    }
+  }, [HowToDo]); // Run only when `laptops` data changes
   return (
     <div>
       <br />
       <h1 className="Managing-heading">Remove or Update How To Do Section</h1>
       {error && <p className="error-message">{error}</p>}
       <div className="table-container-Laptop">
-        <table>
+        <Table striped bordered hover id="orderTable">
           <thead>
             <tr>
               <th>Product ID</th>
@@ -124,7 +142,7 @@ function AdminDeleteUpdateHowToDo() {
               </tr>
             ))}
           </tbody>
-        </table>
+        </Table>
       </div>
     </div>
   );

@@ -86,7 +86,6 @@ function AdminReturnRefund() {
                 <tr>
                   <th>ID</th>
                   <th>Order ID</th>
-                  <th>Email</th>
                   <th>Phone Number</th>
                   <th>Reason For Returning</th>
                   <th>Contact</th>
@@ -99,11 +98,10 @@ function AdminReturnRefund() {
                     <td colSpan="7">No Return and Refund Requests found.</td>
                   </tr>
                 ) : (
-                  returnRefund.map((request) => (
+                  returnRefund.map((request, index) => (
                     <tr key={request._id}>
-                      <td>{request._id}</td>
+                      <td>{index + 1}</td>
                       <td>{request.orderId}</td>
-                      <td>{request.email}</td>
                       <td>{request.phone}</td>
                       <td>{request.reason}</td>
                       <td>
