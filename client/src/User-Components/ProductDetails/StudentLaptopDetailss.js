@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./productDetails.css";
 
 export default function ProductPage() {
@@ -10,6 +11,7 @@ export default function ProductPage() {
   const [sessionName, setSessionName] = useState("");
   const [reviewText, setReviewText] = useState("");
   const [reviews, setReviews] = useState([]);
+  const navigate = useNavigate();
 
   // Check login status
   useEffect(() => {
@@ -101,6 +103,59 @@ export default function ProductPage() {
       console.error("Error adding review:", error);
     }
   };
+  // After  Clicking the Add To Cart then this operation is performed
+  const handleCart = async (id) => {
+    try {
+      // Fetch laptop details
+      const res = await fetch(
+        `http://localhost:5000/api/admin/getStudentLaptopDetails/${id}`,
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
+
+      if (!res.ok) throw new Error("Network response was not ok");
+
+      const data = await res.json();
+
+      if (!data.laptopDetails) {
+        throw new Error("Laptop details not found.");
+      }
+
+      setLaptopDetails(data.laptopDetails);
+
+      // Confirm before adding to cart
+      const confirmAdd = window.confirm(
+        `Are you sure you want to add ${data.laptopDetails.Laptop_title} to cart?`
+      );
+
+      if (!confirmAdd) return;
+
+      // If confirmed, proceed with adding to cart
+      const addToCartRes = await fetch(
+        `http://localhost:5000/api/user/addToCart/${id}`,
+        {
+          method: "POST",
+          credentials: "include",
+        }
+      );
+
+      if (!addToCartRes.ok) throw new Error("Network response was not ok");
+      // get back the response from the backend
+      const cartData = await addToCartRes.json();
+
+      if (!cartData.message) {
+        throw new Error("Product is not added to cart.");
+      }
+
+      console.log("Laptop added to cart:", data.laptopDetails.Laptop_title);
+    } catch (error) {
+      console.error("Error:", error);
+      setError("User is not logged in. Please log in to continue.");
+      setTimeout(() => navigate("/login"), 5000);
+    }
+  };
   return (
     <div className="container">
       {laptopDetails ? (
@@ -127,10 +182,15 @@ export default function ProductPage() {
                 </del>
               </h5>
               <p className="description">{laptopDetails.Laptop_Details}</p>
-
+              {error && <p className="error-message">{error}</p>}
               {/* Cart Button */}
               <div className="quantity-container">
-                <button className="add-to-cart">Add to Cart</button>
+                <button
+                  className="add-to-cart"
+                  onClick={() => handleCart(laptopDetails._id)}
+                >
+                  Add to Cart
+                </button>{" "}
               </div>
 
               <div className="delivery-info">
