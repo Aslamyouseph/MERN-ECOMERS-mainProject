@@ -12,6 +12,8 @@ import "./navBar.css";
 function NavScrollExample() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [sessionName, setSessionName] = useState("");
+  const [cartDetails, setCartDetails] = useState([]);
+  const [totalQuantity, setTotalQuantity] = useState(0);
   const navigate = useNavigate();
   // TODO:This section is used to check the user is logged or not
   useEffect(() => {
@@ -61,7 +63,28 @@ function NavScrollExample() {
       alert("Something went wrong. Please try again.");
     }
   };
+  useEffect(() => {
+    const fetchCartDetails = async () => {
+      try {
+        const res = await fetch(
+          "http://localhost:5000/api/user/getCartDetails",
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
+        if (!res.ok) throw new Error("Network response was not ok");
 
+        const data = await res.json();
+        console.log("API Response:", data);
+        setCartDetails(data.cartDetails || []); // Ensure cartDetails is set to an array
+        setTotalQuantity(data.totalQuantity || 0); // Set total quantity
+      } catch (error) {
+        console.error("Error fetching cart details:", error);
+      }
+    };
+    fetchCartDetails();
+  }, []);
   return (
     <>
       <Navbar expand="lg" className="bg-body-tertiary">
@@ -112,7 +135,10 @@ function NavScrollExample() {
               {isLoggedIn && (
                 <>
                   <Nav.Link as={Link} to="/Cart">
-                    Cart Section <span className="badge bg-danger">10</span>
+                    Cart Section{" "}
+                    <span className="badge bg-danger">
+                      {totalQuantity} {/* Use totalQuantity state */}
+                    </span>
                   </Nav.Link>
                   <Nav.Link as={Link} to="/OrderPage">
                     Order Section

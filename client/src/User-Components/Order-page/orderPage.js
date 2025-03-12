@@ -1,91 +1,88 @@
-//TODO: This three dependency wants to install in package.json
-//jquery
-//datatables.net-dt
-// datatables.net-bs5
+import React, { useEffect, useState } from "react";
 
-import React, { useEffect } from "react";
-import Table from "react-bootstrap/Table";
-import $ from "jquery";
-import "datatables.net-bs5";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function OrderPage() {
-  useEffect(() => {
-    setTimeout(() => {
-      $("#orderTable").DataTable({
-        responsive: true, // Enable responsiveness
-        scrollX: true, // Enable horizontal scrolling for small screens
-        destroy: true, // Ensure re-initialization is smooth
-      });
-    }, 100); // Ensuring DOM is ready
-  }, []);
+  const [orders, setOrders] = useState([]);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchOrderDetails = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/user/getAllOrders", {
+          method: "GET",
+          credentials: "include",
+        });
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch Order details");
+        }
+
+        const data = await res.json();
+        console.log("Order details:", data);
+        setOrders(data.orders || []); // Ensure it's an array
+      } catch (error) {
+        console.error("Error fetching Order details:", error);
+        setError("User  is not logged in. Please try after login.");
+      }
+    };
+
+    fetchOrderDetails();
+  }, []);
+
   return (
     <div className="container mt-4">
-      <br />
       <h1 style={{ textAlign: "center", fontFamily: "sans-serif" }}>
         <b>
-          <big>Order Page</big>
+          <big>
+            Order Page <br />
+          </big>
         </b>
       </h1>
       <br />
-      <Table striped bordered hover id="orderTable">
+      {error && <div className="alert alert-danger">{error}</div>}
+
+      <table striped bordered hover id="orderTable">
         <thead>
           <tr>
             <th>Si_No</th>
             <th>Date</th>
+            <th>Quantity</th>
             <th>Address</th>
             <th>PinCode</th>
             <th>Mobile No</th>
             <th>Place</th>
-            <th>Amount</th>
+            <th>Total Amount</th>
             <th>Payment Method</th>
             <th>Status</th>
-            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>2024-02-04</td>
-            <td>123 Street</td>
-            <td>686693</td>
-            <td>9876543210</td>
-            <td>City A</td>
-            <td>₹10,000</td>
-            <td>UPI</td>
-            <td>Delivered</td>
-            <td>
-              <button
-                onClick={() => navigate("/OrderProductDisplay")}
-                className="btn btn-primary btn-sm"
-              >
-                View
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>2024-02-03</td>
-            <td>456 Avenue</td>
-            <td>685542</td>
-            <td>9876543211</td>
-            <td>City B</td>
-            <td>₹8,500</td>
-            <td>COD</td>
-            <td>Pending</td>
-            <td>
-              <button
-                onClick={() => navigate("/OrderProductDisplay")}
-                className="btn btn-primary btn-sm"
-              >
-                View
-              </button>
-            </td>
-          </tr>
+          {orders.map((order, index) => (
+            <tr key={order._id}>
+              <td>{index + 1}</td>
+              <td>{new Date(order.createdAt).toLocaleString()}</td>
+
+              <td>
+                {order.products.map((product, idx) => (
+                  <div key={idx}>
+                    {product.name} Quantity: {product.quantity}
+                    <hr />
+                  </div>
+                ))}
+              </td>
+              <td>{order.deliveryDetails.address}</td>
+              <td>{order.deliveryDetails.pincode}</td>
+              <td>{order.deliveryDetails.mobile}</td>
+              <td>{order.deliveryDetails.place}</td>
+              <td>{order.deliveryDetails.totalAmount}</td>
+              <td>{order.paymentMethod}</td>
+              <td>{order.status}</td>
+            </tr>
+          ))}
         </tbody>
-      </Table>
-      <br />
+      </table>
     </div>
   );
 }

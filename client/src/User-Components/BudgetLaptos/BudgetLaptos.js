@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./BudgetLaptos.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function BudgetLaptos() {
   const [laptops, setLaptops] = useState([]); // Initialize as an empty array
   const [error, setError] = useState("");
+  const [laptopDetails, setLaptopDetails] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchLaptopDetails = async () => {
@@ -32,7 +34,59 @@ function BudgetLaptos() {
 
     fetchLaptopDetails();
   }, []);
+  // After  Clicking the Add To Cart then this operation is performed
+  const handleCart = async (id) => {
+    try {
+      // Fetch laptop details
+      const res = await fetch(
+        `http://localhost:5000/api/admin/getBudgetLaptopDetails/${id}`,
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
 
+      if (!res.ok) throw new Error("Network response was not ok");
+
+      const data = await res.json();
+
+      if (!data.laptopDetails) {
+        throw new Error("Laptop details not found.");
+      }
+
+      setLaptopDetails(data.laptopDetails);
+
+      // Confirm before adding to cart
+      const confirmAdd = window.confirm(
+        `Are you sure you want to add ${data.laptopDetails.Laptop_title} to cart?`
+      );
+
+      if (!confirmAdd) return;
+
+      // If confirmed, proceed with adding to cart
+      const addToCartRes = await fetch(
+        `http://localhost:5000/api/user/addToCart/${id}`,
+        {
+          method: "POST",
+          credentials: "include",
+        }
+      );
+
+      if (!addToCartRes.ok) throw new Error("Network response was not ok");
+      // get back the response from the backend
+      const cartData = await addToCartRes.json();
+
+      if (!cartData.message) {
+        throw new Error("Product is not added to cart.");
+      }
+
+      console.log("Laptop added to cart:", data.laptopDetails.Laptop_title);
+    } catch (error) {
+      console.error("Error:", error);
+      setError("User is not logged in. Please log in to continue.");
+      setTimeout(() => navigate("/login"), 5000);
+    }
+  };
   return (
     <div className="laptop-container">
       <link
@@ -94,9 +148,12 @@ function BudgetLaptos() {
                       >
                         View More
                       </Link>
-                      <a href="#" className="btn btn-success">
+                      <button
+                        onClick={() => handleCart(laptops._id)}
+                        className="btn btn-success"
+                      >
                         Add To Cart
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>

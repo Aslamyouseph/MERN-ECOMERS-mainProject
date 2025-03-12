@@ -42,15 +42,7 @@ function Services() {
             </p>
           </Link>
         </div>
-        <div className="service-container">
-          <Link
-            to="/PlaceOrder"
-            style={{ color: "inherit", textDecoration: "none" }}
-          >
-            <h3 className="service-heading">Payment Settings</h3>
-            <p style={{ textAlign: "center" }}>Know about Payment methods</p>
-          </Link>
-        </div>{" "}
+
         <div className="service-container">
           <Link
             to="/HowToDO"

@@ -15,7 +15,6 @@ import StudentLaptop from "./User-Components/User-pages/StudentsLaptops";
 import Tablets from "./User-Components/User-pages/Tablets";
 import TwoInOne from "./User-Components/User-pages/TwoInOne";
 import Order_page from "./User-Components/User-pages/Order_page";
-import OrderProductDisplay from "./User-Components/User-pages/OrderProductDisplay";
 import GamingLaptopDetails from "./User-Components/User-pages/GamingLaptopDetails";
 import BusinessLaptopDetails from "./User-Components/User-pages/BusinessLaptopDetails";
 import BudgetLaptopDetails from "./User-Components/User-pages/BudgetLaptopDetailss";
@@ -78,7 +77,6 @@ function App() {
         <Route path="/Tablets" element={<Tablets />} />
         <Route path="/TwoInOne" element={<TwoInOne />} />
         <Route path="/OrderPage" element={<Order_page />} />
-        <Route path="/OrderProductDisplay" element={<OrderProductDisplay />} />
         {/* When the user click on the view more button then the product id will came to here and pass to the particular page */}
         <Route
           path="/GamingLaptopDetails/:id"
@@ -102,7 +100,7 @@ function App() {
           element={<TwoInOneLaptopDetails />}
         />
         <Route path="/Cart" element={<Cart />} />
-        <Route path="/PlaceOrder" element={<PlaceOrder />} />
+        <Route path="/PlaceOrder/:totalAmount" element={<PlaceOrder />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/Return&Refund" element={<Return_Refund />} />

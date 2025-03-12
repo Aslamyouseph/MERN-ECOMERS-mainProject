@@ -124,6 +124,29 @@
 .btn-success:hover {
   background-color: #218838;
 }
+.error-message {
+  color: #d32f2f; /* Bright red for visibility */
+  background-color: #ffebee; /* Light red background for contrast */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #d32f2f; /* Red border */
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+  animation: fadeIn 0.3s ease-in-out;
+  font-size: xx-large;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 /* 🛠 Responsive Fix for smaller screens */
 @media screen and (max-width: 768px) {
