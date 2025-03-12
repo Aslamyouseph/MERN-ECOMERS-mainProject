@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import "./PlaceOrder.css";
+import { useNavigate, useParams } from "react-router-dom";
 
-function PlaceOrder({ user, totalAmount }) {
+function PlaceOrder() {
+  const { totalAmount } = useParams(); // Extract totalAmount from URL parameters
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     address: "",
     pincode: "",
@@ -17,33 +20,71 @@ function PlaceOrder({ user, totalAmount }) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const validateForm = () => {
+    const { address, pincode, mobile, place, paymentMethod } = formData;
 
-    if (
-      !formData.address ||
-      !formData.pincode ||
-      !formData.mobile ||
-      !formData.place
-    ) {
+    if (!address || !pincode || !mobile || !place || !paymentMethod) {
       setError("All fields are required.");
-      return;
+      return false;
     }
 
-    setSuccessMessage(
-      "Your order has been placed successfully! We will deliver it very soon."
-    );
+    const phoneRegex = /^\d{10,15}$/;
+    if (!phoneRegex.test(mobile)) {
+      setError("Please enter a valid phone number.");
+      return false;
+    }
 
-    // Reset form except for payment method
-    setFormData({
-      address: "",
-      pincode: "",
-      mobile: "",
-      place: "",
-      paymentMethod: "cod",
-    });
+    const pincodeRegex = /^\d{6}$/;
+    if (!pincodeRegex.test(pincode)) {
+      setError("Please enter a valid pincode.");
+      return false;
+    }
 
     setError("");
+    return true;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) return;
+
+    // Check if the payment method is available
+    if (formData.paymentMethod === "online") {
+      setError(
+        "Cash on Delivery is the only payment option available right now."
+      );
+      return; // Prevent form submission
+    }
+
+    try {
+      const res = await fetch("http://localhost:5000/api/user/placeOrder", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ ...formData, totalAmount }), // Include totalAmount in the request
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        setSuccessMessage(
+          "Your order has been placed successfully! We will deliver it very soon."
+        );
+        setFormData({
+          address: "",
+          pincode: "",
+          mobile: "",
+          place: "",
+          paymentMethod: "cod",
+        });
+        setTimeout(() => navigate("/"), 3000);
+      } else {
+        setError(data.message || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setError("Failed to submit. Please check your internet connection.");
+    }
   };
 
   return (
@@ -55,12 +96,9 @@ function PlaceOrder({ user, totalAmount }) {
 
       <form id="order-form" className="order-form" onSubmit={handleSubmit}>
         <div className="order-row">
-          {/* Delivery Details */}
           <div className="order-column">
             <div className="shipping-card">
               <h4 className="card-title">Delivery Details</h4>
-              <input type="hidden" name="userId" value={user?._id || ""} />
-
               <div className="form-group">
                 <label htmlFor="address">Address</label>
                 <textarea
@@ -118,12 +156,13 @@ function PlaceOrder({ user, totalAmount }) {
             </div>
           </div>
 
-          {/* Payment Details */}
           <div className="order-column">
             <div className="billing-card">
               <h4 className="card-title">
                 Total Amount:{" "}
-                <span className="total-amount">RS: {totalAmount}</span>
+                <span style={{ color: "red" }}>
+                  RS: {totalAmount || "0.00"}
+                </span>
               </h4>
 
               <div className="form-group">
@@ -151,8 +190,12 @@ function PlaceOrder({ user, totalAmount }) {
                     value="online"
                     checked={formData.paymentMethod === "online"}
                     onChange={handleChange}
+                    disabled // Disable online payment option
                   />
-                  <label htmlFor="online">Online Payment</label>
+                  <label htmlFor="online">
+                    Online Payment
+                    <span style={{ color: "red" }}> (Not available)</span>
+                  </label>
                 </div>
               </div>
 
