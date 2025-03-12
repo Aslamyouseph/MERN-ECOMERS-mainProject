@@ -30,7 +30,7 @@
   border-bottom: 1px solid #ddd;
 }
 
-.cart-image {
+.cart-item-image {
   height: 100px;
   width: 150px;
   border-radius: 5px;
@@ -106,6 +106,13 @@
 .cart-order-btn:hover {
   background-color: #218838;
 }
+.cartCountIncrement {
+  background-color: #bd0909;
+}
+.cartCountDecrement {
+  background-color: #09d059;
+}
+
 @media (max-width: 750px) {
   .cart-container {
     max-width: 100%;
