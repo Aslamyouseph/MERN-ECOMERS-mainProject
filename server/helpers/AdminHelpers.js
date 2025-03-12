@@ -10,6 +10,7 @@ const HowToDo = require("../DB-Models/HowToDo");
 const UserModel = require("../DB-Models/userAccount");
 const ContactModel = require("../DB-Models/contactUser");
 const ReturnRefundModel = require("../DB-Models/ReturnRefund");
+const Order = require("../DB-Models/Order");
 module.exports = {
   //adding the gaming laptop
   addGamingLaptop: async (product) => {
@@ -729,6 +730,132 @@ module.exports = {
       return deletedReturnRefund;
     } catch (error) {
       throw error;
+    }
+  }, //Fetching the All Ordered information
+  getAllOrders: async () => {
+    try {
+      const orders = await Order.find().sort({ createdAt: -1 }).populate({
+        path: "userId",
+        model: "User",
+        select: "name email phone",
+      });
+
+      const ordersWithProductDetails = await Promise.all(
+        orders.map(async (order) => {
+          const productsWithDetails = await Promise.all(
+            order.products.map(async (product) => {
+              let productData = null;
+
+              // Use the productType to determine which model to query
+              const model = product.productType; // This should match the model name
+              if (
+                [
+                  "GamingLaptop",
+                  "BudgetLaptop",
+                  "BusinessLaptop",
+                  "StudentLaptop",
+                  "Tablets",
+                  "TwoInOne",
+                ].includes(model)
+              ) {
+                productData = await mongoose
+                  .model(model)
+                  .findById(product.productId)
+                  .select("name");
+              }
+
+              return {
+                productId: product.productId,
+                quantity: product.quantity,
+                name: productData ? productData.name : ` ${product.productId}`,
+              };
+            })
+          );
+
+          return { ...order._doc, products: productsWithDetails };
+        })
+      );
+
+      return ordersWithProductDetails;
+    } catch (err) {
+      console.error("Error fetching orders:", err.message);
+      throw new Error("Failed to fetch orders");
+    }
+  },
+
+  //Deleting the order products
+  deletedOrderProduct: async (id) => {
+    // Use 'id' instead of 'UserId'
+    try {
+      const deletedOrderProduct = await Order.findByIdAndDelete(id); // Delete by ID
+
+      if (!deletedOrderProduct) {
+        throw new Error("Order product not found");
+      }
+
+      return deletedOrderProduct;
+    } catch (error) {
+      throw error;
+    }
+  },
+  //Approving the order product by the admin
+  ApproveOrder: async (id) => {
+    try {
+      // Find the order by ID and update its status to "shipped"
+      const updatedOrder = await Order.findByIdAndUpdate(
+        id,
+        { status: "shipped" }, // Update the status
+        { new: true, runValidators: true } // Options: return the updated document and run validators
+      );
+
+      if (!updatedOrder) {
+        return null; // Return null if the order is not found
+      }
+
+      return updatedOrder; // Return the updated order
+    } catch (error) {
+      console.error("Error approving order:", error);
+      throw error; // Rethrow the error to be handled in the route
+    }
+  },
+  //Rejecting the order by admin
+  RejectOrder: async (id) => {
+    try {
+      // Find the order by ID and update its status to "shipped"
+      const updatedOrder = await Order.findByIdAndUpdate(
+        id,
+        { status: "pending" }, // Update the status
+        { new: true, runValidators: true } // Options: return the updated document and run validators
+      );
+
+      if (!updatedOrder) {
+        return null; // Return null if the order is not found
+      }
+
+      return updatedOrder; // Return the updated order
+    } catch (error) {
+      console.error("Error Rejecting order:", error);
+      throw error; // Rethrow the error to be handled in the route
+    }
+  },
+  //Deliver the order
+  DeliverOrder: async (id) => {
+    try {
+      // Find the order by ID and update its status to "shipped"
+      const updatedOrder = await Order.findByIdAndUpdate(
+        id,
+        { status: "delivered" }, // Update the status
+        { new: true, runValidators: true } // Options: return the updated document and run validators
+      );
+
+      if (!updatedOrder) {
+        return null; // Return null if the order is not found
+      }
+
+      return updatedOrder; // Return the updated order
+    } catch (error) {
+      console.error("Error Delivered order:", error);
+      throw error; // Rethrow the error to be handled in the route
     }
   },
 };

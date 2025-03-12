@@ -279,7 +279,6 @@ router.put("/addReviewTablets", verifyLogin, async (req, res) => {
     });
   }
 });
-
 //Adding  the user review for TwoInOne laptops
 router.put("/addReviewTwoInOne", verifyLogin, async (req, res) => {
   // console.log("Received review data:", req.body); // Debugging
@@ -299,4 +298,218 @@ router.put("/addReviewTwoInOne", verifyLogin, async (req, res) => {
     });
   }
 });
+//
+//
+//Add To Cart Operation
+//Adding the used clicked product to the cart
+router.post("/addToCart/:id", verifyLogin, async (req, res) => {
+  try {
+    const productID = req.params.id;
+
+    // Ensure user session exists before accessing user ID
+    if (!req.session.user) {
+      return res.status(401).json({
+        success: false,
+        message: "User not logged in.",
+      });
+    }
+    // This is used to access the session user ID
+    const userID = req.session.user.id;
+
+    // console.log("Product ID:", productID);
+    // console.log("User ID:", userID);
+
+    // Call helper function to add the product to the cart
+    const result = await userHelpers.addToCart(productID, userID);
+
+    if (!result) {
+      return res.status(500).json({
+        success: false,
+        message: "Failed to add product to cart.",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Product added successfully!",
+    });
+  } catch (error) {
+    console.error("Error adding Laptop to cart:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error adding Laptop to cart.",
+      error: error.message,
+    });
+  }
+});
+// Fetching the cart details
+router.get("/getCartDetails", verifyLogin, async (req, res) => {
+  try {
+    if (!req.session.user || !req.session.user.id) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized: User not logged in.",
+      });
+    }
+
+    const userId = req.session.user.id;
+    // console.log("Fetching cart for user ID:", userId); // Debugging line
+    const { products, totalQuantity } = await userHelpers.getCartItems(userId);
+    // console.log("Cart details retrieved:", { products, totalQuantity }); // Debugging line
+
+    res.status(200).json({
+      success: true,
+      message: "Cart details retrieved successfully!",
+      cartDetails: products, // Return the products array
+      totalQuantity, // Include total quantity of unique products
+    });
+  } catch (error) {
+    console.error("Error retrieving cart details:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error retrieving cart details.",
+      error: error.message,
+    });
+  }
+});
+
+//Delete item from cart
+router.delete("/deleteCartItem/:id", verifyLogin, async (req, res) => {
+  try {
+    const userId = req.session.user.id;
+    const itemId = req.params.id;
+
+    await userHelpers.removeCartItem(userId, itemId);
+
+    res.status(200).json({
+      success: true,
+      message: "Item removed from cart.",
+    });
+  } catch (error) {
+    console.error("Error deleting item:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error deleting item.",
+      error: error.message,
+    });
+  }
+});
+//handling the increment operation of the cart
+router.put("/incrementCartItemQuantity/:id", verifyLogin, async (req, res) => {
+  try {
+    const userId = req.session.user.id; // Get the user ID from the session
+    const itemId = req.params.id; // Get the item ID from the request parameters
+
+    // Call the helper function to increment the cart item quantity
+    const result = await userHelpers.incrementCartItem(userId, itemId);
+
+    if (result) {
+      res.status(200).json({
+        success: true,
+        message: "Item quantity incremented.",
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        message: "Item not found in cart.",
+      });
+    }
+  } catch (error) {
+    console.error("Error incrementing item quantity:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error incrementing item quantity.",
+      error: error.message,
+    });
+  }
+});
+//handling the decrement operation of the cart
+router.put("/decrementCartItemQuantity/:id", verifyLogin, async (req, res) => {
+  try {
+    const userId = req.session.user.id; // Get the user ID from the session
+    const itemId = req.params.id; // Get the item ID from the request parameters
+
+    // Call the helper function to decrement the cart item quantity
+    const result = await userHelpers.decrementCartItem(userId, itemId);
+
+    if (result) {
+      res.status(200).json({
+        success: true,
+        message: "Item quantity decremented.",
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        message: "Item not found in cart or quantity is already zero.",
+      });
+    }
+  } catch (error) {
+    console.error("Error decrementing item quantity:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error decrementing item quantity.",
+      error: error.message,
+    });
+  }
+});
+//placing the order
+router.post("/placeOrder", verifyLogin, async (req, res) => {
+  try {
+    const userId = req.session.user.id;
+    const result = await userHelpers.placeOrder(userId, req.body);
+
+    if (result.error) {
+      return res.status(result.status).json({
+        success: false,
+        message: result.message,
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Order placed successfully!",
+      order: result.order,
+    });
+  } catch (error) {
+    console.error("Error placing order:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error placing order.",
+      error: error.message,
+    });
+  }
+});
+// Fetching all orders and user details for the logged-in user
+router.get("/getAllOrders", verifyLogin, async (req, res) => {
+  try {
+    const userId = req.session.user.id;
+
+    const orders = await userHelpers.getAllOrders(userId);
+
+    res.status(200).json({
+      success: true,
+      orders,
+    });
+  } catch (err) {
+    console.error("Error fetching orders:", err);
+    res.status(500).json({ success: false, message: "Error fetching data." });
+  }
+});
+// Fetching Order  details
+router.get("/getAllOrders", verifyLogin, async (req, res) => {
+  try {
+    const userId = req.session.user.id;
+
+    const orders = await userHelpers.getAllOrders(userId);
+
+    res.status(200).json({
+      success: true,
+      orders,
+    });
+  } catch (err) {
+    console.error("Error fetching orders:", err);
+    res.status(500).json({ success: false, message: "Error fetching data." });
+  }
+});
+
 module.exports = router;

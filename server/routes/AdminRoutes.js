@@ -1478,4 +1478,94 @@ router.delete("/deleteReturnRefund/:id", async (req, res) => {
       .json({ success: false, message: "Error deleting Return Refund." });
   }
 });
+//Fetching all the orders
+router.get("/getAllOrders", async (req, res) => {
+  try {
+    const Orders = await AdminHelpers.getAllOrders();
+    res.status(200).json({ Orders: Orders });
+  } catch (err) {
+    console.error("Error fetching orders:", err);
+    res.status(500).json({ success: false, message: "Error fetching orders." });
+  }
+});
+// Deleting an order product from the Admin
+router.delete("/deleteOrder/:id", async (req, res) => {
+  try {
+    const deletedOrderProduct = await AdminHelpers.deletedOrderProduct(
+      req.params.id
+    ); // Pass ID
+
+    if (!deletedOrderProduct) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Order product not found" });
+    }
+
+    res
+      .status(200)
+      .json({ success: true, message: "Order product deleted successfully!" });
+  } catch (err) {
+    console.error("Error deleting order product:", err);
+    res
+      .status(500)
+      .json({ success: false, message: "Error deleting order product." });
+  }
+});
+// Approving the order by Admin
+router.put("/ApproveOrder/:id", async (req, res) => {
+  try {
+    const orderId = req.params.id; // Get the order ID from the request parameters
+    const approvedOrder = await AdminHelpers.ApproveOrder(orderId); // Pass ID to the helper function
+
+    if (!approvedOrder) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Order not found" });
+    }
+
+    res
+      .status(200)
+      .json({ success: true, message: "Order approved successfully!" });
+  } catch (err) {
+    console.error("Error approving order:", err);
+    res.status(500).json({ success: false, message: "Error approving order." });
+  }
+});
+//Rejecting the order by admin
+
+router.put("/RejectOrder/:id", async (req, res) => {
+  try {
+    const orderId = req.params.id; // Get the order ID from the request parameters
+    const RejectOrder = await AdminHelpers.RejectOrder(orderId); // Pass ID to the helper function
+
+    if (!RejectOrder) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Order not found" });
+    }
+
+    res.status(200).json({ success: true, message: "Order Reject  !" });
+  } catch (err) {
+    console.error("Error Reject order:", err);
+    res.status(500).json({ success: false, message: "Error Reject order." });
+  }
+});
+//Deliver the order
+router.put("/DeliverOrder/:id", async (req, res) => {
+  try {
+    const orderId = req.params.id; // Get the order ID from the request parameters
+    const DeliverOrder = await AdminHelpers.DeliverOrder(orderId); // Pass ID to the helper function
+
+    if (!DeliverOrder) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Order not found" });
+    }
+
+    res.status(200).json({ success: true, message: "Order Deliver  !" });
+  } catch (err) {
+    console.error("Error Deliver order:", err);
+    res.status(500).json({ success: false, message: "Error Deliver order." });
+  }
+});
 module.exports = router;
