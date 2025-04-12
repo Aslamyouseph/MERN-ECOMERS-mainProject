@@ -1,21 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./searchBar.css";
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { SearchContext } from "../../../SearchContext.js";
+
 function SearchBar() {
+  const { search, setSearch } = useContext(SearchContext);
+
   return (
-    <div>
-      <div className="search-bar-container">
-        <Form className="d-flex">
-          <Form.Control
-            type="search"
-            placeholder="Search your feed"
-            className="me-2 feed-search-bar"
-            aria-label="Search"
-          />
-          <Button variant="outline-success">Search</Button>
-        </Form>
-      </div>
+    <div className="search-bar-container">
+      <Form className="d-flex">
+        <Form.Control
+          onChange={(e) => setSearch(e.target.value)}
+          value={search}
+          type="search"
+          placeholder="Search your feed"
+          className="search-bar"
+          aria-label="Search"
+        />
+      </Form>
     </div>
   );
 }
