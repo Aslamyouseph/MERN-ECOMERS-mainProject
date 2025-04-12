@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react"; // Import useState and useEffect
+import React, { useState, useEffect, useContext } from "react"; // Import useState and useEffect
 import "./AdminAllOrders.css";
+import { SearchContext } from "../../SearchContext.js";
 
 function AdminAllOrders() {
   const [orders, setOrders] = useState([]); // Corrected to lowercase 'orders'
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState(null);
+  const { search } = useContext(SearchContext);
 
   // Fetch Order details from the database
   useEffect(() => {
@@ -187,76 +189,112 @@ function AdminAllOrders() {
             </tr>
           </thead>
           <tbody>
-            {orders.map((order, index) => (
-              <tr key={order._id}>
-                <td>{index + 1}</td>
-                <td>{new Date(order.createdAt).toLocaleString()}</td>
-                <td>{order.userId.name}</td>
-                <td>{order.userId.email}</td>
-                <td>
-                  {order.products.map((product, idx) => (
-                    <div key={idx}>
-                      {product.name ? product.name : "Name not available"}{" "}
-                      Quantity: {product.quantity}
-                      <hr />
-                    </div>
-                  ))}
-                </td>
-                <td>{order.deliveryDetails.address}</td>
-                <td>{order.deliveryDetails.pincode}</td>
-                <td>{order.deliveryDetails.mobile}</td>
-                <td>{order.deliveryDetails.place}</td>
-                <td>{order.deliveryDetails.totalAmount}</td>
-                <td>{order.paymentMethod}</td>
-                <td>{order.status}</td>
-                <td>
-                  <button
-                    className="approve-btn"
-                    onClick={() => handleApprove(order)}
-                  >
-                    Approve
-                  </button>
-                  <button
-                    className="reject-btn"
-                    onClick={() => handleReject(order)}
-                  >
-                    Reject
-                  </button>
-                  <button
-                    className="Delivered-btn"
-                    onClick={() => handleDelivered(order)}
-                  >
-                    Delivered
-                  </button>
-                </td>
-                <td>
-                  <button
-                    style={{ backgroundColor: "blue", borderRadius: "15px" }}
-                  >
-                    <a
-                      style={{
-                        color: "white",
-                        textDecoration: "none",
-                      }}
-                      href={`https://wa.me/${order.deliveryDetails.mobile}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
+            {orders
+              .filter((order) => {
+                const lowerSearch = search.toLowerCase();
+                if (lowerSearch === "") return true;
+
+                return (
+                  order.userId?.name?.toLowerCase().includes(lowerSearch) ||
+                  order.userId?.email?.toLowerCase().includes(lowerSearch) ||
+                  order.deliveryDetails?.mobile
+                    ?.toString()
+                    .includes(lowerSearch) ||
+                  order.deliveryDetails?.pincode
+                    ?.toString()
+                    .includes(lowerSearch) ||
+                  order.deliveryDetails?.address
+                    ?.toLowerCase()
+                    .includes(lowerSearch) ||
+                  order.deliveryDetails?.place
+                    ?.toLowerCase()
+                    .includes(lowerSearch) ||
+                  order.deliveryDetails?.totalAmount
+                    ?.toString()
+                    .includes(lowerSearch) ||
+                  order.paymentMethod?.toLowerCase().includes(lowerSearch) ||
+                  order.status?.toLowerCase().includes(lowerSearch) ||
+                  new Date(order.createdAt)
+                    .toLocaleString()
+                    .toLowerCase()
+                    .includes(lowerSearch) ||
+                  order.products?.some(
+                    (product) =>
+                      product.name?.toLowerCase().includes(lowerSearch) ||
+                      product.quantity?.toString().includes(lowerSearch)
+                  )
+                );
+              })
+              .map((order, index) => (
+                <tr key={order._id}>
+                  <td>{index + 1}</td>
+                  <td>{new Date(order.createdAt).toLocaleString()}</td>
+                  <td>{order.userId.name}</td>
+                  <td>{order.userId.email}</td>
+                  <td>
+                    {order.products.map((product, idx) => (
+                      <div key={idx}>
+                        {product.name ? product.name : "Name not available"}{" "}
+                        Quantity: {product.quantity}
+                        <hr />
+                      </div>
+                    ))}
+                  </td>
+                  <td>{order.deliveryDetails.address}</td>
+                  <td>{order.deliveryDetails.pincode}</td>
+                  <td>{order.deliveryDetails.mobile}</td>
+                  <td>{order.deliveryDetails.place}</td>
+                  <td>{order.deliveryDetails.totalAmount}</td>
+                  <td>{order.paymentMethod}</td>
+                  <td>{order.status}</td>
+                  <td>
+                    <button
+                      className="approve-btn"
+                      onClick={() => handleApprove(order)}
                     >
-                      <b>Contact</b>
-                    </a>
-                  </button>
-                </td>
-                <td>
-                  <button
-                    className="delete-btn"
-                    onClick={() => handleDelete(order)} // Corrected to use order
-                    disabled={deletingId === order._id}
-                  >
-                    {deletingId === order._id ? "Deleting..." : "Delete"}
-                  </button>
-                </td>
-              </tr>
-            ))}
+                      Approve
+                    </button>
+                    <button
+                      className="reject-btn"
+                      onClick={() => handleReject(order)}
+                    >
+                      Reject
+                    </button>
+                    <button
+                      className="Delivered-btn"
+                      onClick={() => handleDelivered(order)}
+                    >
+                      Delivered
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      style={{ backgroundColor: "blue", borderRadius: "15px" }}
+                    >
+                      <a
+                        style={{
+                          color: "white",
+                          textDecoration: "none",
+                        }}
+                        href={`https://wa.me/${order.deliveryDetails.mobile}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <b>Contact</b>
+                      </a>
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      className="delete-btn"
+                      onClick={() => handleDelete(order)} // Corrected to use order
+                      disabled={deletingId === order._id}
+                    >
+                      {deletingId === order._id ? "Deleting..." : "Delete"}
+                    </button>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

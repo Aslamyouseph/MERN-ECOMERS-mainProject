@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./AdminViewUserAccount.css"; // Import CSS file
+import { SearchContext } from "../../SearchContext.js";
 
 function AdminViewUserAccount() {
   const [users, setUsers] = useState([]); // State to store users
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState(null); // Track the item being deleted
+  const { search } = useContext(SearchContext);
 
   // Fetch user details from the database
   useEffect(() => {
@@ -97,24 +99,34 @@ function AdminViewUserAccount() {
                   <td colSpan="5">No users found.</td>
                 </tr>
               ) : (
-                users.map((user, index) => (
-                  <tr key={user._id}>
-                    <td>{index + 1}</td>
-                    <td>{user._id}</td>
-                    <td>{user.name}</td>
-                    <td>{user.email}</td>
-                    <td>{user.phone}</td>
-                    <td>
-                      <button
-                        className="delete-btn"
-                        onClick={() => handleDelete(user)}
-                        disabled={deletingId === user._id}
-                      >
-                        {deletingId === user._id ? "Deleting..." : "Delete"}
-                      </button>
-                    </td>
-                  </tr>
-                ))
+                users
+                  .filter((item) => {
+                    const lowerSearch = search.toLowerCase();
+                    return lowerSearch === ""
+                      ? true
+                      : item.name.toLowerCase().includes(lowerSearch) ||
+                          item.phone.toString().includes(lowerSearch) ||
+                          item._id.toString().includes(lowerSearch) ||
+                          item.email.toLowerCase().includes(lowerSearch);
+                  })
+                  .map((user, index) => (
+                    <tr key={user._id}>
+                      <td>{index + 1}</td>
+                      <td>{user._id}</td>
+                      <td>{user.name}</td>
+                      <td>{user.email}</td>
+                      <td>{user.phone}</td>
+                      <td>
+                        <button
+                          className="delete-btn"
+                          onClick={() => handleDelete(user)}
+                          disabled={deletingId === user._id}
+                        >
+                          {deletingId === user._id ? "Deleting..." : "Delete"}
+                        </button>
+                      </td>
+                    </tr>
+                  ))
               )}
             </tbody>
           </table>

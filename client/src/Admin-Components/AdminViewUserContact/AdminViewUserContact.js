@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./AdminViewUserContact.css";
+import { SearchContext } from "../../SearchContext.js";
 
 function AdminViewUserContact() {
   const [usersContact, setUsersContact] = useState([]); // State to store usersContact
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState(null); // Track the item being deleted
+  const { search } = useContext(SearchContext);
 
   // Fetch users contact details from the database
   useEffect(() => {
@@ -97,37 +99,48 @@ function AdminViewUserContact() {
                 <td colSpan="8">No users contact found.</td>
               </tr>
             ) : (
-              usersContact.map((user, index) => (
-                <tr key={user._id}>
-                  <td>{index + 1}</td>
-                  <td>{user._id}</td>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
-                  <td>{user.phone}</td>
-                  <td>{user.message}</td>
-                  <td>
-                    <button className="Contact-btn">
-                      <a
-                        className="Contact-btn"
-                        href={`https://wa.me/${user.phone}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
+              usersContact
+                .filter((item) => {
+                  const lowerSearch = search.toLowerCase();
+                  return lowerSearch === ""
+                    ? true
+                    : item.name.toLowerCase().includes(lowerSearch) ||
+                        item.phone.toString().includes(lowerSearch) ||
+                        item._id.toString().includes(lowerSearch) ||
+                        item.email.toLowerCase().includes(lowerSearch) ||
+                        item.message.toLowerCase().includes(lowerSearch);
+                })
+                .map((user, index) => (
+                  <tr key={user._id}>
+                    <td>{index + 1}</td>
+                    <td>{user._id}</td>
+                    <td>{user.name}</td>
+                    <td>{user.email}</td>
+                    <td>{user.phone}</td>
+                    <td>{user.message}</td>
+                    <td>
+                      <button className="Contact-btn">
+                        <a
+                          className="Contact-btn"
+                          href={`https://wa.me/${user.phone}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <b>Contact User</b>
+                        </a>
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        className="delete-btn"
+                        onClick={() => handleDelete(user)}
+                        disabled={deletingId === user._id}
                       >
-                        <b>Contact User</b>
-                      </a>
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      className="delete-btn"
-                      onClick={() => handleDelete(user)}
-                      disabled={deletingId === user._id}
-                    >
-                      {deletingId === user._id ? "Deleting..." : "Delete"}
-                    </button>
-                  </td>
-                </tr>
-              ))
+                        {deletingId === user._id ? "Deleting..." : "Delete"}
+                      </button>
+                    </td>
+                  </tr>
+                ))
             )}
           </tbody>
         </table>

@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./AdminReturnRefund.css";
+import { SearchContext } from "../../SearchContext.js";
+
 function AdminReturnRefund() {
   const [returnRefund, setReturnRefund] = useState([]); // State to store return & refund requests
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState(null); // Track the item being deleted
+  const { search } = useContext(SearchContext);
 
   // Fetch return & refund details from the database
   useEffect(() => {
@@ -98,37 +101,47 @@ function AdminReturnRefund() {
                     <td colSpan="7">No Return and Refund Requests found.</td>
                   </tr>
                 ) : (
-                  returnRefund.map((request, index) => (
-                    <tr key={request._id}>
-                      <td>{index + 1}</td>
-                      <td>{request.orderId}</td>
-                      <td>{request.phone}</td>
-                      <td>{request.reason}</td>
-                      <td>
-                        <button className="contact-btn">
-                          <a
-                            className="contact-btn"
-                            href={`https://wa.me/${request.phone}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                  returnRefund
+                    .filter((item) => {
+                      const lowerSearch = search.toLowerCase();
+                      return lowerSearch === ""
+                        ? true
+                        : item.phone.toString().includes(lowerSearch) ||
+                            item.orderId.toString().includes(lowerSearch) ||
+                            item._id.toString().includes(lowerSearch) ||
+                            item.reason.toLowerCase().includes(lowerSearch);
+                    })
+                    .map((request, index) => (
+                      <tr key={request._id}>
+                        <td>{index + 1}</td>
+                        <td>{request.orderId}</td>
+                        <td>{request.phone}</td>
+                        <td>{request.reason}</td>
+                        <td>
+                          <button className="contact-btn">
+                            <a
+                              className="contact-btn"
+                              href={`https://wa.me/${request.phone}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <b>Contact User</b>
+                            </a>
+                          </button>
+                        </td>
+                        <td>
+                          <button
+                            className="delete-btn"
+                            onClick={() => handleDelete(request)}
+                            disabled={deletingId === request._id}
                           >
-                            <b>Contact User</b>
-                          </a>
-                        </button>
-                      </td>
-                      <td>
-                        <button
-                          className="delete-btn"
-                          onClick={() => handleDelete(request)}
-                          disabled={deletingId === request._id}
-                        >
-                          {deletingId === request._id
-                            ? "Deleting..."
-                            : "Delete"}
-                        </button>
-                      </td>
-                    </tr>
-                  ))
+                            {deletingId === request._id
+                              ? "Deleting..."
+                              : "Delete"}
+                          </button>
+                        </td>
+                      </tr>
+                    ))
                 )}
               </tbody>
             </table>
