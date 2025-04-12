@@ -22,7 +22,7 @@ function LaptopListing() {
           flexWrap: "wrap",
           // alignItems: "center",
           // justifyContent: "center", // Center the cards
-          gap: "32px", // Space between rows and columns
+          gap: "90px", // Space between rows and columns
           padding: "20px", // Add padding for spacing
           leftPadding: "4%",
           rightPadding: "6%",
