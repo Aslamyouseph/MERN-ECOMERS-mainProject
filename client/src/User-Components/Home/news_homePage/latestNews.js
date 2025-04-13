@@ -14,7 +14,7 @@ import laptop11 from "../../User-images/laptop28.webp";
 import laptop12 from "../../User-images/laptop41.webp";
 import laptop13 from "../../User-images/laptop21.jpg";
 import laptop14 from "../../User-images/laptop38.webp";
-
+import { Link } from "react-router-dom";
 const LatestNews = () => {
   const scrollContainerRef = useRef(null);
 
@@ -85,195 +85,224 @@ const LatestNews = () => {
         </button>
         <div className="scroll-images" ref={scrollContainerRef}>
           <div className="child">
-            <a href="laptop1.html">
+            <Link
+              to={`/NewsDetails/67fbb889225431a44303e0f9`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop11} alt="laptop_image" />
-            </a>
+            </Link>
             <div>
               <p>
                 <b>
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quos
+                  HP launches new Pavilion series with upgraded processors,
+                  sleek design, and improved thermal performance for
+                  multitasking.
                 </b>
               </p>
             </div>
           </div>
           <div className="child">
-            <a href="laptop2.html">
+            <Link
+              to={`/NewsDetails/67fbb867225431a44303e0f7`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop12} alt="laptop_image" />
-            </a>
+            </Link>
             <div>
               <p>
                 <b>
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quos
+                  Apple introduces M3 MacBook Air with enhanced speed, better
+                  battery, and ultra-silent performance for professionals.
                 </b>
               </p>
             </div>
           </div>
           <div className="child">
-            <a href="laptop3.html">
+            <Link
+              to={`/NewsDetails/67fbb84c225431a44303e0f5`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop13} alt="laptop_image" />
-            </a>
+            </Link>
             <div>
               <p>
                 <b>
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quos
+                  Asus unveils ROG gaming laptops featuring RTX 40 series GPUs
+                  and 240Hz refresh rate for gamers.
                 </b>
               </p>
             </div>
           </div>
           <div className="child">
-            <a href="laptop4.html">
+            <Link
+              to={`/NewsDetails/67fbb82b225431a44303e0f3`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop14} alt="laptop_image" />
-            </a>
+            </Link>
             <div>
               <p>
                 <b>
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quos
+                  Dell XPS series gets OLED display and AI-powered features,
+                  targeting creators and business professionals alike.
                 </b>
               </p>
             </div>
           </div>
           <div className="child">
-            <a href="laptop5.html">
+            <Link
+              to={`/NewsDetails/67be7b1ea1b126379cc270a8`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop5} alt="laptop_image" />
-            </a>
+            </Link>
             <div>
               <p>
                 <b>
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quos
+                  Lenovo’s Yoga Slim 7i released with Intel Core Ultra
+                  processor, promising efficiency and lightweight portability.
                 </b>
               </p>
             </div>
           </div>
           <div className="child">
-            <a href="laptop6.html">
+            <Link
+              to={`/NewsDetails/67bc829da061bf97285dffe8`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop10} alt="laptop_image" />
-            </a>
+            </Link>
             <p>
               <b>
-                lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quos
+                Microsoft Surface Laptop gets refreshed with better display
+                clarity, improved keyboard, and Windows 11 enhancements.
               </b>
             </p>
           </div>
           <div className="child">
-            <a href="laptop7.html">
+            <Link
+              to={`/NewsDetails/67fbb889225431a44303e0f9`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop2} alt="laptop_image" />
-            </a>
+            </Link>
             <div>
               <p>
                 <b>
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quos
+                  Acer Aspire models updated with eco-friendly design, better
+                  cooling, and improved audio for everyday usage.
                 </b>
               </p>
             </div>
           </div>
           <div className="child">
-            <a href="laptop1.html">
+            <Link
+              to={`/NewsDetails/67fbb867225431a44303e0f7`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop3} alt="laptop_image" />
-            </a>
+            </Link>
             <div>
               <p>
                 <b>
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quos
+                  Realme enters laptop market with budget-friendly Realme Book
+                  featuring fast charging and metallic finish design.
                 </b>
               </p>
             </div>
           </div>
           <div className="child">
-            <a href="laptop1.html">
+            <Link
+              to={`/NewsDetails/67fbb84c225431a44303e0f5`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop4} alt="laptop_image" />
-            </a>
+            </Link>
             <div>
               <p>
                 <b>
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quos
+                  Samsung Galaxy Book4 Pro gets powerful upgrades with AMOLED
+                  display and seamless ecosystem connectivity.
                 </b>
               </p>
             </div>
           </div>
           <div className="child">
-            <a href="laptop1.html">
+            <Link
+              to={`/NewsDetails/67fbb82b225431a44303e0f3`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop5} alt="laptop_image" />
-            </a>
+            </Link>
             <div>
               <p>
                 <b>
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quos
+                  Alienware M18 brings high-end gaming experience with dual-fan
+                  cooling, RTX 4090 GPU, and 18-inch display.
                 </b>
               </p>
             </div>
           </div>
           <div className="child">
-            <a href="laptop1.html">
+            <Link
+              to={`/NewsDetails/67be7b1ea1b126379cc270a8`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop6} alt="laptop_image" />
-            </a>
+            </Link>
             <div>
               <p>
                 <b>
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quos
+                  HP Spectre x360 now features AI camera, smarter battery, and
+                  better hinge design for creative professionals.
                 </b>
               </p>
             </div>
           </div>
           <div className="child">
-            <a href="laptop1.html">
+            <Link
+              to={`/NewsDetails/67bc829da061bf97285dffe8`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop7} alt="laptop_image" />
-            </a>
+            </Link>
             <div>
               <p>
                 <b>
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quos
+                  Asus Chromebook Flip launched with touchscreen and ChromeOS
+                  support, focused on education and productivity.
                 </b>
               </p>
             </div>
           </div>
           <div className="child">
-            <a href="laptop1.html">
+            <Link
+              to={`/NewsDetails/67fbb889225431a44303e0f9`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop8} alt="laptop_image" />
-            </a>
+            </Link>
             <div>
               <p>
                 <b>
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quos
+                  Apple’s MacBook Pro 2025 rumors suggest Touch Bar removal,
+                  thinner bezels, and USB-C universal support.
                 </b>
               </p>
             </div>
           </div>
           <div className="child">
-            <a href="laptop1.html">
+            <Link
+              to={`/NewsDetails/67fbb867225431a44303e0f7`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop9} alt="laptop_image" />
-            </a>
+            </Link>
             <div>
               <p>
                 <b>
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quos
+                  MSI announces Creator Z series with powerful CPUs and
+                  color-accurate displays aimed at designers and editors.
                 </b>
               </p>
             </div>

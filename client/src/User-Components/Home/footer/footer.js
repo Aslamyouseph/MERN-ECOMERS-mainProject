@@ -33,9 +33,6 @@ function Footer() {
             <li>
               <Link to="/Return&Refund">Return & Refunds policies</Link>
             </li>
-            <li>
-              <Link to="/PlaceOrder">Payment Methods</Link>
-            </li>
           </ul>
           <ul>
             <h1>Contact Us</h1>

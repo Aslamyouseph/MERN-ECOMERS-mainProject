@@ -14,6 +14,7 @@ import laptop11 from "../../User-images/laptop28.webp";
 import laptop12 from "../../User-images/laptop41.webp";
 import laptop13 from "../../User-images/laptop21.jpg";
 import laptop14 from "../../User-images/laptop38.webp";
+import { Link } from "react-router-dom";
 
 const HowTo = () => {
   const scrollContainerRef = useRef(null);
@@ -69,7 +70,7 @@ const HowTo = () => {
           }}
         >
           <b>
-            <big>Latest Laptop How-Tos :</big>
+            <big>Latest Laptop How-To Do :</big>
           </b>
         </h5>
         <hr
@@ -85,195 +86,232 @@ const HowTo = () => {
         </button>
         <div className="scroll-images" ref={scrollContainerRef}>
           <div className="child">
-            <a href="laptop1.html">
+            <Link
+              to={`/HowToDoDetails/67fbbcee225431a44303e140`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop14} alt="laptop_image" />
-            </a>
+            </Link>
             <div>
               <p>
                 <b>
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quos
+                  Clear your browser cache regularly to improve webpage loading
+                  speeds, troubleshoot persistent errors, and reliably boost
+                  performance.
                 </b>
               </p>
             </div>
           </div>
           <div className="child">
-            <a href="laptop2.html">
+            <Link
+              to={`/HowToDoDetails/67fbbcdc225431a44303e13e`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop13} alt="laptop_image" />
-            </a>
+            </Link>
             <div>
               <p>
                 <b>
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quos
+                  Update your operating system frequently to gain vital security
+                  patches, enhanced features, and more efficient device
+                  performance.
                 </b>
               </p>
             </div>
           </div>
           <div className="child">
-            <a href="laptop3.html">
+            <Link
+              to={`/HowToDoDetails/67fbbccc225431a44303e13c`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop12} alt="laptop_image" />
-            </a>
+            </Link>
             <div>
               <p>
                 <b>
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quos
+                  Utilize keyboard shortcuts daily to maximize productivity,
+                  reduce repetitive tasks, and streamline your computer workflow
+                  effectively overall.
                 </b>
               </p>
             </div>
           </div>
           <div className="child">
-            <a href="laptop4.html">
+            <Link
+              to={`/HowToDoDetails/67fbbcba225431a44303e13a`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop11} alt="laptop_image" />
-            </a>
+            </Link>
             <div>
               <p>
                 <b>
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quos
+                  Use multi-factor authentication on accounts to protect
+                  sensitive information from unauthorized access and cyber
+                  threats permanently secured.
                 </b>
               </p>
             </div>
           </div>
           <div className="child">
-            <a href="laptop5.html">
+            <Link
+              to={`/HowToDoDetails/67f9fd3ec93dcbe75280be74`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop10} alt="laptop_image" />
-            </a>
+            </Link>
             <div>
               <p>
                 <b>
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quos
+                  Back up files to an external drive or cloud storage to avoid
+                  data loss during system failures.
                 </b>
               </p>
             </div>
           </div>
           <div className="child">
-            <a href="laptop6.html">
+            <Link
+              to={`/HowToDoDetails/67be856bf957bf8b372f87fd`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop9} alt="laptop_image" />
-            </a>
+            </Link>
             <p>
               <b>
-                lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quos
+                Regularly scan your system with antivirus software to detect
+                malware, remove threats, and ensure computer safety quickly.
               </b>
             </p>
           </div>
           <div className="child">
-            <a href="laptop7.html">
+            <Link
+              to={`HowToDoDetails/67be7fe28f533a6e176c81d7`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop8} alt="laptop_image" />
-            </a>
+            </Link>
             <div>
               <p>
                 <b>
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quos
+                  Customize notification settings on apps to minimize
+                  interruptions, improve focus, and maintain efficient work
+                  sessions consistently daily.
                 </b>
               </p>
             </div>
           </div>
           <div className="child">
-            <a href="laptop1.html">
+            <Link
+              to={`/HowToDoDetails/67fbbcee225431a44303e140`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop7} alt="laptop_image" />
-            </a>
+            </Link>
             <div>
               <p>
                 <b>
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quos
+                  Keep software applications updated to benefit from the latest
+                  features, bug fixes, and enhanced security levels immediately.
                 </b>
               </p>
             </div>
           </div>
           <div className="child">
-            <a href="laptop1.html">
+            <Link
+              to={`/HowToDoDetails/67fbbcdc225431a44303e13e`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop6} alt="laptop_image" />
-            </a>
+            </Link>
             <div>
               <p>
                 <b>
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quos
+                  Organize desktop files into dedicated folders for better
+                  digital workspace management and quick access to documents
+                  efficiently.
                 </b>
               </p>
             </div>
           </div>
           <div className="child">
-            <a href="laptop1.html">
+            <Link
+              to={`/HowToDoDetails/67fbbccc225431a44303e13c`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop5} alt="laptop_image" />
-            </a>
+            </Link>
             <div>
               <p>
                 <b>
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quos
+                  Use a password manager to generate, store, and autofill
+                  strong, unique passwords for every online account securely.
                 </b>
               </p>
             </div>
           </div>
           <div className="child">
-            <a href="laptop1.html">
+            <Link
+              to={`/HowToDoDetails/67fbbcba225431a44303e13a`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop4} alt="laptop_image" />
-            </a>
+            </Link>
             <div>
               <p>
                 <b>
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quos
+                  Optimize computer startup by disabling unnecessary
+                  applications to decrease boot time and enhance overall
+                  performance immediately noticeable.
                 </b>
               </p>
             </div>
           </div>
           <div className="child">
-            <a href="laptop1.html">
+            <Link
+              to={`/HowToDoDetails/67f9fd3ec93dcbe75280be74`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop3} alt="laptop_image" />
-            </a>
+            </Link>
             <div>
               <p>
                 <b>
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quos
+                  Regularly clean your hardware, including keyboard and screen,
+                  to maintain device longevity and prevent overheating problems
+                  effectively.
                 </b>
               </p>
             </div>
           </div>
           <div className="child">
-            <a href="laptop1.html">
+            <Link
+              to={`/HowToDoDetails/67be856bf957bf8b372f87fd`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop2} alt="laptop_image" />
-            </a>
+            </Link>
             <div>
               <p>
                 <b>
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quos
+                  Use VPN services during public Wi-Fi usage to encrypt online
+                  traffic and protect your sensitive personal data.
                 </b>
               </p>
             </div>
           </div>
           <div className="child">
-            <a href="laptop1.html">
+            <Link
+              to={`/HowToDoDetails/67be7fe28f533a6e176c81d7`}
+              style={{ textDecoration: "none" }}
+            >
               <img className="child-img" src={laptop1} alt="laptop_image" />
-            </a>
+            </Link>
             <div>
               <p>
                 <b>
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quoslorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quos
+                  Keep your device drivers updated for improved hardware
+                  compatibility, enhanced performance, and reduced technical
+                  glitches without issues.
                 </b>
               </p>
             </div>
