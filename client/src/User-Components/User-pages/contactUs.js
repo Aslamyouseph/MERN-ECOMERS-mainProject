@@ -8,7 +8,7 @@ function Contact_Us() {
   return (
     <div>
       <NavBar /> {/*This is used to import the navigation bar  */}
-      <SearchBar /> {/*This is used to import the Search bar  */}
+      {/* <SearchBar /> This is used to import the Search bar  */}
       <ContactUs /> {/*This is used to import the contactUs page  */}
       <ContactForm /> {/*This is used to import the contactForm page  */}
       <Footer /> {/*This is used to import the Footer   */}

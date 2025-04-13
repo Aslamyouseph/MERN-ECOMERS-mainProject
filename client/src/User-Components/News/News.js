@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./News.css";
 import { Link } from "react-router-dom";
+import { SearchContext } from "../../SearchContext.js";
 
 function News() {
-  const [News, setNews] = useState([]); // Initialize as an empty array
+  const [News, setNews] = useState([]);
   const [error, setError] = useState("");
+
+  const { search } = useContext(SearchContext);
+
   useEffect(() => {
     const fetchNewsDetails = async () => {
       try {
         const res = await fetch("http://localhost:5000/api/admin/getNews", {
           method: "GET",
-          credentials: "include", // Ensures that the session is used for authentication
+          credentials: "include",
         });
 
         if (!res.ok) {
@@ -18,8 +22,7 @@ function News() {
         }
 
         const data = await res.json();
-        // console.log("gaming laptops from frontend", data);
-        setNews(data.News); // Saving the laptops details to the state
+        setNews(data.News);
       } catch (error) {
         console.error("Error fetching News details:", error);
         setError("Something went wrong. Please try again.");
@@ -28,6 +31,12 @@ function News() {
 
     fetchNewsDetails();
   }, []);
+
+  // TODO: Filter the news list based on the search input (title match)
+  const filteredData = News.filter((item) =>
+    item.News_title?.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <div>
       <h1
@@ -48,31 +57,36 @@ function News() {
       <br />
       <div className="card-container-main">
         {error && <p className="error-message">{error}</p>}
-        {/* Mapping operation is stating from here onwards */}
-        {Array.isArray(News) && News.length > 0 ? (
-          News.map((News) => (
-            <div className="card-main h-100">
+
+        {/*TODO:Display filtered news data based on search title */}
+        {filteredData.length > 0 ? (
+          filteredData.map((newsItem) => (
+            <div className="card-main h-100" key={newsItem._id}>
               <img
-                src={`http://localhost:5000${News.News_image_small}`}
-                alt={News.News_title}
+                src={`http://localhost:5000${newsItem.News_image_small}`}
+                alt={newsItem.News_title}
                 className="card-img"
                 onError={(e) => {
                   console.error("Image failed to load:", e.target.src);
+                  e.target.style.display = "none";
                 }}
-              />{" "}
+              />
               <div className="card-bodySection">
-                <h5 className="card-heading">{News.News_title}</h5>
-                <p className="card-para">{News.News_description}</p>
+                <h5 className="card-heading">{newsItem.News_title}</h5>
+                <p className="card-para">{newsItem.News_description}</p>
               </div>
               <div className="card-footer">
-                <Link to={`/NewsDetails/${News._id}`} className="read-more-btn">
+                <Link
+                  to={`/NewsDetails/${newsItem._id}`}
+                  className="read-more-btn"
+                >
                   Read More
                 </Link>
               </div>
             </div>
           ))
         ) : (
-          <p>No News available at the moment.</p>
+          <p>No News articles found.</p>
         )}
       </div>
       <br />

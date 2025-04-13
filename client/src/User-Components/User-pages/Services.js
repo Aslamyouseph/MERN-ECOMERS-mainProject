@@ -7,7 +7,7 @@ function services() {
   return (
     <div>
       <NavBar /> {/*This is used to import the navigation bar  */}
-      <SearchBar /> {/*This is used to import the Search bar  */}
+      {/* <SearchBar /> This is used to import the Search bar  */}
       <Services /> {/*This is used to import the Services page  */}
       <Footer /> {/*This is used to import the Footer   */}
     </div>

@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Cart.css";
 import { Link, useNavigate } from "react-router-dom";
+import { SearchContext } from "../../SearchContext.js";
 
 function Cart() {
   const [cartDetails, setCartDetails] = useState([]);
   const [error, setError] = useState("");
   const [deletingId, setDeletingId] = useState(null);
   const navigate = useNavigate();
+  const { search } = useContext(SearchContext);
 
   useEffect(() => {
     const fetchCartDetails = async () => {
@@ -130,7 +132,6 @@ function Cart() {
   return (
     <div className="cart-container">
       <section>
-        <br />
         <div className="cart-card">
           <h2 className="cart-title">Shopping Cart</h2>
           {error && <p className="error-message">{error}</p>}
@@ -147,44 +148,52 @@ function Cart() {
             </thead>
             <tbody>
               {cartDetails.length > 0 ? (
-                cartDetails.map((item, index) => (
-                  <tr key={item._id}>
-                    <td>{index + 1}</td>
-                    <td>
-                      <img
-                        src={`http://localhost:5000${item.image}`}
-                        alt={item.name}
-                        className="cart-item-image"
-                      />
-                    </td>
-                    <td>{item.name}</td>
-                    <td>₹{item.price}</td>
-                    <td>
-                      <button
-                        onClick={() => handleIncrement(item)}
-                        className="cartCountIncrement"
-                      >
-                        +
-                      </button>
-                      &ensp;&ensp;{item.quantity}&ensp;&ensp;
-                      <button
-                        onClick={() => handleDecrement(item)}
-                        className="cartCountDecrement"
-                      >
-                        -
-                      </button>
-                    </td>
-                    <td>
-                      <button
-                        onClick={() => handleDelete(item)}
-                        disabled={deletingId === item._id}
-                        className="btn btn-danger"
-                      >
-                        {deletingId === item._id ? "Deleting..." : "Delete"}
-                      </button>
-                    </td>
-                  </tr>
-                ))
+                cartDetails
+                  .filter((item) => {
+                    const lowerSearch = search.toLowerCase();
+                    return lowerSearch === ""
+                      ? true
+                      : item.price.toString().includes(lowerSearch) ||
+                          item.name.toLowerCase().includes(lowerSearch);
+                  })
+                  .map((item, index) => (
+                    <tr key={item._id}>
+                      <td>{index + 1}</td>
+                      <td>
+                        <img
+                          src={`http://localhost:5000${item.image}`}
+                          alt={item.name}
+                          className="cart-item-image"
+                        />
+                      </td>
+                      <td>{item.name}</td>
+                      <td>₹{item.price}</td>
+                      <td>
+                        <button
+                          onClick={() => handleIncrement(item)}
+                          className="cartCountIncrement"
+                        >
+                          +
+                        </button>
+                        &ensp;&ensp;{item.quantity}&ensp;&ensp;
+                        <button
+                          onClick={() => handleDecrement(item)}
+                          className="cartCountDecrement"
+                        >
+                          -
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          onClick={() => handleDelete(item)}
+                          disabled={deletingId === item._id}
+                          className="btn btn-danger"
+                        >
+                          {deletingId === item._id ? "Deleting..." : "Delete"}
+                        </button>
+                      </td>
+                    </tr>
+                  ))
               ) : (
                 <tr>
                   <td colSpan="6" className="cart-empty">

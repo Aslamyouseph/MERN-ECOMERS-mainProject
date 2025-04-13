@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useEffect, useState, useContext } from "react";
+import { SearchContext } from "../../SearchContext.js";
 import { useNavigate, Link } from "react-router-dom";
 
 function OrderPage() {
   const [orders, setOrders] = useState([]);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { search } = useContext(SearchContext);
 
   useEffect(() => {
     const fetchOrderDetails = async () => {
@@ -59,28 +60,63 @@ function OrderPage() {
           </tr>
         </thead>
         <tbody>
-          {orders.map((order, index) => (
-            <tr key={order._id}>
-              <td>{index + 1}</td>
-              <td>{new Date(order.createdAt).toLocaleString()}</td>
+          {orders
+            .filter((item) => {
+              const lowerSearch = search.toLowerCase();
 
-              <td>
-                {order.products.map((product, idx) => (
-                  <div key={idx}>
-                    {product.name} Quantity: {product.quantity}
-                    <hr />
-                  </div>
-                ))}
-              </td>
-              <td>{order.deliveryDetails.address}</td>
-              <td>{order.deliveryDetails.pincode}</td>
-              <td>{order.deliveryDetails.mobile}</td>
-              <td>{order.deliveryDetails.place}</td>
-              <td>{order.deliveryDetails.totalAmount}</td>
-              <td>{order.paymentMethod}</td>
-              <td>{order.status}</td>
-            </tr>
-          ))}
+              return lowerSearch === ""
+                ? true
+                : item?.userId?.name?.toLowerCase().includes(lowerSearch) ||
+                    item?.userId?.email?.toLowerCase().includes(lowerSearch) ||
+                    item?.deliveryDetails?.mobile
+                      ?.toString()
+                      .includes(lowerSearch) ||
+                    item?.deliveryDetails?.pincode
+                      ?.toString()
+                      .includes(lowerSearch) ||
+                    item?.deliveryDetails?.address
+                      ?.toLowerCase()
+                      .includes(lowerSearch) ||
+                    item?.deliveryDetails?.place
+                      ?.toLowerCase()
+                      .includes(lowerSearch) ||
+                    item?.deliveryDetails?.totalAmount
+                      ?.toString()
+                      .includes(lowerSearch) ||
+                    item?.paymentMethod?.toLowerCase().includes(lowerSearch) ||
+                    item?.status?.toLowerCase().includes(lowerSearch) ||
+                    new Date(item?.createdAt)
+                      .toLocaleString()
+                      .toLowerCase()
+                      .includes(lowerSearch) ||
+                    item?.products?.some(
+                      (product) =>
+                        product?.name?.toLowerCase().includes(lowerSearch) ||
+                        product?.quantity?.toString().includes(lowerSearch)
+                    );
+            })
+            .map((order, index) => (
+              <tr key={order._id}>
+                <td>{index + 1}</td>
+                <td>{new Date(order.createdAt).toLocaleString()}</td>
+
+                <td>
+                  {order.products.map((product, idx) => (
+                    <div key={idx}>
+                      {product.name} Quantity: {product.quantity}
+                      <hr />
+                    </div>
+                  ))}
+                </td>
+                <td>{order.deliveryDetails.address}</td>
+                <td>{order.deliveryDetails.pincode}</td>
+                <td>{order.deliveryDetails.mobile}</td>
+                <td>{order.deliveryDetails.place}</td>
+                <td>{order.deliveryDetails.totalAmount}</td>
+                <td>{order.paymentMethod}</td>
+                <td>{order.status}</td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>

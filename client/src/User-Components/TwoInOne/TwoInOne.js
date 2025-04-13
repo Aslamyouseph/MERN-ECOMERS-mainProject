@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./TwoInOne.css";
 import { Link, useNavigate } from "react-router-dom";
+import { SearchContext } from "../../SearchContext.js";
 
 function TwoInOne() {
   const [laptops, setLaptops] = useState([]); // Initialize as an empty array
   const [error, setError] = useState("");
   const [laptopDetails, setLaptopDetails] = useState(null);
   const navigate = useNavigate();
+  const { search } = useContext(SearchContext);
 
   useEffect(() => {
     const fetchLaptopDetails = async () => {
@@ -88,6 +90,13 @@ function TwoInOne() {
       setTimeout(() => navigate("/login"), 5000);
     }
   };
+  // TODO: Filter the laptops list based on the search input
+  const filteredData = laptops.filter(
+    (item) =>
+      item.Laptop_title?.toLowerCase().includes(search.toLowerCase()) ||
+      item.Laptop_discount_price?.toString().includes(search.toLowerCase()) ||
+      item.Laptop_description?.toLowerCase().includes(search.toLowerCase())
+  );
   return (
     <div className="laptop-container">
       <link
@@ -110,8 +119,8 @@ function TwoInOne() {
         <div className="col-xs-8 col-md-8 bootstrap snippets bootdeys">
           {error && <p className="error-message">{error}</p>}
           {/* Mapping operation is stating from here onwards */}
-          {Array.isArray(laptops) && laptops.length > 0 ? (
-            laptops.map((laptops) => (
+          {Array.isArray(filteredData) && filteredData.length > 0 ? (
+            filteredData.map((laptops) => (
               <div
                 key={laptops._id}
                 className="product-content product-wrap clearfix"

@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./HowToDO.css";
 import { Link } from "react-router-dom";
+import { SearchContext } from "../../SearchContext.js";
 
 function HowToDo() {
   const [HowToDO, setHowToDO] = useState([]);
   const [error, setError] = useState("");
+  const { search } = useContext(SearchContext);
 
   useEffect(() => {
     const fetchHowToDODetails = async () => {
@@ -29,6 +31,11 @@ function HowToDo() {
     fetchHowToDODetails();
   }, []);
 
+  // TODO:Filter based on title
+  const filteredData = HowToDO.filter((item) =>
+    item.HowToDo_title?.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <div>
       <br />
@@ -51,10 +58,10 @@ function HowToDo() {
       <div className="mainSection">
         {error && <p className="error-message">{error}</p>}
 
-        {HowToDO.length > 0 ? (
-          HowToDO.map((item) => <Card key={item._id} item={item} />)
+        {filteredData.length > 0 ? (
+          filteredData.map((item) => <Card key={item._id} item={item} />)
         ) : (
-          <p>No How-To articles available at the moment.</p>
+          <p>No How-To articles found.</p>
         )}
       </div>
       <br />
@@ -64,7 +71,7 @@ function HowToDo() {
 
 function Card({ item }) {
   return (
-    <div style={{ marginBottom: "20px" }} key={item._id} className="card-row">
+    <div style={{ marginBottom: "20px" }} className="card-row">
       <div className="card-image">
         <img
           src={`http://localhost:5000${item.HowToDo_image_small}`}

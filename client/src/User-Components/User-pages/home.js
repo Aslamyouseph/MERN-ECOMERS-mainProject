@@ -12,7 +12,7 @@ function home() {
   return (
     <div>
       <NavBar /> {/*This is used to import the navigation bar  */}
-      <SearchBar /> {/*This is used to import the Search bar  */}
+      {/* <SearchBar /> This is used to import the Search bar  */}
       <ImageSlider /> {/*This is used to import the Image slider   */}
       <LaptopCategory /> {/* This id used to import the Laptop category */}
       <Top_Laptop /> {/*This is used to import the Body */}
