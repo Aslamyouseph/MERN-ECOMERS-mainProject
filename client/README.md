@@ -1,58 +1,82 @@
 # 💻 LAPPORA - Laptop E-Commerce Web Application (MERN Stack)
 
-**LAPPORA** is a fully functional e-commerce application built using the **MERN Stack (MongoDB, Express.js, React.js, Node.js)**. It focuses on selling laptops, sharing the latest tech news, and providing **"How-To" tips and tricks** related to technology.
-
-This application includes dynamic features such as user authentication, cart and order management, admin control, and more!
+**LAPPORA** is a full-stack e-commerce platform built using the **MERN Stack (MongoDB, Express.js, React.js, Node.js)**. It’s designed to sell laptops, share the latest tech news, and provide useful **"How-To" guides** for users who love technology.
 
 ---
 
 ## 🌟 Features
 
 ### 👤 User Features
-- User registration and login
-- Browse laptops and view detailed product descriptions
-- Add products to cart
-- Place orders
+- User signup and login functionality
+- Browse laptops with detailed product views
+- Add to cart and place orders
 - Return and refund requests
-- Contact support team
+- Contact the support team for help
 
-### 👥 Guest User Access
-- Browse products and tech content freely
-- "Add to Cart", "Place Order", "Return", and "Contact" features are **restricted**
+### 👥 Guest Access
+- Can browse products and view tech content freely
+- Cannot access core features like **Add to Cart**, **Place Order**, **Return**, or **Contact** without logging in
 
 ### 🔐 Admin Module
-- Admin can manage all users, products, and orders
-- Access credentials:
+- Manage all products, users, and orders
+- Admin Login Credentials:
   - **Email**: `admin@gmail.com`
   - **Password**: `123123`
 
-### 📰 Extra Modules
-- **Tech News**: Stay updated with the latest laptop and tech industry updates
-- **How-To Guide**: Tips and tricks for technology and laptop usage
-
-### 💡 Future Enhancements
-- Online payment gateway integration
-- Enhanced order tracking
-- User reviews and ratings
+### 📰 Additional Modules
+- **Tech News**: Latest news updates in the laptop and tech world
+- **How-To Section**: Tips and tricks for using laptops and improving tech knowledge
 
 ---
 
-## 🛠️ Tech Stack
+## 🧱 Tech Stack
 
-- **Frontend**: React.js, Tailwind CSS, Bootstrap, Axios, etc.
-- **Backend**: Node.js, Express.js, MongoDB, Mongoose
-- **Other Dependencies**: JWT for authentication, bcrypt for password hashing, dotenv for environment variables, and many more...
+### 🖥️ Frontend
+Built using **React.js** with Bootstrap and TailwindCSS for UI styling
+
+#### 🔌 Frontend Dependencies
+- `@fortawesome/fontawesome-free`
+- `axios`
+- `bootstrap`
+- `cra-template`
+- `datatables.net-bs5`
+- `datatables.net-dt`
+- `jquery`
+- `react`
+- `react-bootstrap`
+- `react-dom`
+- `react-icons`
+- `react-router-dom`
+- `react-scripts`
+- `webpack`
+
+### 🖥️ Backend
+Built using **Node.js** and **Express.js**, connected to **MongoDB** via **Mongoose**
+
+#### 🔧 Backend Dependencies
+- `bcrypt`
+- `body-parser`
+- `connect-mongo`
+- `cookie-parser`
+- `cors`
+- `dotenv`
+- `express`
+- `express-fileupload`
+- `express-session`
+- `helmet`
+- `http-errors`
+- `mongodb`
+- `mongoose`
+- `morgan`
+- `multer`
+- `nodemon`
+- `promise`
 
 ---
 
-## 🚀 How to Run the Project
+## 🚀 Getting Started
 
-### 🔧 Prerequisites
-
-- Node.js and npm installed
-- MongoDB installed or access to MongoDB Atlas
-
-### 📂 Clone the repository
+### 📁 Clone the Repository
 
 ```bash
 git clone https://github.com/your-username/lappora.git
