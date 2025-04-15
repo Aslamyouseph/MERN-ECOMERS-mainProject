@@ -90,14 +90,14 @@ cd MERN-ECOMERS-mainProject
 ## ▶️ Start Frontend and Backend
 
 ### For frontend
--cd client
--npm install
--npm start
+- cd client
+- npm install
+- npm start
 
 ### For backend
--cd server
--npm install
--npm start
+- cd server
+- npm install
+- npm start
 
 ---
 
@@ -105,26 +105,26 @@ cd MERN-ECOMERS-mainProject
 
 ### If you clone the repository, the folder name will be:
 
--MERN-ECOMERS-mainProject
+- MERN-ECOMERS-mainProject
 
 ### If you download the ZIP file, GitHub will name the folder:
 
--MERN-ECOMERS-mainProject-main
+- MERN-ECOMERS-mainProject-main
 
 ---
 
 ### 🔐 Authentication
 
 ## Logged-in Users can:
--Add items to cart
--Place orders
--Request returns and refunds
--Contact the team
+- Add items to cart
+- Place orders
+- Request returns and refunds
+- Contact the team
 
 ## Guest Users can:
--Explore the site freely
--View products, news, and tips
--Cannot access special features (cart, order, refund, contact)
+- Explore the site freely
+- View products, news, and tips
+- Cannot access special features (cart, order, refund, contact)
 
 ---
 
@@ -134,8 +134,8 @@ cd MERN-ECOMERS-mainProject
 ---
 
 ## Developed By
--Aslam Youseph
--🎓 BCA Student | MERN Stack Developer
--📍 Kerala, India
--🔗 GitHub: [Aslamyouseph](https://github.com/Aslamyouseph)
+- Aslam Youseph
+- 🎓 BCA Student | MERN Stack Developer
+- 📍 Kerala, India
+- 🔗 GitHub: [Aslamyouseph](https://github.com/Aslamyouseph)
 
