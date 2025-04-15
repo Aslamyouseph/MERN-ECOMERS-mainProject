@@ -87,55 +87,55 @@ cd MERN-ECOMERS-mainProject
 
 ---
 
-### ▶️ Start Frontend and Backend
+## ▶️ Start Frontend and Backend
 
-# For frontend
-cd client
-npm install
-npm start
+### For frontend
+-cd client
+-npm install
+-npm start
 
-# For backend
-cd server
-npm install
-npm start
+### For backend
+-cd server
+-npm install
+-npm start
 
 ---
 
-### 📁 Cloning vs Downloading
+## 📁 Cloning vs Downloading
 
-If you clone the repository, the folder name will be:
+### If you clone the repository, the folder name will be:
 
-MERN-ECOMERS-mainProject
+-MERN-ECOMERS-mainProject
 
-If you download the ZIP file, GitHub will name the folder:
+### If you download the ZIP file, GitHub will name the folder:
 
-MERN-ECOMERS-mainProject-main
+-MERN-ECOMERS-mainProject-main
 
 ---
 
 ### 🔐 Authentication
 
-# Logged-in Users can:
-Add items to cart
-Place orders
-Request returns and refunds
-Contact the team
+## Logged-in Users can:
+-Add items to cart
+-Place orders
+-Request returns and refunds
+-Contact the team
 
-# Guest Users can:
-Explore the site freely
-View products, news, and tips
-Cannot access special features (cart, order, refund, contact)
+## Guest Users can:
+-Explore the site freely
+-View products, news, and tips
+-Cannot access special features (cart, order, refund, contact)
 
 ---
 
-### Known Limitations
+## Known Limitations
 ❌ Online payment system is not yet available
 
 ---
 
-# Developed By
-Aslam Youseph
-🎓 BCA Student | MERN Stack Developer
-📍 Kerala, India
-🔗 GitHub: [Aslamyouseph](https://github.com/Aslamyouseph)
+## Developed By
+-Aslam Youseph
+-🎓 BCA Student | MERN Stack Developer
+-📍 Kerala, India
+-🔗 GitHub: [Aslamyouseph](https://github.com/Aslamyouseph)
 
