@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# 💻 LAPPORA - Laptop E-Commerce Web Application (MERN Stack)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**LAPPORA** is a fully functional e-commerce application built using the **MERN Stack (MongoDB, Express.js, React.js, Node.js)**. It focuses on selling laptops, sharing the latest tech news, and providing **"How-To" tips and tricks** related to technology.
 
-## Available Scripts
+This application includes dynamic features such as user authentication, cart and order management, admin control, and more!
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🌟 Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 👤 User Features
+- User registration and login
+- Browse laptops and view detailed product descriptions
+- Add products to cart
+- Place orders
+- Return and refund requests
+- Contact support team
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 👥 Guest User Access
+- Browse products and tech content freely
+- "Add to Cart", "Place Order", "Return", and "Contact" features are **restricted**
 
-### `npm test`
+### 🔐 Admin Module
+- Admin can manage all users, products, and orders
+- Access credentials:
+  - **Email**: `admin@gmail.com`
+  - **Password**: `123123`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 📰 Extra Modules
+- **Tech News**: Stay updated with the latest laptop and tech industry updates
+- **How-To Guide**: Tips and tricks for technology and laptop usage
 
-### `npm run build`
+### 💡 Future Enhancements
+- Online payment gateway integration
+- Enhanced order tracking
+- User reviews and ratings
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🛠️ Tech Stack
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Frontend**: React.js, Tailwind CSS, Bootstrap, Axios, etc.
+- **Backend**: Node.js, Express.js, MongoDB, Mongoose
+- **Other Dependencies**: JWT for authentication, bcrypt for password hashing, dotenv for environment variables, and many more...
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🚀 How to Run the Project
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 🔧 Prerequisites
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Node.js and npm installed
+- MongoDB installed or access to MongoDB Atlas
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 📂 Clone the repository
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+git clone https://github.com/your-username/lappora.git
+cd lappora
