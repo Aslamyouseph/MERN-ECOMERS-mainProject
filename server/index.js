@@ -19,13 +19,26 @@ connectDB();
 // Create an express app
 const app = express();
 
-// Set port
+// Set port . it will run on render website port on in 5000 port
 const port = process.env.PORT || 5000;
 
 // Middleware
+// Now i can run this project on locally and also in render website
+// CLIENT_ORIGIN => value is available in the .env file
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: function (origin, callback) {
+      const allowedOrigins = [
+        "http://localhost:3000",
+        process.env.CLIENT_ORIGIN,
+      ];
+
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true); // Allow request
+      } else {
+        callback(new Error("Not allowed by CORS")); // Block other origins
+      }
+    },
     credentials: true,
   })
 );
