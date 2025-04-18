@@ -102,7 +102,7 @@ function AddingBusinessLaptops() {
     try {
       // console.log("Control came to here");
       const res = await fetch(
-        "http://localhost:5000/api/admin/addBusinessLaptop",
+        `${process.env.REACT_APP_API_BASE_URL}/api/admin/addBusinessLaptop`,
         {
           method: "POST",
           credentials: "include",

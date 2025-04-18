@@ -58,12 +58,15 @@ function PlaceOrder() {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/user/placeOrder", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ ...formData, totalAmount }), // Include totalAmount in the request
-      });
+      const res = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/api/user/placeOrder`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ ...formData, totalAmount }), // Include totalAmount in the request
+        }
+      );
 
       const data = await res.json();
       if (res.ok) {

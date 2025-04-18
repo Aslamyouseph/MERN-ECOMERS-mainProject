@@ -14,7 +14,7 @@ function AdminViewUserAccount() {
     const fetchUserDetails = async () => {
       try {
         const res = await fetch(
-          "http://localhost:5000/api/admin/getUsersDetails",
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getUsersDetails`,
           {
             method: "GET",
             credentials: "include",
@@ -49,7 +49,7 @@ function AdminViewUserAccount() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/admin/deleteUserDetails/${user._id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/admin/deleteUserDetails/${user._id}`,
         {
           method: "DELETE",
           credentials: "include",

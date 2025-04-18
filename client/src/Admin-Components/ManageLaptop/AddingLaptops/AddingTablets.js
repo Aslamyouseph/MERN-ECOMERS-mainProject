@@ -101,11 +101,14 @@ function AddingTablets() {
 
     try {
       // console.log("Control came to here");
-      const res = await fetch("http://localhost:5000/api/admin/addTablets", {
-        method: "POST",
-        credentials: "include",
-        body: formDataToSend,
-      });
+      const res = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/api/admin/addTablets`,
+        {
+          method: "POST",
+          credentials: "include",
+          body: formDataToSend,
+        }
+      );
       const data = await res.json();
       // console.log("Control came to here");
       // console.log("data", data);

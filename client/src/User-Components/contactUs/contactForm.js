@@ -55,12 +55,15 @@ function ContactForm() {
     if (!validateForm()) return;
 
     try {
-      const res = await fetch("http://localhost:5000/api/user/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include", // Ensures cookies are sent
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/api/user/contact`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include", // Ensures cookies are sent
+          body: JSON.stringify(formData),
+        }
+      );
 
       // Parse JSON response before using it
       const data = await res.json();

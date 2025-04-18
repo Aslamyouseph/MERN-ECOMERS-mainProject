@@ -103,7 +103,7 @@ function AddingGamingLaptops() {
     try {
       // console.log("Control came to here");
       const res = await fetch(
-        "http://localhost:5000/api/admin/addGamingLaptop",
+        `${process.env.REACT_APP_API_BASE_URL}/api/admin/addGamingLaptop`,
         {
           method: "POST",
           credentials: "include",

@@ -12,10 +12,13 @@ function News() {
   useEffect(() => {
     const fetchNewsDetails = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/admin/getNews", {
-          method: "GET",
-          credentials: "include",
-        });
+        const res = await fetch(
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getNews`,
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
 
         if (!res.ok) {
           throw new Error("Network response was not ok");
@@ -63,7 +66,7 @@ function News() {
           filteredData.map((newsItem) => (
             <div className="card-main h-100" key={newsItem._id}>
               <img
-                src={`http://localhost:5000${newsItem.News_image_small}`}
+                src={`${process.env.REACT_APP_API_BASE_URL}${newsItem.News_image_small}`}
                 alt={newsItem.News_title}
                 className="card-img"
                 onError={(e) => {

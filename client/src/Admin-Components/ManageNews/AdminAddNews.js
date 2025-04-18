@@ -63,11 +63,14 @@ function AdminAddNews() {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/admin/addNewNews", {
-        method: "POST",
-        credentials: "include",
-        body: formDataToSend,
-      });
+      const res = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/api/admin/addNewNews`,
+        {
+          method: "POST",
+          credentials: "include",
+          body: formDataToSend,
+        }
+      );
 
       const data = await res.json();
 

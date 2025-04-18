@@ -12,10 +12,13 @@ function AdminDeleteUpdateNews() {
   useEffect(() => {
     const fetchNewsDetails = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/admin/getNews", {
-          method: "GET",
-          credentials: "include",
-        });
+        const res = await fetch(
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getNews`,
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
 
         if (!res.ok) {
           throw new Error("Network response was not ok");
@@ -43,7 +46,7 @@ function AdminDeleteUpdateNews() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/admin/deleteNewsDetails/${newsItem._id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/admin/deleteNewsDetails/${newsItem._id}`,
         {
           method: "DELETE",
           credentials: "include",
@@ -98,7 +101,7 @@ function AdminDeleteUpdateNews() {
                   <td>{newsItem.News_Details}</td>
                   <td>
                     <img
-                      src={`http://localhost:5000${newsItem.News_image_small}`}
+                      src={`${process.env.REACT_APP_API_BASE_URL}${newsItem.News_image_small}`}
                       alt={newsItem.News_title}
                       width="200"
                       height="200px"
@@ -106,7 +109,7 @@ function AdminDeleteUpdateNews() {
                   </td>
                   <td>
                     <img
-                      src={`http://localhost:5000${newsItem.News_image_large}`}
+                      src={`${process.env.REACT_APP_API_BASE_URL}${newsItem.News_image_large}`}
                       alt={newsItem.News_title}
                       width="200"
                       height="200px"

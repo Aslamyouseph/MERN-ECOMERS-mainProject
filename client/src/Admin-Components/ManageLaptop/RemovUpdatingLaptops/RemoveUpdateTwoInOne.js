@@ -12,7 +12,7 @@ function RemoveUpdateTwoInOne() {
     const fetchLaptopDetails = async () => {
       try {
         const res = await fetch(
-          "http://localhost:5000/api/admin/getTwoInOneLaptops",
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getTwoInOneLaptops`,
           {
             method: "GET",
             credentials: "include",
@@ -44,7 +44,7 @@ function RemoveUpdateTwoInOne() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/admin/deleteTwoInOneLaptop/${laptop._id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/admin/deleteTwoInOneLaptop/${laptop._id}`,
         {
           method: "DELETE",
           credentials: "include",
@@ -122,7 +122,7 @@ function RemoveUpdateTwoInOne() {
                   </td>
                   <td>
                     <img
-                      src={`http://localhost:5000${laptop.Laptop_image_small}`}
+                      src={`${process.env.REACT_APP_API_BASE_URL}${laptop.Laptop_image_small}`}
                       alt={laptop.Laptop_title}
                       width="200px"
                       height="130px"
@@ -130,7 +130,7 @@ function RemoveUpdateTwoInOne() {
                   </td>
                   <td>
                     <img
-                      src={`http://localhost:5000${laptop.Laptop_image_large}`}
+                      src={`${process.env.REACT_APP_API_BASE_URL}${laptop.Laptop_image_large}`}
                       alt={laptop.Laptop_title}
                       width="200"
                       height="200px"

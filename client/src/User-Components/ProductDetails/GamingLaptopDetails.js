@@ -17,10 +17,13 @@ export default function ProductPage() {
   useEffect(() => {
     const checkLoginStatus = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/user/checksection", {
-          method: "GET",
-          credentials: "include",
-        });
+        const res = await fetch(
+          `${process.env.REACT_APP_API_BASE_URL}/api/user/checksection`,
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
         const data = await res.json();
         if (data.isLoggedIn) {
           setIsLoggedIn(true);
@@ -38,7 +41,7 @@ export default function ProductPage() {
     const fetchLaptopDetails = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/api/admin/getGamingLaptopDetails/${id}`,
+          `${process.env.REACT_APP_API_BASE_URL}v/api/admin/getGamingLaptopDetails/${id}`,
           {
             method: "GET",
             credentials: "include",
@@ -67,7 +70,7 @@ export default function ProductPage() {
 
     try {
       const res = await fetch(
-        "http://localhost:5000/api/user/addReviewGaming",
+        `${process.env.REACT_APP_API_BASE_URL}/api/user/addReviewGaming`,
         {
           method: "PUT",
           credentials: "include",
@@ -103,7 +106,7 @@ export default function ProductPage() {
     try {
       // Fetch laptop details
       const res = await fetch(
-        `http://localhost:5000/api/admin/getGamingLaptopDetails/${id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/admin/getGamingLaptopDetails/${id}`,
         {
           method: "GET",
           credentials: "include",
@@ -129,7 +132,7 @@ export default function ProductPage() {
 
       // If confirmed, proceed with adding to cart
       const addToCartRes = await fetch(
-        `http://localhost:5000/api/user/addToCart/${id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/user/addToCart/${id}`,
         {
           method: "POST",
           credentials: "include",
@@ -158,7 +161,7 @@ export default function ProductPage() {
           <section className="product-section">
             <div className="image-container">
               <img
-                src={`http://localhost:5000${laptopDetails.Laptop_image_large}`}
+                src={`${process.env.REACT_APP_API_BASE_URL}${laptopDetails.Laptop_image_large}`}
                 alt={laptopDetails.Laptop_title}
                 className="featured-image"
               />

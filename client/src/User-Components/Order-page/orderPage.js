@@ -11,10 +11,13 @@ function OrderPage() {
   useEffect(() => {
     const fetchOrderDetails = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/user/getAllOrders", {
-          method: "GET",
-          credentials: "include",
-        });
+        const res = await fetch(
+          `${process.env.REACT_APP_API_BASE_URL}/api/user/getAllOrders`,
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
 
         if (!res.ok) {
           throw new Error("Failed to fetch Order details");

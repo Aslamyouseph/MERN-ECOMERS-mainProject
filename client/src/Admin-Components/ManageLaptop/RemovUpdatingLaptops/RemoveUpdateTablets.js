@@ -13,10 +13,13 @@ function RemoveUpdateTablets() {
   useEffect(() => {
     const fetchLaptopDetails = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/admin/getTablets", {
-          method: "GET",
-          credentials: "include",
-        });
+        const res = await fetch(
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getTablets`,
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
 
         if (!res.ok) {
           throw new Error("Network response was not ok");
@@ -43,7 +46,7 @@ function RemoveUpdateTablets() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/admin/deleteTablets/${laptop._id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/admin/deleteTablets/${laptop._id}`,
         {
           method: "DELETE",
           credentials: "include",
@@ -120,7 +123,7 @@ function RemoveUpdateTablets() {
                   </td>
                   <td>
                     <img
-                      src={`http://localhost:5000${laptop.Laptop_image_small}`}
+                      src={`${process.env.REACT_APP_API_BASE_URL}${laptop.Laptop_image_small}`}
                       alt={laptop.Laptop_title}
                       width="200px"
                       height="130px"
@@ -128,7 +131,7 @@ function RemoveUpdateTablets() {
                   </td>
                   <td>
                     <img
-                      src={`http://localhost:5000${laptop.Laptop_image_large}`}
+                      src={`${process.env.REACT_APP_API_BASE_URL}${laptop.Laptop_image_large}`}
                       alt={laptop.Laptop_title}
                       width="200"
                       height="200px"

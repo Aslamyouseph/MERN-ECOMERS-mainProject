@@ -26,7 +26,7 @@ function TwoInOneLaptopUpdating() {
     const fetchLaptopDetails = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/api/admin/getTwoInOneLaptopDetails/${id}`,
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getTwoInOneLaptopDetails/${id}`,
           {
             method: "GET",
             credentials: "include",
@@ -103,7 +103,7 @@ function TwoInOneLaptopUpdating() {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/admin/updateTwoInOneLaptops/${id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/admin/updateTwoInOneLaptops/${id}`,
         {
           method: "PUT",
           credentials: "include",

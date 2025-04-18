@@ -23,7 +23,7 @@ function UpdateHowToDo() {
     const fetchHowToDoDetails = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/api/admin/getHowToDoDetails/${id}`,
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getHowToDoDetails/${id}`,
           {
             method: "GET",
             credentials: "include",
@@ -80,7 +80,7 @@ function UpdateHowToDo() {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/admin/updateHowToDo/${id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/admin/updateHowToDo/${id}`,
         {
           method: "PUT",
           credentials: "include",

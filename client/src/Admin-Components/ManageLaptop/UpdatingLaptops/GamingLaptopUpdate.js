@@ -26,7 +26,7 @@ function GamingLaptopUpdate() {
     const fetchLaptopDetails = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/api/admin/getGamingLaptopDetails/${id}`,
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getGamingLaptopDetails/${id}`,
           {
             method: "GET",
             credentials: "include",
@@ -103,7 +103,7 @@ function GamingLaptopUpdate() {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/admin/updateGamingLaptop/${id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/admin/updateGamingLaptop/${id}`,
         {
           method: "PUT",
           credentials: "include",

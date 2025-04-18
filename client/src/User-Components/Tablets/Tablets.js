@@ -13,10 +13,13 @@ function Tablets() {
   useEffect(() => {
     const fetchLaptopDetails = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/admin/getTablets", {
-          method: "GET",
-          credentials: "include", // Ensures that the session is used for authentication
-        });
+        const res = await fetch(
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getTablets`,
+          {
+            method: "GET",
+            credentials: "include", // Ensures that the session is used for authentication
+          }
+        );
 
         if (!res.ok) {
           throw new Error("Network response was not ok");
@@ -38,7 +41,7 @@ function Tablets() {
     try {
       // Fetch laptop details
       const res = await fetch(
-        `http://localhost:5000/api/admin/getTabletsDetails/${id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/admin/getTabletsDetails/${id}`,
         {
           method: "GET",
           credentials: "include",
@@ -64,7 +67,7 @@ function Tablets() {
 
       // If confirmed, proceed with adding to cart
       const addToCartRes = await fetch(
-        `http://localhost:5000/api/user/addToCart/${id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/user/addToCart/${id}`,
         {
           method: "POST",
           credentials: "include",
@@ -122,7 +125,7 @@ function Tablets() {
               >
                 <div className="product-image">
                   <img
-                    src={`http://localhost:5000${laptops.Laptop_image_small}`}
+                    src={`${process.env.REACT_APP_API_BASE_URL}${laptops.Laptop_image_small}`}
                     alt={laptops.Laptop_title}
                     className="img-responsive"
                     onError={(e) => {

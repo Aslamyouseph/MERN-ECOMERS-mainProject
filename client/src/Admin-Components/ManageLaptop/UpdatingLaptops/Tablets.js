@@ -26,7 +26,7 @@ function Tablets() {
     const fetchLaptopDetails = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/api/admin/getTabletsDetails/${id}`,
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getTabletsDetails/${id}`,
           {
             method: "GET",
             credentials: "include",
@@ -103,7 +103,7 @@ function Tablets() {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/admin/updateTablets/${id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/admin/updateTablets/${id}`,
         {
           method: "PUT",
           credentials: "include",

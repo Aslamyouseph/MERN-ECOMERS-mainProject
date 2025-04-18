@@ -19,10 +19,13 @@ function NavScrollExample() {
   useEffect(() => {
     const checkLoginStatus = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/user/checksection", {
-          method: "GET",
-          credentials: "include", // Ensure cookies are sent
-        });
+        const res = await fetch(
+          `${process.env.REACT_APP_API_BASE_URL}/api/user/checksection`,
+          {
+            method: "GET",
+            credentials: "include", // Ensure cookies are sent
+          }
+        );
 
         const data = await res.json();
         // Storing the session user name in to a state
@@ -45,13 +48,16 @@ function NavScrollExample() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5000/api/user/logout", {
-        method: "POST", // Ensure your backend supports this method
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/api/user/logout`,
+        {
+          method: "POST", // Ensure your backend supports this method
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (res.ok) {
         localStorage.removeItem("user"); // Remove user from localStorage
@@ -67,7 +73,7 @@ function NavScrollExample() {
     const fetchCartDetails = async () => {
       try {
         const res = await fetch(
-          "http://localhost:5000/api/user/getCartDetails",
+          `${process.env.REACT_APP_API_BASE_URL}/api/user/getCartDetails`,
           {
             method: "GET",
             credentials: "include",

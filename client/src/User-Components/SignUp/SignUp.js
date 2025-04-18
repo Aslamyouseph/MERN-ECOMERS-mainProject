@@ -60,12 +60,15 @@ function SignUp() {
 
     try {
       const { confirmPassword, ...sendData } = formData; // Remove confirmPassword before sending
-      const res = await fetch("http://localhost:5000/api/user/signup", {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(sendData),
-      });
+      const res = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/api/user/signup`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(sendData),
+        }
+      );
       const data = await res.json();
 
       if (res.ok) {

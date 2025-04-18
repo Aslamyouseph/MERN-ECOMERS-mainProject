@@ -14,7 +14,7 @@ function AdminReturnRefund() {
     const fetchReturnRefund = async () => {
       try {
         const res = await fetch(
-          "http://localhost:5000/api/admin/getReturnRefund",
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getReturnRefund`,
           {
             method: "GET",
             credentials: "include",
@@ -49,7 +49,7 @@ function AdminReturnRefund() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/admin/deleteReturnRefund/${request._id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/admin/deleteReturnRefund/${request._id}`,
         {
           method: "DELETE",
           credentials: "include",

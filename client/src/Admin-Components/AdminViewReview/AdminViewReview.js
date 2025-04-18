@@ -15,7 +15,7 @@ function AdminViewReview() {
     const fetchGamingReviewDetails = async () => {
       try {
         const res = await fetch(
-          "http://localhost:5000/api/admin/getGamingLaptops",
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getGamingLaptops`,
           { method: "GET", credentials: "include" }
         );
 
@@ -40,7 +40,7 @@ function AdminViewReview() {
     const fetchBusinessReviewDetails = async () => {
       try {
         const res = await fetch(
-          "http://localhost:5000/api/admin/getBusinessLaptops",
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getBusinessLaptops`,
           { method: "GET", credentials: "include" }
         );
 
@@ -64,7 +64,7 @@ function AdminViewReview() {
     const fetchBudgetReviewDetails = async () => {
       try {
         const res = await fetch(
-          "http://localhost:5000/api/admin/getBudgetLaptops",
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getBudgetLaptops`,
           { method: "GET", credentials: "include" }
         );
 
@@ -88,7 +88,7 @@ function AdminViewReview() {
     const fetchStudentReviewDetails = async () => {
       try {
         const res = await fetch(
-          "http://localhost:5000/api/admin/getStudentsLaptops",
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getStudentsLaptops`,
           { method: "GET", credentials: "include" }
         );
 
@@ -111,10 +111,13 @@ function AdminViewReview() {
   useEffect(() => {
     const fetchTabletsReviewDetails = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/admin/getTablets", {
-          method: "GET",
-          credentials: "include",
-        });
+        const res = await fetch(
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getTablets`,
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
 
         if (!res.ok) {
           throw new Error("Failed to fetch Tablets review details");
@@ -136,7 +139,7 @@ function AdminViewReview() {
     const fetchTwoInOneReviewDetails = async () => {
       try {
         const res = await fetch(
-          "http://localhost:5000/api/admin/getTwoInOneLaptops",
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getTwoInOneLaptops`,
           { method: "GET", credentials: "include" }
         );
 

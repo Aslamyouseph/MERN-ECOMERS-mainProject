@@ -11,10 +11,13 @@ function HowToDo() {
   useEffect(() => {
     const fetchHowToDODetails = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/admin/getHowToDO", {
-          method: "GET",
-          credentials: "include",
-        });
+        const res = await fetch(
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getHowToDO`,
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
 
         if (!res.ok) {
           throw new Error("Network response was not ok");
@@ -74,7 +77,7 @@ function Card({ item }) {
     <div style={{ marginBottom: "20px" }} className="card-row">
       <div className="card-image">
         <img
-          src={`http://localhost:5000${item.HowToDo_image_small}`}
+          src={`${process.env.REACT_APP_API_BASE_URL}${item.HowToDo_image_small}`}
           alt={item.HowToDo_title}
           className="Card Image"
           onError={(e) => {

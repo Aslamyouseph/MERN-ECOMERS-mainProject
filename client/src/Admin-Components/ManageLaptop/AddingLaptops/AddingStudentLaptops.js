@@ -102,7 +102,7 @@ function AddingStudentLaptops() {
     try {
       // console.log("Control came to here");
       const res = await fetch(
-        "http://localhost:5000/api/admin/addStudentLaptop",
+        `${process.env.REACT_APP_API_BASE_URL}/api/admin/addStudentLaptop`,
         {
           method: "POST",
           credentials: "include",

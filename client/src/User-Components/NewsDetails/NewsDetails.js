@@ -11,7 +11,7 @@ function NewsDetails() {
     const fetchNewsDetails = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/api/admin/getNewsDetails/${id}`,
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getNewsDetails/${id}`,
           {
             method: "GET",
             credentials: "include", // Ensures that the session is used for authentication
@@ -55,7 +55,7 @@ function NewsDetails() {
             <br />
             <div className="imageContainer">
               <img
-                src={`http://localhost:5000${NewsDetails.News_image_large}`}
+                src={`${process.env.REACT_APP_API_BASE_URL}${NewsDetails.News_image_large}`}
                 alt={NewsDetails.News_title}
                 className="NewsImage"
               />

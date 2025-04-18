@@ -102,7 +102,7 @@ function AddingTwoInOne() {
     try {
       // console.log("Control came to here");
       const res = await fetch(
-        "http://localhost:5000/api/admin/addTwoInOneLaptop",
+        `${process.env.REACT_APP_API_BASE_URL}/api/admin/addTwoInOneLaptop`,
         {
           method: "POST",
           credentials: "include",

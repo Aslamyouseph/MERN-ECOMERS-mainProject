@@ -14,7 +14,7 @@ function AdminViewUserContact() {
     const fetchUsersContactDetails = async () => {
       try {
         const res = await fetch(
-          "http://localhost:5000/api/admin/getUsersContact",
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getUsersContact`,
           {
             method: "GET",
             credentials: "include",
@@ -49,7 +49,7 @@ function AdminViewUserContact() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/admin/deleteUsersContact/${user._id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/admin/deleteUsersContact/${user._id}`,
         {
           method: "DELETE",
           credentials: "include",

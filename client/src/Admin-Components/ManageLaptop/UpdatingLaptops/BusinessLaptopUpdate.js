@@ -26,7 +26,7 @@ function BusinessLaptopUpdate() {
     const fetchLaptopDetails = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/api/admin/getBusinessLaptopDetails/${id}`,
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getBusinessLaptopDetails/${id}`,
           {
             method: "GET",
             credentials: "include",
@@ -103,7 +103,7 @@ function BusinessLaptopUpdate() {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/admin/updateBusinessLaptop/${id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/admin/updateBusinessLaptop/${id}`,
         {
           method: "PUT",
           credentials: "include",

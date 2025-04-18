@@ -14,7 +14,7 @@ function BudgetLaptos() {
     const fetchLaptopDetails = async () => {
       try {
         const res = await fetch(
-          "http://localhost:5000/api/admin/getBudgetLaptops",
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getBudgetLaptops`,
           {
             method: "GET",
             credentials: "include", // Ensures that the session is used for authentication
@@ -41,7 +41,7 @@ function BudgetLaptos() {
     try {
       // Fetch laptop details
       const res = await fetch(
-        `http://localhost:5000/api/admin/getBudgetLaptopDetails/${id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/admin/getBudgetLaptopDetails/${id}`,
         {
           method: "GET",
           credentials: "include",
@@ -67,7 +67,7 @@ function BudgetLaptos() {
 
       // If confirmed, proceed with adding to cart
       const addToCartRes = await fetch(
-        `http://localhost:5000/api/user/addToCart/${id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/user/addToCart/${id}`,
         {
           method: "POST",
           credentials: "include",
@@ -127,7 +127,7 @@ function BudgetLaptos() {
               >
                 <div className="product-image">
                   <img
-                    src={`http://localhost:5000${laptops.Laptop_image_small}`}
+                    src={`${process.env.REACT_APP_API_BASE_URL}${laptops.Laptop_image_small}`}
                     alt={laptops.Laptop_title}
                     className="img-responsive"
                     onError={(e) => {

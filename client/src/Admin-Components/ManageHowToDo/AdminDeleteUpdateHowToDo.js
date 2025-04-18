@@ -10,10 +10,13 @@ function AdminDeleteUpdateHowToDo() {
   useEffect(() => {
     const fetchHowToDoDetails = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/admin/getHowToDO", {
-          method: "GET",
-          credentials: "include",
-        });
+        const res = await fetch(
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getHowToDO`,
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
 
         if (!res.ok) {
           throw new Error("Network response was not ok");
@@ -41,7 +44,7 @@ function AdminDeleteUpdateHowToDo() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/admin/deleteHowToDoDetails/${item._id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/admin/deleteHowToDoDetails/${item._id}`,
         {
           method: "DELETE",
           credentials: "include",
@@ -96,7 +99,7 @@ function AdminDeleteUpdateHowToDo() {
                 <td>{item.HowToDo_Details}</td>
                 <td>
                   <img
-                    src={`http://localhost:5000${item.HowToDo_image_small}`}
+                    src={`${process.env.REACT_APP_API_BASE_URL}${item.HowToDo_image_small}`}
                     alt={item.HowToDo_title}
                     width="200"
                     height="200"
@@ -104,7 +107,7 @@ function AdminDeleteUpdateHowToDo() {
                 </td>
                 <td>
                   <img
-                    src={`http://localhost:5000${item.HowToDo_image_large}`}
+                    src={`${process.env.REACT_APP_API_BASE_URL}${item.HowToDo_image_large}`}
                     alt={item.HowToDo_title}
                     width="200"
                     height="200"

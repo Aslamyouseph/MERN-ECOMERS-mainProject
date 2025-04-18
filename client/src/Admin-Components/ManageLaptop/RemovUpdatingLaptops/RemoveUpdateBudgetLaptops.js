@@ -13,7 +13,7 @@ function RemoveUpdateBudgetLaptops() {
     const fetchLaptopDetails = async () => {
       try {
         const res = await fetch(
-          "http://localhost:5000/api/admin/getBudgetLaptops",
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getBudgetLaptops`,
           {
             method: "GET",
             credentials: "include",
@@ -45,7 +45,7 @@ function RemoveUpdateBudgetLaptops() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/admin/deleteBudgetLaptop/${laptop._id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/admin/deleteBudgetLaptop/${laptop._id}`,
         {
           method: "DELETE",
           credentials: "include",
@@ -122,7 +122,7 @@ function RemoveUpdateBudgetLaptops() {
                   </td>
                   <td>
                     <img
-                      src={`http://localhost:5000${laptop.Laptop_image_small}`}
+                      src={`${process.env.REACT_APP_API_BASE_URL}${laptop.Laptop_image_small}`}
                       alt={laptop.Laptop_title}
                       width="200px"
                       height="130px"
@@ -130,7 +130,7 @@ function RemoveUpdateBudgetLaptops() {
                   </td>
                   <td>
                     <img
-                      src={`http://localhost:5000${laptop.Laptop_image_large}`}
+                      src={`${process.env.REACT_APP_API_BASE_URL}${laptop.Laptop_image_large}`}
                       alt={laptop.Laptop_title}
                       width="200"
                       height="200px"

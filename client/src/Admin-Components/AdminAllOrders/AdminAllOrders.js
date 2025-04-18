@@ -14,7 +14,7 @@ function AdminAllOrders() {
     const fetchOrderDetails = async () => {
       try {
         const res = await fetch(
-          "http://localhost:5000/api/admin/getAllOrders",
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getAllOrders`,
           {
             method: "GET",
             credentials: "include",
@@ -50,7 +50,7 @@ function AdminAllOrders() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/admin/deleteOrder/${order._id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/admin/deleteOrder/${order._id}`,
         {
           method: "DELETE",
           credentials: "include",
@@ -87,7 +87,7 @@ function AdminAllOrders() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/admin/ApproveOrder/${order._id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/admin/ApproveOrder/${order._id}`,
         {
           method: "put",
           credentials: "include",
@@ -115,7 +115,7 @@ function AdminAllOrders() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/admin/RejectOrder/${order._id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/admin/RejectOrder/${order._id}`,
         {
           method: "put",
           credentials: "include",
@@ -142,7 +142,7 @@ function AdminAllOrders() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/admin/DeliverOrder/${order._id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/admin/DeliverOrder/${order._id}`,
         {
           method: "put",
           credentials: "include",

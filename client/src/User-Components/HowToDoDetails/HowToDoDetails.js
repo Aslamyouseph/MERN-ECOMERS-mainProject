@@ -11,7 +11,7 @@ function HowToDoDetails() {
     const fetchHowToDoDetails = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/api/admin/getHowToDoDetails/${id}`,
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getHowToDoDetails/${id}`,
           {
             method: "GET",
             credentials: "include", // Ensures authentication session is used
@@ -58,7 +58,7 @@ function HowToDoDetails() {
         <br />
         <div className="HowToDoContainer">
           <img
-            src={`http://localhost:5000${HowToDODetails.HowToDo_image_large}`}
+            src={`${process.env.REACT_APP_API_BASE_URL}${HowToDODetails.HowToDo_image_large}`}
             alt={HowToDODetails.HowToDo_title}
             className="HowToImage"
             onError={(e) => {

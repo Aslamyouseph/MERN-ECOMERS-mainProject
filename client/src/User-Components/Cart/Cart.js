@@ -14,7 +14,7 @@ function Cart() {
     const fetchCartDetails = async () => {
       try {
         const res = await fetch(
-          "http://localhost:5000/api/user/getCartDetails",
+          `${process.env.REACT_APP_API_BASE_URL}/api/user/getCartDetails`,
           {
             method: "GET",
             credentials: "include",
@@ -47,7 +47,7 @@ function Cart() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/user/deleteCartItem/${item._id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/user/deleteCartItem/${item._id}`,
         {
           method: "DELETE",
           credentials: "include",
@@ -72,7 +72,7 @@ function Cart() {
     const updatedQuantity = item.quantity + 1;
     try {
       const response = await fetch(
-        `http://localhost:5000/api/user/incrementCartItemQuantity/${item._id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/user/incrementCartItemQuantity/${item._id}`,
         {
           method: "PUT",
           credentials: "include",
@@ -102,7 +102,7 @@ function Cart() {
       const updatedQuantity = item.quantity - 1;
       try {
         const response = await fetch(
-          `http://localhost:5000/api/user/decrementCartItemQuantity/${item._id}`,
+          `${process.env.REACT_APP_API_BASE_URL}/api/user/decrementCartItemQuantity/${item._id}`,
           {
             method: "PUT",
             credentials: "include",
@@ -161,7 +161,7 @@ function Cart() {
                       <td>{index + 1}</td>
                       <td>
                         <img
-                          src={`http://localhost:5000${item.image}`}
+                          src={`${process.env.REACT_APP_API_BASE_URL}${item.image}`}
                           alt={item.name}
                           className="cart-item-image"
                         />
