@@ -12,6 +12,7 @@ const multer = require("multer"); // Multer for file upload
 const path = require("path");
 const fs = require("fs");
 require("dotenv").config();
+console.log("CLIENT_ORIGIN:", process.env.CLIENT_ORIGIN);
 
 // Connect to MongoDB
 connectDB();
