@@ -41,7 +41,7 @@ export default function ProductPage() {
     const fetchLaptopDetails = async () => {
       try {
         const res = await fetch(
-          `${process.env.REACT_APP_API_BASE_URL}v/api/admin/getGamingLaptopDetails/${id}`,
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/getGamingLaptopDetails/${id}`,
           {
             method: "GET",
             credentials: "include",
