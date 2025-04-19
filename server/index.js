@@ -51,18 +51,19 @@ app.use(express.urlencoded({ extended: true }));
 // Configure session
 app.use(
   session({
-    secret: process.env.SESSION_SECRET || "fallback-secret-key",
+    secret: process.env.SESSION_SECRET || "default-secret-key",
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
-      client: mongoose.connection.getClient(),
+      mongoUrl:
+        process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/MainProject", // fallback to local Mongo
       collectionName: "sessions",
     }),
     cookie: {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      maxAge: 10 * 60 * 1000,
+      secure: process.env.NODE_ENV === "production", // true only on Render
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Render needs "none" for cross-origin
+      maxAge: 10 * 60 * 1000, // 10 minutes
     },
   })
 );
