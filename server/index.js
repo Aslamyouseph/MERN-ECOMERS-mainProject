@@ -20,6 +20,10 @@ connectDB();
 // Create an express app
 const app = express();
 
+if (process.env.NODE_ENV === "production") {
+  app.set("trust proxy", 1);
+}
+
 // Set port . it will run on render website port on in 5000 port
 const port = process.env.PORT || 5000;
 
