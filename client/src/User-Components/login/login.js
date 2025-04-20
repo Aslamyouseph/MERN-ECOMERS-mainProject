@@ -67,6 +67,7 @@ function Login() {
       <br />
       <br />
       <br />
+
       <div className="login-container">
         <h2>Login</h2>
         {error && <p className="error-message">{error}</p>}
@@ -95,6 +96,57 @@ function Login() {
         </form>
       </div>
       <br />
+      <br />
+      <h3
+        style={{
+          textAlign: "center",
+          fontSize: "30px",
+          backgroundColor: "#f5f5f5",
+          padding: "20px",
+          borderRadius: "12px",
+          color: "#333",
+          boxShadow: "0 6px 15px rgba(0, 0, 0, 0.1)",
+          margin: "20px auto",
+          maxWidth: "600px",
+          fontFamily: "Arial, sans-serif",
+          transition: "transform 0.3s ease-in-out",
+        }}
+      >
+        <span
+          style={{
+            fontWeight: "bold",
+            color: "#d32f2f",
+            textTransform: "uppercase",
+            fontSize: "30px",
+          }}
+        >
+          LOGIN FOR ADMIN
+        </span>
+        : - <br />
+        <span
+          style={{
+            fontWeight: "bold",
+            color: "#ff5722",
+            fontSize: "18px",
+            marginTop: "10px",
+          }}
+        >
+          <span style={{ textDecoration: "underline" }}>Email</span>:
+          admin@gmail.com
+        </span>
+        <br />
+        <span
+          style={{
+            fontWeight: "bold",
+            color: "#ff5722",
+            fontSize: "18px",
+            marginTop: "10px",
+          }}
+        >
+          <span style={{ textDecoration: "underline" }}>Password</span>: 123123
+        </span>
+      </h3>
+
       <br />
       <br />
     </div>
