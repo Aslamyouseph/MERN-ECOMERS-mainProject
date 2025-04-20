@@ -31,13 +31,14 @@ app.use(
     origin: function (origin, callback) {
       const allowedOrigins = [
         "http://localhost:3000",
-        process.env.CLIENT_ORIGIN,
+        "https://lappora-mern-frontned.onrender.com",
       ];
 
       if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true); // Allow request
+        callback(null, true); // ✅ Allow request
       } else {
-        callback(new Error("Not allowed by CORS")); // Block other origins
+        console.log("Blocked by CORS:", origin); // Helpful for debugging
+        callback(new Error("Not allowed by CORS"));
       }
     },
     credentials: true,
