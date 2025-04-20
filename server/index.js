@@ -20,6 +20,7 @@ connectDB();
 // Create an express app
 const app = express();
 
+// This section is used to configure the express app to trust the proxy during the deployment or hosting time (in render website)
 if (process.env.NODE_ENV === "production") {
   app.set("trust proxy", 1);
 }
