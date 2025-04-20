@@ -23,27 +23,28 @@ function NavScrollExample() {
           `${process.env.REACT_APP_API_BASE_URL}/api/user/checksection`,
           {
             method: "GET",
-            credentials: "include", // Ensure cookies are sent
+            credentials: "include",
           }
         );
 
         const data = await res.json();
-        // Storing the session user name in to a state
-        setSessionName(data.user.name);
-        // console.log("data", data);
-        // console.log("data Name", data.user.name);
-        if (data.isLoggedIn) {
+        console.log("Login check response:", data);
+
+        if (data && data.user && data.user.name) {
+          setSessionName(data.user.name);
           setIsLoggedIn(true);
         } else {
           setIsLoggedIn(false);
         }
       } catch (error) {
         console.error("Error checking login status:", error);
+        setIsLoggedIn(false);
       }
     };
 
     checkLoginStatus();
   }, []);
+
   const handleLogout = async (e) => {
     e.preventDefault();
 
