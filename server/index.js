@@ -99,3 +99,16 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
+//TODO:  MIDDLEWARES
+
+// | Line / Section                                        | Middleware                               | Description                                                       |
+// | ----------------------------------------------------- | ---------------------------------------- | ----------------------------------------------------------------- |
+// | `app.use(cors(...))`                                  | **CORS middleware**                      | Allows requests from certain websites (like localhost or Render). |
+// | `app.use(express.json())`                             | **Body parser middleware (JSON)**        | Reads and understands data sent as JSON in requests.              |
+// | `app.use(express.urlencoded({ extended: true }))`     | **Body parser middleware (URL-encoded)** | Reads and understands form data sent in requests.                 |
+// | `app.use(session(...))`                               | **Session middleware**                   | Keeps track of users’ sessions and saves them in the database.    |
+// | `app.use("/AdminProductImages", express.static(...))` | **Static file serving middleware**       | Lets users access image files stored on the server.               |
+// | `app.use("/api/user", UserRouter)`                    | **Router middleware**                    | Handles all user-related requests starting with `/api/user`.      |
+// | `app.use("/api/admin", AdminRoute)`                   | **Router middleware**                    | Handles all admin-related requests starting with `/api/admin`.    |
+// | `app.use((err, req, res, next) => {...})`             | **Error-handling middleware**            | Catches errors and sends a message back to the user.              |
